@@ -1,10 +1,17 @@
 <p align="center">
   <img src="임시이미지.png" width="400" height="400"/>
 </p>
-<p align="center">
-# [2D] 디펜스 게임
- 사방에서 몰려드는 몬스터들을 처치하며, 드랍되는 아이템으로 비트를 완성시켜 다양한 공격패턴
-</p>
+
+<div align="center">
+  <h1>MZ디펜스</h1>
+  <h5>Music Zombie Defence</h5>
+</div>
+
+<div align="center">
+ 몰려드는 적들을 음악의 힘으로 처치하라!
+</div>
+ 
+
 
 # 🙍‍♂️ 팀원
 
