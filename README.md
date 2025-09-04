@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="#" width="400" height="400"/>
+  <img src="임시이미지.png" width="400" height="400"/>
 </p>
 
 # [2D] 디펜스 게임
