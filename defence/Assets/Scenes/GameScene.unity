@@ -736,7 +736,7 @@ GameObject:
   - component: {fileID: 684462986}
   - component: {fileID: 684462988}
   - component: {fileID: 684462987}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Piano
   m_TagString: Tower
   m_Icon: {fileID: 0}
@@ -774,7 +774,7 @@ MonoBehaviour:
   fireRate: 10
   enemyTag: Enemy
   projectilePrefab: {fileID: 2456671466611078129, guid: 2ddfb278b8f76e64db8581b1288ad946, type: 3}
-  firePoint: {fileID: 1453675374}
+  firePoint: {fileID: 2079487707}
 --- !u!212 &684462988
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1926,8 +1926,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2079487707}
-  m_Layer: 3
-  m_Name: Fire Point1
+  m_Layer: 0
+  m_Name: Fire Point2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
