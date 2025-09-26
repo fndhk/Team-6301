@@ -6,6 +6,11 @@ public class Enemy : MonoBehaviour
     public int maxHealth = 100; // 최대 체력
     private int currentHealth; // 현재 체력
 
+    [Header("아이템 드랍")]
+    public GameObject itemPrefab; // 드랍할 아이템 프리팹
+    [Range(0, 100)] // 인스펙터 창에서 슬라이더로 조절할 수 있게 함
+    public float dropChance = 20f; // 아이템 드랍 확률 (20%)
+
     void Start()
     {
         // 게임 시작 시 현재 체력을 최대 체력으로 설정
@@ -34,10 +39,25 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        // 여기에 죽을 때의 이펙트(폭발 등)나 사운드 재생 코드를 추가할 수 있습니다.
+        TryDropItem();
+        
         Debug.Log("적이 파괴되었습니다.");
-
-        // 이 스크립트가 붙어있는 게임 오브젝트(자기 자신)를 씬에서 제거
         Destroy(gameObject);
+    }
+    private void TryDropItem()
+    {
+        if (itemPrefab == null)
+        {
+            return;
+        }
+
+        float randomValue = Random.Range(0f, 100f);
+
+        // 랜덤 숫자가 설정된 드랍 확률(dropChance)보다 작거나 같으면 아이템 생성
+        if (randomValue <= dropChance)
+        {
+            // 아이템을 적이 죽은 위치에 생성
+            Instantiate(itemPrefab, transform.position, Quaternion.identity);
+        }
     }
 }

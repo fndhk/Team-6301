@@ -3,8 +3,10 @@ using UnityEngine.SceneManagement; // 씬 관리를 위해 추가 (필요시)
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject menuPanel; // 연결할 메뉴 패널 UI
-    private bool isPaused = false; // 게임이 일시 정지 상태인지 확인하는 변수
+    [Header("UI Panels")]
+    public GameObject menuPanel;
+
+    private bool isPaused = false;
 
     void Update()
     {
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour
                 PauseGame();
             }
         }
+
     }
 
     // 게임을 정지시키는 함수
