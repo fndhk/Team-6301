@@ -1,4 +1,14 @@
 using UnityEngine;
+using System.Collections.Generic;
+
+[System.Serializable]
+public class LootItem
+{
+    public ItemData itemData;
+    [Range(0, 100)]
+    public float dropChance;
+}
+
 public class Enemy : MonoBehaviour
 {
     [Header("능력치")]
@@ -7,9 +17,8 @@ public class Enemy : MonoBehaviour
     private int currentHealth; // 현재 체력
 
     [Header("아이템 드랍")]
-    public GameObject itemPrefab; // 드랍할 아이템 프리팹
-    [Range(0, 100)] // 인스펙터 창에서 슬라이더로 조절할 수 있게 함
-    public float dropChance = 20f; // 아이템 드랍 확률 (20%)
+    public GameObject itemDropPrefab; // 1단계에서 만든 '범용' 아이템 드랍 프리팹
+    public List<LootItem> lootTable = new List<LootItem>(); // 룻 테이블 리스트
 
     void Start()
     {
@@ -39,25 +48,31 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        TryDropItem();
+        TryDropItems();
         
         Debug.Log("적이 파괴되었습니다.");
         Destroy(gameObject);
     }
-    private void TryDropItem()
+    private void TryDropItems()
     {
-        if (itemPrefab == null)
-        {
-            return;
-        }
+        if (itemDropPrefab == null) return;
 
-        float randomValue = Random.Range(0f, 100f);
-
-        // 랜덤 숫자가 설정된 드랍 확률(dropChance)보다 작거나 같으면 아이템 생성
-        if (randomValue <= dropChance)
+        // 룻 테이블에 있는 모든 아이템에 대해 확률 계산을 시도
+        foreach (var loot in lootTable)
         {
-            // 아이템을 적이 죽은 위치에 생성
-            Instantiate(itemPrefab, transform.position, Quaternion.identity);
+            float randomValue = Random.Range(0f, 100f);
+            if (randomValue <= loot.dropChance)
+            {
+                // 1. 범용 프리팹을 생성
+                GameObject droppedItemGO = Instantiate(itemDropPrefab, transform.position, Quaternion.identity);
+                ItemPickup pickupScript = droppedItemGO.GetComponent<ItemPickup>();
+
+                // 2. 생성된 아이템에게 어떤 아이템인지 알려줌 (Initialize 함수 호출)
+                if (pickupScript != null)
+                {
+                    pickupScript.Initialize(loot.itemData);
+                }
+            }
         }
     }
 }

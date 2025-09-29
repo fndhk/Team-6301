@@ -1,21 +1,46 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class InventorySlot : MonoBehaviour
 {
-    public Image icon; // 아이템의 이미지를 표시할 UI Image 컴포넌트
+    public Image icon;
+    public TextMeshProUGUI quantityText;
 
-    // 슬롯에 아이템 이미지를 표시하는 함수
-    public void DisplayItem(Sprite itemIcon)
+    private ItemData currentItem; // 현재 슬롯에 있는 아이템 데이터
+
+    public void DisplayItem(Inventory.InventoryItem item)
     {
-        icon.sprite = itemIcon;
-        icon.gameObject.SetActive(true); // 아이템 이미지를 활성화하여 보여줌
+        currentItem = item.data;
+        icon.sprite = currentItem.icon;
+        icon.gameObject.SetActive(true);
+
+        // 수량이 1보다 클 때만 숫자를 표시
+        if (item.quantity > 1)
+        {
+            quantityText.text = item.quantity.ToString();
+            quantityText.gameObject.SetActive(true);
+        }
+        else
+        {
+            quantityText.gameObject.SetActive(false);
+        }
     }
 
-    // 슬롯을 비우는 함수
     public void ClearSlot()
     {
+        currentItem = null;
         icon.sprite = null;
-        icon.gameObject.SetActive(false); // 아이템 이미지를 비활성화하여 숨김
+        icon.gameObject.SetActive(false);
+        quantityText.gameObject.SetActive(false);
+    }
+    public void OnSlotClick()
+    {
+        if (currentItem != null)
+        {
+            // TowerManager의 범용 ApplyBuff 함수를 호출하며 아이템 데이터 전체를 넘겨줌
+            TowerManager.instance.ApplyBuff(currentItem);
+            Inventory.instance.UseItem(currentItem);
+        }
     }
 }
