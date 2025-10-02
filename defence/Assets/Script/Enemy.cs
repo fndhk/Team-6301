@@ -55,24 +55,39 @@ public class Enemy : MonoBehaviour
     }
     private void TryDropItems()
     {
-        if (itemDropPrefab == null) return;
+        if (itemDropPrefab == null || lootTable.Count == 0) return;
 
-        // 룻 테이블에 있는 모든 아이템에 대해 확률 계산을 시도
+        // 1. 0부터 100 사이의 랜덤 숫자를 단 한 번만 뽑습니다. (룰렛을 돌립니다)
+        float randomValue = Random.Range(0f, 100f);
+
+        // 누적 확률을 계산하기 위한 변수
+        float cumulativeChance = 0f;
+
+        // 2. 룻 테이블에 있는 모든 아이템을 순서대로 확인합니다.
         foreach (var loot in lootTable)
         {
-            float randomValue = Random.Range(0f, 100f);
-            if (randomValue <= loot.dropChance)
+            // 현재 아이템의 확률을 누적 확률에 더합니다.
+            cumulativeChance += loot.dropChance;
+
+            // 3. 뽑은 랜덤 숫자가 현재 아이템의 누적 확률 범위 안에 들어오는지 확인합니다.
+            // 예: randomValue가 15이고, 첫 아이템 확률이 20%라면 -> 15 <= 20 이므로 당첨!
+            if (randomValue <= cumulativeChance)
             {
-                // 1. 범용 프리팹을 생성
+                // 4. 당첨된 아이템을 생성합니다.
                 GameObject droppedItemGO = Instantiate(itemDropPrefab, transform.position, Quaternion.identity);
                 ItemPickup pickupScript = droppedItemGO.GetComponent<ItemPickup>();
 
-                // 2. 생성된 아이템에게 어떤 아이템인지 알려줌 (Initialize 함수 호출)
                 if (pickupScript != null)
                 {
                     pickupScript.Initialize(loot.itemData);
                 }
+
+                // 5. 아이템을 하나 드랍했으므로, 더 이상 다른 아이템을 확인할 필요 없이 즉시 함수를 종료합니다.
+                return;
             }
         }
+
+        // 만약 for문이 끝날 때까지 아무 아이템도 당첨되지 않았다면, '꽝'에 해당하므로 아무 일도 일어나지 않습니다.
     }
+
 }
