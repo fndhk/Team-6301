@@ -15,8 +15,7 @@ public class InventorySlot : MonoBehaviour
         icon.sprite = currentItem.icon;
         icon.gameObject.SetActive(true);
 
-        // 수량이 1보다 클 때만 숫자를 표시
-        if (item.quantity > 1)
+        if (item.quantity > 0)
         {
             quantityText.text = item.quantity.ToString();
             quantityText.gameObject.SetActive(true);
