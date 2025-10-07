@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="임시이미지.jpg" width="300" height=""/>
+  <img src="image/임시이미지.jpg" width="300" height=""/>
 </p>
 
 <div align="center">
