@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("UI Panels")]
     public GameObject menuPanel;
+    public GameObject gameOverPanel; // 게임오버 패널 연결
 
     private bool isPaused = false;
 
@@ -25,6 +26,22 @@ public class GameManager : MonoBehaviour
             }
         }
 
+    }
+    public void GameOver()
+    {
+        // 이미 게임이 끝나있지 않다면
+        if (gameOverPanel.activeSelf == false)
+        {
+            Debug.Log("게임 오버!");
+            gameOverPanel.SetActive(true); // 게임오버 패널을 켠다
+            Time.timeScale = 0f;         // 게임의 시간을 멈춘다
+        }
+    }
+    public void RestartGame()
+    {
+        Time.timeScale = 1f; // 시간을 다시 원래대로 되돌리고
+        // 현재 씬을 다시 로드함
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     // 게임을 정지시키는 함수
