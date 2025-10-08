@@ -23,6 +23,6 @@
 
 # 👨🏼‍🤝‍👨🏼 팀원
 
-| <img width=150 src="image/Kwak.jpg" /> | <img width=150 src="#" /> | <img width=150 src="#" /> | <img width=150 src="#" /> |
+| <img width=150 src="image/Kwak.jpg" /> | <img width=150 src="image/Kwak.jpg" /> | <img width=150 src="image/Kwak.jpg" /> | <img width=150 src="image/Kwak.jpg" /> |
 |:--------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|
 | 곽영민 | 김유신 | 이재원 | 임태형 |
