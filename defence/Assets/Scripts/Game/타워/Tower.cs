@@ -102,6 +102,7 @@ public class Tower : MonoBehaviour
             projectile.SetDamage(currentDamage);
             // target(Transform) 자체가 아닌, target의 '위치(position)'를 넘겨줌
             projectile.SetTargetPosition(target.position);
+            projectile.Initialize(currentDamage, target.position, transform);
         }
         else
         {

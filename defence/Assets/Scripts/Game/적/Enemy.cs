@@ -15,7 +15,9 @@ public class LootItem
 
 public class Enemy : MonoBehaviour
 {
+    public static int liveEnemyCount = 0;
     [Header("기본 능력치")]
+    public int scoreValue = 100;
     public float speed = 3f;
     public int maxHealth = 100;
     private int currentHealth;
@@ -38,7 +40,8 @@ public class Enemy : MonoBehaviour
     {
         currentHealth = maxHealth;
         // 게임에 있는 CoreFacility를 찾아 변수에 저장해 둡니다.
-        coreFacility = FindObjectOfType<CoreFacility>();
+        coreFacility = FindFirstObjectByType<CoreFacility>();
+        liveEnemyCount++;
     }
 
     // 매 프레임마다 호출됩니다.
@@ -93,6 +96,8 @@ public class Enemy : MonoBehaviour
     {
         TryDropItems();
         Destroy(gameObject);
+        liveEnemyCount--;
+        
     }
 
     // 아이템을 드랍하는 함수
