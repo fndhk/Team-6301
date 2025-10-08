@@ -3,8 +3,8 @@
 </p>
 
 <div align="center">
-  <h1>MZ디펜스</h1>
-  <h5>Music Zombie Defence</h5>
+  <h1>♬ 음 표 수 호 단</h1>
+  <h5>2D Defence Game</h5>
 </div>
 
 # 📺 시연 영상
