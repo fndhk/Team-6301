@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Wave 클래스는 그대로 둡니다.
 [System.Serializable]
 public class Wave
 {
