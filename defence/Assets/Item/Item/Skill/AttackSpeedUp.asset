@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1768f2d79022cae48a69435de17dab3e, type: 3}
+  m_Name: AttackSpeedUp
+  m_EditorClassIdentifier: 
+  itemName: "\uACF5\uACA9\uC18D\uB3C4\uC99D\uAC00(2\uBC30)"
+  icon: {fileID: 6663351734690151557, guid: 138c6883e3cce9242a6f5dbc66661423, type: 3}
+  effectType: 0
+  effectValue: 2
+  buffDuration: 10
+  maxStackSize: 16
