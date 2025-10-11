@@ -11,6 +11,11 @@ public class StageData : ScriptableObject
     [Header("스테이지 기본 정보")]
     public int stageIndex;
     public string stageName;
+    [Header("음악 정보")] // ▼▼▼ 이 부분을 추가하거나 수정합니다 ▼▼▼
+    public AudioClip baseMusic;
+    public AudioClip drumTrack;
+    public AudioClip pianoTrack;
+    public AudioClip cymbalTrack;
 
     [Header("리듬 & 음악 정보")]
     public float bpm = 120f; //  스테이지의 기본 BPM
@@ -18,4 +23,6 @@ public class StageData : ScriptableObject
 
     [Header("등장 웨이브 정보")]
     public List<Wave> waves = new List<Wave>();
+    [Header("채보 정보")]
+    public BeatmapData beatmap;
 }

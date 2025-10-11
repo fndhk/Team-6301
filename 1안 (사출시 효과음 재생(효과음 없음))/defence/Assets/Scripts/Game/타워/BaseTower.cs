@@ -1,15 +1,11 @@
-// 파일 이름: BaseTower.cs
+// 파일 이름: BaseTower.cs (전체 교체)
 using UnityEngine;
-using System.Collections;
 
 public abstract class BaseTower : MonoBehaviour
 {
     [Header("공통 능력치")]
     [SerializeField] protected float attackRange = 10f;
     [SerializeField] public int baseDamage = 25;
-    [SerializeField] private float fireRate = 1f;
-
-    // ▼▼▼▼▼ 아이템 버프 배율을 저장할 변수 추가 ▼▼▼▼▼
     [HideInInspector] public float itemDamageMultiplier = 1f;
 
     [Header("공통 구성요소")]
@@ -18,12 +14,13 @@ public abstract class BaseTower : MonoBehaviour
     [SerializeField] protected Transform firePoint;
 
     protected Transform target;
-    private float fireCountdown = 0f;
-    private float originalFireRate;
 
     protected virtual void Start()
     {
-        originalFireRate = fireRate;
+        if (SaveLoadManager.instance != null && SaveLoadManager.instance.gameData != null)
+        {
+            baseDamage += SaveLoadManager.instance.gameData.permanentAtkBonus;
+        }
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
         if (TowerManager.instance != null)
         {
@@ -33,22 +30,7 @@ public abstract class BaseTower : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (target == null)
-        {
-            fireCountdown = 0f;
-            return;
-        }
-
-        fireCountdown -= Time.deltaTime;
-
-        if (fireCountdown <= 0f)
-        {
-            fireCountdown = 1f / fireRate;
-            if (JudgmentManager.instance != null)
-            {
-                JudgmentManager.instance.ProcessAttack(this, Time.time);
-            }
-        }
+        if (target == null) return;
     }
 
     void UpdateTarget()
@@ -75,23 +57,28 @@ public abstract class BaseTower : MonoBehaviour
         }
     }
 
+    public void FireProjectile(JudgmentManager.Judgment judgment)
+    {
+        if (target == null) return;
+
+        float rhythmMultiplier = 1f; // 기본 배율
+        if (JudgmentManager.instance != null)
+        {
+            rhythmMultiplier = JudgmentManager.instance.GetDamageMultiplier(judgment);
+        }
+        else
+        {
+            Debug.LogWarning("JudgmentManager가 씬에 없어 데미지 배율을 적용할 수 없습니다!");
+        }
+
+        int finalDamage = Mathf.RoundToInt(baseDamage * itemDamageMultiplier * rhythmMultiplier);
+        Attack(finalDamage);
+    }
+
     public abstract void Attack(int finalDamage);
 
-    // ▼▼▼▼▼ SetDamageMultiplier 함수를 다시 추가합니다 ▼▼▼▼▼
     public void SetDamageMultiplier(float multiplier)
     {
         itemDamageMultiplier = multiplier;
-    }
-
-    public void ApplyAttackSpeedBuff(float multiplier, float duration)
-    {
-        StartCoroutine(AttackSpeedBuffCoroutine(multiplier, duration));
-    }
-
-    private IEnumerator AttackSpeedBuffCoroutine(float multiplier, float duration)
-    {
-        fireRate = originalFireRate * multiplier;
-        yield return new WaitForSeconds(duration);
-        fireRate = originalFireRate;
     }
 }

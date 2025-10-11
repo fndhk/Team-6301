@@ -1,3 +1,4 @@
+// 파일 이름: GameData.cs (전체 교체)
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,31 +6,40 @@ using UnityEngine;
 public class GameData
 {
     public string nickname;
-    // public int playerLevel; // 이 줄을 삭제하거나 주석 처리합니다.
-    public int highestClearedStage; // 새로 추가: 클리어한 최고 스테이지
-    public int currentStage; // 이 줄은 이제 사용하지 않으므로 삭제해도 됩니다.
+    public int highestClearedStage;
 
-    // 새로 추가: 스테이지별 최고 점수를 저장할 Dictionary
+    // 스테이지별 최고 점수를 저장할 Dictionary
     public SerializableDictionary<int, int> stageHighScores;
 
     public List<string> items;
     public string lastSaveTime;
 
+    // ▼▼▼ 영구 성장 시스템을 위한 변수들 ▼▼▼
+    public int enhancementMaterials; // 보유한 강화 재료 개수
+    public int permanentAtkBonus;    // 영구 공격력 보너스
+    public int permanentCoreHpBonus; // 영구 코어 체력 보너스
+
+    // 생성자: 새 게임 데이터를 만들 때 변수들을 초기화합니다.
     public GameData()
     {
         this.nickname = "";
-        this.highestClearedStage = 0; // 0은 아직 아무 스테이지도 클리어하지 못했다는 의미
+        this.highestClearedStage = 0;
         this.stageHighScores = new SerializableDictionary<int, int>();
         this.items = new List<string>();
         this.lastSaveTime = "";
+
+        // ▼▼▼ 추가된 변수들의 초기값을 설정합니다. ▼▼▼
+        this.enhancementMaterials = 0;
+        this.permanentAtkBonus = 0;
+        this.permanentCoreHpBonus = 0;
     }
 }
 
-// Dictionary는 Unity에서 직접 직렬화(저장)가 안되므로, 직렬화가 가능한 커스텀 클래스를 만들어줍니다.
-// 아래 클래스를 GameData.cs 파일 하단이나 별도의 파일에 추가해주세요.
+// (SerializableDictionary 부분은 그대로 둡니다)
 [System.Serializable]
 public class SerializableDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver
 {
+    // ... (기존 코드와 동일) ...
     [SerializeField]
     private List<TKey> keys = new List<TKey>();
 

@@ -48,20 +48,13 @@ public class TowerSlot : MonoBehaviour
             // 아이템 종류와 상관없이 무조건 활성화
             ActivateTower();
         }
-        // 2. 타워가 이미 활성화 상태이고, 드롭된 아이템이 버프 아이템이라면
-        else if (droppedItem.itemType == ItemType.Buff)
+        // 2. 타워가 이미 활성화 상태이고, 드롭된 아이템에 '효과'가 연결되어 있다면
+        else if (droppedItem.itemEffect != null)
         {
             Debug.Log($"{towerInSlot.name}에 {droppedItem.itemName} 버프 적용!");
 
-            // 타워에 직접 버프 적용을 요청
-            if (droppedItem.effectType == EffectType.AttackSpeed)
-            {
-                towerInSlot.ApplyAttackSpeedBuff(droppedItem.effectValue, droppedItem.buffDuration);
-            }
-            else if (droppedItem.effectType == EffectType.Damage)
-            {
-                TowerManager.instance.ApplyBuff(droppedItem);
-            }
+            // 아이템에게 직접 효과 실행을 요청
+            droppedItem.itemEffect.ExecuteEffect();
         }
     }
 }

@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageIndex: 1
   stageName: crossroads
+  bpm: 120
+  stageMusic: {fileID: 0}
   waves:
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
     count: 5
@@ -24,3 +26,4 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
     count: 5
     timeBetweenEnemies: 0
+  beatmap: {fileID: 11400000, guid: 7ad35ed72bad1834baa11a9f4e96cc77, type: 2}

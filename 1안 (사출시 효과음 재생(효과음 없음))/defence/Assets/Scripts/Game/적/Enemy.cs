@@ -92,7 +92,9 @@ public class Enemy : MonoBehaviour
 
     private void TryDropItems()
     {
-        if (itemDropPrefab == null || lootTable.Count == 0) return;
+        // QuickSlotManager가 없으면 아이템을 줄 수 없으므로 함수 종료
+        if (QuickSlotManager.instance == null || lootTable.Count == 0) return;
+
         float randomValue = Random.Range(0f, 100f);
         float cumulativeChance = 0f;
         foreach (var loot in lootTable)
@@ -100,13 +102,9 @@ public class Enemy : MonoBehaviour
             cumulativeChance += loot.dropChance;
             if (randomValue <= cumulativeChance)
             {
-                GameObject droppedItemGO = Instantiate(itemDropPrefab, transform.position, Quaternion.identity);
-                ItemPickup pickupScript = droppedItemGO.GetComponent<ItemPickup>();
-                if (pickupScript != null)
-                {
-                    pickupScript.Initialize(loot.itemData);
-                }
-                return;
+                // 아이템을 생성하는 대신, QuickSlotManager에 아이템 정보를 바로 전달합니다.
+                QuickSlotManager.instance.AddItem(loot.itemData);
+                return; // 아이템은 하나만 드롭되므로 return
             }
         }
     }

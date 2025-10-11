@@ -1,6 +1,7 @@
-// 파일 이름: RhythmManager.cs (최종 수정)
+// 파일 이름: RhythmManager.cs (전체 교체)
 using UnityEngine;
 using System;
+using System.Collections; // <-- 'IEnumerator'를 사용하기 위해 이 줄을 추가했습니다!
 
 public class RhythmManager : MonoBehaviour
 {
@@ -21,17 +22,14 @@ public class RhythmManager : MonoBehaviour
 
     void Start()
     {
-        // StageManager가 아닌 GameSession을 참조하도록 수정
         if (GameSession.instance != null && GameSession.instance.selectedStage != null)
         {
-            // GameSession에 저장된 선택된 스테이지(selectedStage)에서 bpm을 가져옵니다.
             bpm = GameSession.instance.selectedStage.bpm;
             beatInterval = 60f / bpm;
             nextBeatTime = Time.time + beatInterval;
         }
         else
         {
-            // GameSession을 찾을 수 없을 때의 비상용 기본값
             Debug.LogError("RhythmManager: GameSession에서 스테이지 정보를 가져오지 못했습니다! 기본 BPM(120)으로 실행합니다.");
             bpm = 120;
             beatInterval = 60f / bpm;
@@ -49,13 +47,46 @@ public class RhythmManager : MonoBehaviour
         }
     }
 
-    // JudgmentManager가 호출할 함수
     public float GetNearestBeatTime(float attackTime)
     {
-        // 이 함수의 로직은 StageManager와 관련이 없으므로 수정할 필요가 없습니다.
         float timeSinceStart = attackTime - (nextBeatTime - beatInterval * beatCount);
         float beatsPassed = timeSinceStart / beatInterval;
         int nearestBeatIndex = Mathf.RoundToInt(beatsPassed);
         return (nextBeatTime - beatInterval * beatCount) + nearestBeatIndex * beatInterval;
+    }
+
+    // --- BPM 조절 아이템을 위한 코드 ---
+    private float originalBpm;
+    private bool isSpeedBuffActive = false;
+
+    public void ApplySpeedBuff(float multiplier, float duration)
+    {
+        if (!isSpeedBuffActive)
+        {
+            StartCoroutine(SpeedBuffCoroutine(multiplier, duration));
+        }
+    }
+
+    private IEnumerator SpeedBuffCoroutine(float multiplier, float duration)
+    {
+        isSpeedBuffActive = true;
+        originalBpm = bpm;
+
+        bpm *= multiplier;
+        beatInterval = 60f / bpm;
+        Debug.Log($"BPM 버프 활성화! 새로운 BPM: {bpm}");
+
+        AudioManager.instance.ChangePitch(multiplier);
+        NoteSpawner.instance.RecalculateNoteSpeed();
+
+        yield return new WaitForSeconds(duration);
+
+        bpm = originalBpm;
+        beatInterval = 60f / bpm;
+        AudioManager.instance.ChangePitch(1f);
+        NoteSpawner.instance.RecalculateNoteSpeed();
+        Debug.Log("BPM 버프 종료. 원래 BPM으로 복구.");
+
+        isSpeedBuffActive = false;
     }
 }
