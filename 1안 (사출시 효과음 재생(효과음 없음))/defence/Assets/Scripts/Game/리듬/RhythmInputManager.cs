@@ -8,7 +8,7 @@ public class RhythmInputManager : MonoBehaviour
     public static RhythmInputManager instance;
 
     [Header("입력 설정")]
-    public KeyCode[] inputKeys = { KeyCode.Q, KeyCode.W, KeyCode.E };
+    public KeyCode[] inputKeys = { KeyCode.A, KeyCode.S, KeyCode.Semicolon, KeyCode.Quote };
     public GameObject[] keyPressFeedbacks;
 
     [Header("판정 설정")]
