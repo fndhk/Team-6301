@@ -18,6 +18,7 @@ public class GameData
     public int enhancementMaterials; // 보유한 강화 재료 개수
     public int permanentAtkBonus;    // 영구 공격력 보너스
     public int permanentCoreHpBonus; // 영구 코어 체력 보너스
+    public float permanentAtkSpeedBonus; // 공격 속도 보너스
 
     // 생성자: 새 게임 데이터를 만들 때 변수들을 초기화합니다.
     public GameData()
@@ -32,6 +33,7 @@ public class GameData
         this.enhancementMaterials = 0;
         this.permanentAtkBonus = 0;
         this.permanentCoreHpBonus = 0;
+        this.permanentAtkSpeedBonus = 0f;
     }
 }
 

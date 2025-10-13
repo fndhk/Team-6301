@@ -16,6 +16,17 @@ public class Projectile : MonoBehaviour
     private float bounceRange = 10f; // 다음 타겟을 찾을 범위
     private List<Transform> hitEnemies = new List<Transform>(); // 이미 맞춘 적 목록
 
+    void Start()
+    {
+        // 저장된 게임 데이터에서 공격 속도 보너스를 불러와 적용
+        if (SaveLoadManager.instance != null && SaveLoadManager.instance.gameData != null)
+        {
+            float speedBonus = SaveLoadManager.instance.gameData.permanentAtkSpeedBonus;
+            // 예: 보너스가 0.1 (10%) 이면, 속도가 1.1배가 됨
+            speed *= (1 + speedBonus);
+        }
+    }
+
     // Initialize 함수를 여러 버전으로 만들어 다양한 타워가 사용할 수 있게 함 (오버로딩)
     public void Initialize(int newDamage, Vector3 position, Transform owner)
     {
