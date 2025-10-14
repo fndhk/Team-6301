@@ -1,5 +1,6 @@
-// 파일 이름: BaseTower.cs (수정 완료)
+//파일 이름: BaseTower.cs
 using UnityEngine;
+
 
 public abstract class BaseTower : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public abstract class BaseTower : MonoBehaviour
     [HideInInspector] public float itemDamageMultiplier = 1f;
 
     [Header("레벨")]
+    // ------ 신규 수정: Inspector에서 초기 레벨 설정 가능 ------
+    [Tooltip("초기 레벨 (0 = 비활성, 1~5 = 활성)")]
     public int level = 1; // 0 = 비활성, 1~5 = 활성
     private int tempLevelBuff = 0;
 
@@ -24,9 +27,14 @@ public abstract class BaseTower : MonoBehaviour
     [HideInInspector] public int characterDamageBonus = 0;
     [HideInInspector] public float characterAttackSpeedMultiplier = 1f;
 
+    // ------ 신규 수정: 시각적 표현을 위한 참조 ------
+    private SpriteRenderer towerSpriteRenderer;
 
     protected virtual void Start()
     {
+        // ------ 신규 수정: SpriteRenderer 찾기 ------
+        towerSpriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
         // 영구 강화 능력치 적용
         if (SaveLoadManager.instance != null && SaveLoadManager.instance.gameData != null)
         {
@@ -45,6 +53,9 @@ public abstract class BaseTower : MonoBehaviour
         {
             TowerManager.instance.RegisterTower(this);
         }
+
+        // ------ 신규 수정: 초기 활성화 상태 적용 ------
+        UpdateActivationState();
     }
 
     protected virtual void Update()
@@ -63,6 +74,7 @@ public abstract class BaseTower : MonoBehaviour
             // 캐릭터 공격력 보너스 적용
             int finalDamage = Mathf.RoundToInt((baseDamage + characterDamageBonus) * itemDamageMultiplier);
 
+            // ------ 신규 수정: 최대 레벨 6까지 허용 (스킬 사용 시) ------
             // 레벨에 따른 데미지 계산 (예: 레벨당 20% 증가)
             float levelMultiplier = 1f + (currentTotalLevel - 1) * 0.2f;
             int damageWithLevel = Mathf.RoundToInt(finalDamage * levelMultiplier);
@@ -95,7 +107,6 @@ public abstract class BaseTower : MonoBehaviour
         }
     }
 
-    // ▼▼▼ Attack 함수는 이렇게 선언만 남겨둡니다 ▼▼▼
     public abstract void Attack(int finalDamage);
 
     public void SetDamageMultiplier(float multiplier)
@@ -103,13 +114,55 @@ public abstract class BaseTower : MonoBehaviour
         itemDamageMultiplier = multiplier;
     }
 
+    // ------ 신규 수정: 임시 레벨 버프 적용 시 활성화 상태 업데이트 ------
     public void ApplyTemporaryLevelBuff(int amount)
     {
         tempLevelBuff += amount;
+        UpdateActivationState();
     }
 
     public void RemoveTemporaryLevelBuff(int amount)
     {
         tempLevelBuff -= amount;
+        UpdateActivationState();
+    }
+
+    // ------ 신규 수정: 활성화 상태를 시각적으로 업데이트하는 함수 ------
+    private void UpdateActivationState()
+    {
+        int currentTotalLevel = level + tempLevelBuff;
+
+        if (currentTotalLevel <= 0)
+        {
+            // 0레벨 이하: 비활성화 (회색 표시)
+            if (towerSpriteRenderer != null)
+            {
+                towerSpriteRenderer.color = new Color(0.3f, 0.3f, 0.3f, 0.8f);
+            }
+        }
+        else
+        {
+            // 1레벨 이상: 활성화 (원래 색상)
+            if (towerSpriteRenderer != null)
+            {
+                towerSpriteRenderer.color = Color.white;
+            }
+        }
+
+        Debug.Log($"{gameObject.name} - Level: {level}, Temp: {tempLevelBuff}, Total: {currentTotalLevel}, Active: {currentTotalLevel > 0}");
+    }
+
+    // ------ 신규 수정: 외부에서 레벨을 직접 설정할 수 있는 함수 (강화 상점용) ------
+    public void SetLevel(int newLevel)
+    {
+        // 일반 강화는 최대 5레벨까지만
+        level = Mathf.Clamp(newLevel, 0, 5);
+        UpdateActivationState();
+    }
+
+    // ------ 신규 수정: 현재 총 레벨 확인 함수 ------
+    public int GetCurrentTotalLevel()
+    {
+        return level + tempLevelBuff;
     }
 }

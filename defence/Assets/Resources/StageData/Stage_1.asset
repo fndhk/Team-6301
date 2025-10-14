@@ -21,9 +21,9 @@ MonoBehaviour:
   bpm: 120
   stageMusic: {fileID: 8300000, guid: 53413ea8e16ce9344a48b5015d62d2e7, type: 3}
   waves:
-  - enemyPrefab: {fileID: 0}
-    count: 0
-    timeBetweenEnemies: 3
+  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+    count: 3
+    timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
     count: 5
     timeBetweenEnemies: 0

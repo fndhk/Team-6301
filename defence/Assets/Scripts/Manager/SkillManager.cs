@@ -1,4 +1,4 @@
-// 파일 이름: SkillManager.cs (새 파일)
+// 파일 이름: SkillManager.cs
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -81,9 +81,24 @@ public class SkillManager : MonoBehaviour
     {
         if (currentGauge >= maxGauge && activeSkill != null)
         {
+            // ------ 신규 추가: 컷신 재생 ------
+            if (SkillCutsceneUI.instance != null && GameSession.instance != null && GameSession.instance.selectedCharacter != null)
+            {
+                Sprite cutsceneSprite = GameSession.instance.selectedCharacter.skillCutsceneImage;
+                if (cutsceneSprite != null)
+                {
+                    SkillCutsceneUI.instance.PlayCutscene(cutsceneSprite);
+                }
+            }
+
+            // 스킬 효과 실행
             activeSkill.ExecuteEffect();
+
+            // 게이지 초기화
             currentGauge = 0;
             skillGaugeSlider.value = currentGauge;
+
+            Debug.Log("스킬 사용!");
         }
     }
 }

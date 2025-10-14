@@ -30,6 +30,7 @@ public class NoteSpawner : MonoBehaviour
     private int noteIndex = 0;
     private float songStartTime;
     private float noteDestroyY;
+    private bool isSpawningStarted = false;
 
     void Awake()
     {
@@ -41,7 +42,7 @@ public class NoteSpawner : MonoBehaviour
     {
         RecalculateNoteSpeed();
         GenerateNotesFromPatterns();
-        songStartTime = Time.time;
+        //songStartTime = Time.time;
     }
 
     public void RecalculateNoteSpeed()
@@ -82,6 +83,7 @@ public class NoteSpawner : MonoBehaviour
 
     void Update()
     {
+        if (!isSpawningStarted) return;
         if (noteIndex >= allNotesToSpawn.Count) return;
         float songPosition = Time.time - songStartTime;
         float currentBeat = songPosition / RhythmManager.instance.beatInterval;
@@ -96,6 +98,15 @@ public class NoteSpawner : MonoBehaviour
             }
             noteIndex++;
         }
+    }
+    public void StartSpawning()
+    {
+        if (isSpawningStarted) return; // 이미 시작했으면 무시
+
+        isSpawningStarted = true;
+        songStartTime = Time.time; // 현재 시간을 노래 시작 시간으로 설정
+
+        Debug.Log("NoteSpawner: 노트 스폰 시작!");
     }
 
     private void SpawnNote(NoteInfo noteInfo)

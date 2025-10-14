@@ -21,11 +21,8 @@ MonoBehaviour:
   bpm: 120
   stageMusic: {fileID: 0}
   waves:
-  - enemyPrefab: {fileID: 0}
-    count: 0
-    timeBetweenEnemies: 3
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 3
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
     count: 7
@@ -33,4 +30,8 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
     count: 7
     timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+    count: 7
+    timeBetweenEnemies: 0
+  clearReward: 100
   beatmap: {fileID: 11400000, guid: 7ad35ed72bad1834baa11a9f4e96cc77, type: 2}

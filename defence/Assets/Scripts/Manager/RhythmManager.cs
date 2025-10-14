@@ -12,6 +12,7 @@ public class RhythmManager : MonoBehaviour
     public float nextBeatTime;
     private int beatCount = 0;
     public static event Action<int> OnBeat;
+    private bool isRhythmStarted = false;
 
     void Awake()
     {
@@ -26,7 +27,7 @@ public class RhythmManager : MonoBehaviour
         {
             bpm = GameSession.instance.selectedStage.bpm;
             beatInterval = 60f / bpm;
-            nextBeatTime = Time.time + beatInterval;
+           // nextBeatTime = Time.time + beatInterval;
         }
         else
         {
@@ -46,9 +47,18 @@ public class RhythmManager : MonoBehaviour
             nextBeatTime += beatInterval;
         }
     }
+    public void StartRhythm()
+    {
+        if (isRhythmStarted) return; // 이미 시작했으면 무시
 
+        isRhythmStarted = true;
+        nextBeatTime = Time.time + beatInterval; // 현재 시간 기준으로 첫 비트 설정
+
+        Debug.Log("RhythmManager: 리듬 시작!");
+    }
     public float GetNearestBeatTime(float attackTime)
     {
+        if (!isRhythmStarted) return attackTime; // 리듬이 시작되지 않았으면 그대로 반환
         float timeSinceStart = attackTime - (nextBeatTime - beatInterval * beatCount);
         float beatsPassed = timeSinceStart / beatInterval;
         int nearestBeatIndex = Mathf.RoundToInt(beatsPassed);

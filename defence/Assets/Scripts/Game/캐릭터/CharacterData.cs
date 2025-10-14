@@ -1,8 +1,5 @@
-// 파일 이름: CharacterData.cs (새 파일)
+// 파일 이름: CharacterData.cs
 using UnityEngine;
-
-// 이전에 만들었던 ItemEffect를 스킬로 사용할 것입니다.
-// public abstract class ItemEffect : ScriptableObject { ... }
 
 [CreateAssetMenu(fileName = "NewCharacter", menuName = "TowerDefense/Character Data")]
 public class CharacterData : ScriptableObject
@@ -12,6 +9,11 @@ public class CharacterData : ScriptableObject
     [TextArea(3, 10)]
     public string characterDescription;
     public Sprite characterIcon; // 캐릭터 선택창에 표시될 이미지
+
+    // ------ 신규 추가: 스킬 컷신 이미지 ------
+    [Header("스킬 컷신")]
+    [Tooltip("스킬 사용 시 표시될 컷신 이미지")]
+    public Sprite skillCutsceneImage;
 
     [Header("캐릭터 기본 능력치")]
     [Tooltip("코어(기지)의 기본 체력에 더해지는 보너스")]

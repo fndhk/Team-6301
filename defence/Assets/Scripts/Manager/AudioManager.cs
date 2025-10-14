@@ -2,21 +2,15 @@
 using UnityEngine;
 using System.Collections;
 
-// 악기 종류를 구분하기 위한 enum
 public enum InstrumentType { Drum, Piano, Cymbal }
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-    [Header("오디오 소스")]
-    //public AudioSource baseMusicSource;  // 기본 곡
-    //public AudioSource drumSource;       // 북
-    //public AudioSource pianoSource;      // 피아노
-    //public AudioSource cymbalSource;     // 심벌즈
-
     private AudioSource[] allSources;
     private AudioSource drumSource, pianoSource, cymbalSource;
+    private bool isMusicStarted = false;
 
     void Awake()
     {
@@ -58,14 +52,91 @@ public class AudioManager : MonoBehaviour
         cymbalSource.volume = 0f;
         allSources[0].volume = 1f;
 
-        // 5. 클립이 할당된 소스만 동시에 재생 시작!
+        // 5. 음악은 바로 재생하지 않고 대기 (CountdownUI가 StartMusic을 호출할 때까지)
+    }
+
+    // CountdownUI에서 카운트다운이 끝나면 호출할 함수
+    public void StartMusic()
+    {
+        if (isMusicStarted) return;
+
+        isMusicStarted = true;
+
+        // 클립이 할당된 소스만 동시에 재생 시작!
         foreach (var source in allSources)
         {
-            if (source.clip != null) // 클립이 없으면 재생하지 않음
+            if (source.clip != null)
             {
                 source.Play();
             }
         }
+
+        Debug.Log("AudioManager: 음악 재생 시작!");
+    }
+
+    // ------ 신규 추가: 음악 정지 함수 ------
+    public void StopMusic()
+    {
+        if (!isMusicStarted) return; // 음악이 시작되지 않았으면 무시
+
+        // 모든 오디오 소스 정지
+        foreach (var source in allSources)
+        {
+            if (source != null && source.isPlaying)
+            {
+                source.Stop();
+            }
+        }
+
+        isMusicStarted = false;
+        Debug.Log("AudioManager: 음악 정지!");
+    }
+
+    // ------ 신규 추가: 음악 페이드아웃 함수 (부드러운 정지) ------
+    public void FadeOutMusic(float duration = 1f)
+    {
+        if (!isMusicStarted) return;
+
+        StartCoroutine(FadeOutCoroutine(duration));
+    }
+
+    private IEnumerator FadeOutCoroutine(float duration)
+    {
+        float startTime = Time.time;
+        float[] startVolumes = new float[allSources.Length];
+
+        // 현재 볼륨 저장
+        for (int i = 0; i < allSources.Length; i++)
+        {
+            startVolumes[i] = allSources[i].volume;
+        }
+
+        // 페이드아웃
+        while (Time.time < startTime + duration)
+        {
+            float t = (Time.time - startTime) / duration;
+
+            for (int i = 0; i < allSources.Length; i++)
+            {
+                if (allSources[i] != null)
+                {
+                    allSources[i].volume = Mathf.Lerp(startVolumes[i], 0f, t);
+                }
+            }
+
+            yield return null;
+        }
+
+        // 완전히 정지
+        StopMusic();
+
+        // 볼륨 복원 (다음 재생을 위해)
+        allSources[0].volume = 1f;
+        drumSource.volume = 0f;
+        pianoSource.volume = 0f;
+        cymbalSource.volume = 0f;
+
+        Debug.Log("AudioManager: 페이드아웃 완료!");
     }
 
     // 성공 판정 시, 해당 악기 소리를 잠깐 들려주는 함수
@@ -74,7 +145,7 @@ public class AudioManager : MonoBehaviour
         switch (type)
         {
             case InstrumentType.Drum:
-                StartCoroutine(FadeInAndOut(drumSource, 0.2f, 0.5f)); // 0.2초간 켰다가 0.5초에 걸쳐 원래대로
+                StartCoroutine(FadeInAndOut(drumSource, 0.2f, 0.5f));
                 break;
             case InstrumentType.Piano:
                 StartCoroutine(FadeInAndOut(pianoSource, 0.2f, 0.5f));
@@ -88,10 +159,9 @@ public class AudioManager : MonoBehaviour
     // 볼륨을 잠시 올렸다가 내리는 코루틴
     private IEnumerator FadeInAndOut(AudioSource source, float sustainTime, float fadeOutTime)
     {
-        source.volume = 1f; // 소리를 최대로 킴
-        yield return new WaitForSeconds(sustainTime); // 잠시 유지
+        source.volume = 1f;
+        yield return new WaitForSeconds(sustainTime);
 
-        // 서서히 소리를 줄임
         float startVolume = source.volume;
         for (float t = 0; t < fadeOutTime; t += Time.deltaTime)
         {

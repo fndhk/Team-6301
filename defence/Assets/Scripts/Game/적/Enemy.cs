@@ -30,9 +30,10 @@ public class Enemy : MonoBehaviour
     public List<LootItem> lootTable = new List<LootItem>();
 
     private bool hasReachedDestination = false;
-    private bool isDead = false; // 죽음 처리가 중복되지 않도록 방지
+    private bool isDead = false;
     private CoreFacility coreFacility;
     private bool isFrozen = false;
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -40,13 +41,15 @@ public class Enemy : MonoBehaviour
         liveEnemyCount++;
         EnemyManager.instance.RegisterEnemy(this);
     }
-    void OnDestroy() // <-- 함수 추가
+
+    void OnDestroy()
     {
         if (EnemyManager.instance != null)
         {
             EnemyManager.instance.UnregisterEnemy(this);
         }
     }
+
     void Update()
     {
         if (isFrozen) return;
@@ -69,17 +72,15 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // [수정] TakeDamage 함수가 공격자(damageSource)의 Transform을 받도록 변경
     public void TakeDamage(int damage, Transform damageSource)
     {
-        if (isDead) return; // 이미 죽었다면 아무것도 하지 않음
+        if (isDead) return;
 
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
-            isDead = true; // 죽음 상태로 변경
+            isDead = true;
 
-            // ▼▼▼▼▼ 점수 계산 로직을 이곳으로 이동 ▼▼▼▼▼
             if (ScoreManager.instance != null && damageSource != null)
             {
                 float distance = Vector3.Distance(transform.position, damageSource.position);
@@ -89,24 +90,25 @@ public class Enemy : MonoBehaviour
             Die();
         }
     }
-    public void ApplyFreeze(float duration) // <-- 함수 추가
+
+    public void ApplyFreeze(float duration)
     {
         if (!isFrozen)
         {
             StartCoroutine(FreezeCoroutine(duration));
         }
     }
-    private IEnumerator FreezeCoroutine(float duration) // <-- 코루틴 추가
+
+    private IEnumerator FreezeCoroutine(float duration)
     {
         isFrozen = true;
-        speed = 0; // 혹은 애니메이션을 멈추는 코드
+        speed = 0;
         yield return new WaitForSeconds(duration);
         isFrozen = false;
-        // speed = 원래속도; // 원래 속도 변수를 따로 저장해두었다가 복원해야 합니다.
     }
+
     private void Die()
     {
-        // 점수 계산 로직은 TakeDamage로 이동했으므로 여기서는 호출하지 않음
         TryDropItems();
         Destroy(gameObject);
         liveEnemyCount--;
@@ -114,7 +116,6 @@ public class Enemy : MonoBehaviour
 
     private void TryDropItems()
     {
-        // QuickSlotManager가 없으면 아이템을 줄 수 없으므로 함수 종료
         if (QuickSlotManager.instance == null || lootTable.Count == 0) return;
 
         float randomValue = Random.Range(0f, 100f);
@@ -124,9 +125,16 @@ public class Enemy : MonoBehaviour
             cumulativeChance += loot.dropChance;
             if (randomValue <= cumulativeChance)
             {
-                // 아이템을 생성하는 대신, QuickSlotManager에 아이템 정보를 바로 전달합니다.
                 QuickSlotManager.instance.AddItem(loot.itemData);
-                return; // 아이템은 하나만 드롭되므로 return
+
+                // ------ 신규 추가: 재화 아이템 드롭 시 UI 업데이트 ------
+                // (만약 강화 재료를 직접 드롭하는 경우)
+                if (MaterialsUI.instance != null)
+                {
+                    MaterialsUI.instance.OnMaterialsChanged();
+                }
+
+                return;
             }
         }
     }

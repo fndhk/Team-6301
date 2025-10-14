@@ -15,6 +15,7 @@ MonoBehaviour:
   characterName: 
   characterDescription: 
   characterIcon: {fileID: -4525706942401507556, guid: 4fc06f4a393225b4691b167661d66a4f, type: 3}
+  skillCutsceneImage: {fileID: 6385128387233655916, guid: 1f65cdafd19bfea44a3817d8fb9b1960, type: 3}
   coreHealthBonus: 0
   towerAttackDamageBonus: 0
   towerAttackSpeedMultiplier: 1
