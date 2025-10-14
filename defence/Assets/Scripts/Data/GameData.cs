@@ -1,4 +1,3 @@
-// 파일 이름: GameData.cs (전체 교체)
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +18,8 @@ public class GameData
     public int permanentAtkBonus;    // 영구 공격력 보너스
     public int permanentCoreHpBonus; // 영구 코어 체력 보너스
 
+    public float permanentAtkSpeedBonus; // 공속 보너스
+
     // 생성자: 새 게임 데이터를 만들 때 변수들을 초기화합니다.
     public GameData()
     {
@@ -29,9 +30,10 @@ public class GameData
         this.lastSaveTime = "";
 
         // ▼▼▼ 추가된 변수들의 초기값을 설정합니다. ▼▼▼
-        this.enhancementMaterials = 0;
+        this.enhancementMaterials = 500;
         this.permanentAtkBonus = 0;
         this.permanentCoreHpBonus = 0;
+        this.permanentAtkSpeedBonus = 0f;
     }
 }
 

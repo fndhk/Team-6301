@@ -60,6 +60,13 @@ public class GameManager : MonoBehaviour
         GameData gameData = SaveLoadManager.instance.gameData;
         StageData currentStage = GameSession.instance.selectedStage;
 
+        // 1. 현재 스테이지의 클리어 보상을 가져옵니다.
+        int reward = currentStage.clearReward;
+
+        // 2. 플레이어의 보유 재료에 보상을 더해줍니다.
+        gameData.enhancementMaterials += reward;
+        Debug.Log($"스테이지 클리어! 강화 재료 {reward}개 획득!");
+
         if (gameData.stageHighScores.ContainsKey(currentStage.stageIndex))
         {
             if (finalScore > gameData.stageHighScores[currentStage.stageIndex])

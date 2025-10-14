@@ -1,4 +1,3 @@
-// 파일 이름: Projectile.cs (업그레이드 후)
 using UnityEngine;
 using System.Collections.Generic; // List를 사용하기 위해 추가
 using System.Linq; // Linq를 사용하기 위해 추가 (OrderBy)
@@ -33,7 +32,16 @@ public class Projectile : MonoBehaviour
         this.bouncesLeft = bounces;
         this.bounceRange = range;
     }
-
+    void Start()
+    {
+        // 저장된 게임 데이터에서 공격 속도 보너스를 불러와 적용
+        if (SaveLoadManager.instance != null && SaveLoadManager.instance.gameData != null)
+        {
+            float speedBonus = SaveLoadManager.instance.gameData.permanentAtkSpeedBonus;
+            // 예: 보너스가 0.1 (10%) 이면, 속도가 1.1배가 됨
+            speed *= (1 + speedBonus);
+        }
+    }
     void Update()
     {
         if (Vector2.Distance(transform.position, targetPosition) < 0.1f)

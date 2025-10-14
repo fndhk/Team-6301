@@ -23,6 +23,10 @@ public class StageData : ScriptableObject
 
     [Header("등장 웨이브 정보")]
     public List<Wave> waves = new List<Wave>();
+
+    [Header("클리어 보상")]
+    public int clearReward = 100; // 스테이지 클리어 시 얻는 강화 재료의 양
+
     [Header("채보 정보")]
     public BeatmapData beatmap;
 }

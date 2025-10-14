@@ -14,9 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageIndex: 1
   stageName: crossroads
+  baseMusic: {fileID: 8300000, guid: 53413ea8e16ce9344a48b5015d62d2e7, type: 3}
+  drumTrack: {fileID: 0}
+  pianoTrack: {fileID: 0}
+  cymbalTrack: {fileID: 0}
   bpm: 120
-  stageMusic: {fileID: 0}
+  stageMusic: {fileID: 8300000, guid: 53413ea8e16ce9344a48b5015d62d2e7, type: 3}
   waves:
+  - enemyPrefab: {fileID: 0}
+    count: 0
+    timeBetweenEnemies: 3
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
     count: 5
     timeBetweenEnemies: 0
@@ -26,4 +33,5 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
     count: 5
     timeBetweenEnemies: 0
+  clearReward: 100
   beatmap: {fileID: 11400000, guid: 7ad35ed72bad1834baa11a9f4e96cc77, type: 2}

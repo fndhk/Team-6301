@@ -1,4 +1,3 @@
-// 파일 이름: BeatmapData.cs
 using System.Collections.Generic;
 using UnityEngine;
 using static NoteSpawner;
