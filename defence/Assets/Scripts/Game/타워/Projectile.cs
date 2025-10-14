@@ -8,13 +8,18 @@ public class Projectile : MonoBehaviour
 
     // 목표물의 '오브젝트'가 아닌 '마지막 위치'를 저장할 변수
     private Vector3 targetPosition;
-
+    private Transform ownerTower;
     // 타워가 데미지를 설정해주는 함수
     public void SetDamage(int newDamage)
     {
         damage = newDamage;
     }
-
+    public void Initialize(int newDamage, Vector3 position, Transform owner)
+    {
+        this.damage = newDamage;
+        this.targetPosition = position;
+        this.ownerTower = owner;
+    }
     // 타워가 투사체를 발사할 때 목표물의 위치를 설정해주는 함수
     public void SetTargetPosition(Vector3 position)
     {
@@ -49,10 +54,16 @@ public class Projectile : MonoBehaviour
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
             {
+                if (ScoreManager.instance != null && ownerTower != null)
+                {
+                    float distance = Vector3.Distance(transform.position, ownerTower.position);
+                    ScoreManager.instance.AddScore(enemy.scoreValue, distance);
+                }
                 enemy.TakeDamage(damage);
             }
             // 적과 충돌했으므로 투사체는 제거
             Destroy(gameObject);
         }
     }
+
 }

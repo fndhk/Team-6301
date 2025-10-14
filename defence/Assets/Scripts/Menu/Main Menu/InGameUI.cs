@@ -37,7 +37,6 @@ public class InGameUI : MonoBehaviour
         GameData data = SaveLoadManager.instance.gameData;
 
         nicknameText.text = "Player: " + data.nickname;
-        levelText.text = "Level: " + data.playerLevel;
         stageText.text = "Stage: " + data.currentStage;
 
         // 아이템 목록을 UI에 표시하기 위해 문자열을 만듭니다.
@@ -63,19 +62,13 @@ public class InGameUI : MonoBehaviour
     // 레벨업 버튼을 클릭했을 때 호출됩니다.
     public void OnClickLevelUp()
     {
-        SaveLoadManager.instance.gameData.playerLevel++;
         UpdateAllUI();
     }
 
     // 레벨다운 버튼을 클릭했을 때 호출됩니다.
     public void OnClickLevelDown()
     {
-        // 레벨이 1보다 작아지지 않도록 방지합니다.
-        if (SaveLoadManager.instance.gameData.playerLevel > 1)
-        {
-            SaveLoadManager.instance.gameData.playerLevel--;
-            UpdateAllUI();
-        }
+       
     }
 
     // 다음 스테이지 버튼을 클릭했을 때 호출됩니다.
@@ -140,7 +133,6 @@ public class InGameUI : MonoBehaviour
             {
                 // 데이터가 있으면 요약 정보를 표시합니다.
                 saveSlotInfoTexts[i].text = $"Player: {summaryData.nickname}\n" +
-                                            $"Level: {summaryData.playerLevel}\n" +
                                             $"Last Save: {summaryData.lastSaveTime}";
             }
             else

@@ -32,6 +32,7 @@ public class NicknameSetupUI : MonoBehaviour
         SaveLoadManager.instance.gameData.nickname = nickname;
 
         // 데이터가 준비되었으니 InGame 씬으로 이동
-        SceneManager.LoadScene("InGame");
+        //SceneManager.LoadScene("InGame");
+        SceneManager.LoadScene("StageSelect");
     }
 }
