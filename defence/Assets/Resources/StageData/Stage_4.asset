@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageIndex: 4
   stageName: Away
+  bpm: 120
+  stageMusic: {fileID: 0}
   waves:
   - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
     count: 5
@@ -42,3 +44,4 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 4327232847043190120, guid: 34c3207cecd183049b674da71fa1ccb7, type: 3}
     count: 2
     timeBetweenEnemies: 0
+  beatmap: {fileID: 11400000, guid: 7ad35ed72bad1834baa11a9f4e96cc77, type: 2}

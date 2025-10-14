@@ -1,14 +1,12 @@
-// 파일 이름: TowerManager.cs (단순 버프 적용 버전)
-
-using System.Collections;
-using System.Collections.Generic;
+// 파일 이름: TowerManager.cs
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
 public class TowerManager : MonoBehaviour
 {
     public static TowerManager instance;
-
-    private List<Tower> allTowers = new List<Tower>();
+    private List<BaseTower> allTowers = new List<BaseTower>();
 
     void Awake()
     {
@@ -16,7 +14,7 @@ public class TowerManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    public void RegisterTower(Tower tower)
+    public void RegisterTower(BaseTower tower)
     {
         if (!allTowers.Contains(tower))
         {
@@ -24,43 +22,54 @@ public class TowerManager : MonoBehaviour
         }
     }
 
-    // 아이템 데이터를 받아 종류에 맞는 코루틴을 실행시켜주는 역할만 함
-    public void ApplyBuff(ItemData itemData)
-    {
-        // 동일한 타입의 기존 코루틴이 있다면 중지 (연속 클릭 시 타이머 꼬임 방지)
-        if (itemData.effectType == EffectType.AttackSpeed)
-        {
-            StopCoroutine("AttackSpeedBuffCoroutine");
-            StartCoroutine(AttackSpeedBuffCoroutine(itemData.effectValue, itemData.buffDuration));
-        }
-        else if (itemData.effectType == EffectType.Damage)
-        {
-            StopCoroutine("DamageBuffCoroutine");
-            StartCoroutine(DamageBuffCoroutine(itemData.effectValue, itemData.buffDuration));
-        }
-    }
+    
 
-    // 공격 속도 버프 코루틴
-    private IEnumerator AttackSpeedBuffCoroutine(float multiplier, float duration)
-    {
-        Debug.Log("공격 속도 버프 시작!");
-        foreach (Tower tower in allTowers) if (tower != null) tower.SetFireRateMultiplier(multiplier);
-
-        yield return new WaitForSeconds(duration);
-
-        foreach (Tower tower in allTowers) if (tower != null) tower.SetFireRateMultiplier(1f);
-        Debug.Log("공격 속도 버프 종료.");
-    }
-
-    // 데미지 버프 코루틴
     private IEnumerator DamageBuffCoroutine(float multiplier, float duration)
     {
         Debug.Log("데미지 버프 시작!");
-        foreach (Tower tower in allTowers) if (tower != null) tower.SetDamageMultiplier(multiplier);
+        foreach (BaseTower tower in allTowers)
+        {
+            if (tower != null && tower.gameObject.activeSelf)
+            {
+                tower.SetDamageMultiplier(multiplier);
+            }
+        }
 
         yield return new WaitForSeconds(duration);
 
-        foreach (Tower tower in allTowers) if (tower != null) tower.SetDamageMultiplier(1f);
+        foreach (BaseTower tower in allTowers)
+        {
+            if (tower != null)
+            {
+                tower.SetDamageMultiplier(1f); // 버프가 끝나면 배율을 1로 초기화
+            }
+        }
         Debug.Log("데미지 버프 종료.");
+    }
+    public void ApplyDamageBuff(float multiplier, float duration)
+    {
+        // 기존 데미지 버프 코루틴을 시작하는 로직
+        StopCoroutine("DamageBuffCoroutine"); // 기존 코루틴이 있다면 중지
+        StartCoroutine(DamageBuffCoroutine(multiplier, duration));
+    }
+    public void ApplyTempLevelBuffToAllTowers(int levelIncrease, float duration)
+    {
+        StartCoroutine(TempLevelBuffCoroutine(levelIncrease, duration));
+    }
+    private IEnumerator TempLevelBuffCoroutine(int levelIncrease, float duration)
+    {
+        // 모든 타워 레벨 올리기
+        foreach (BaseTower tower in allTowers)
+        {
+            if (tower != null) tower.ApplyTemporaryLevelBuff(levelIncrease);
+        }
+
+        yield return new WaitForSeconds(duration);
+
+        // 모든 타워 레벨 원상복구
+        foreach (BaseTower tower in allTowers)
+        {
+            if (tower != null) tower.RemoveTemporaryLevelBuff(levelIncrease);
+        }
     }
 }

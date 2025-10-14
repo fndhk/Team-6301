@@ -12,6 +12,7 @@ public class StageSelectManager : MonoBehaviour
     public GameObject stageButtonPrefab;
     public Button nextButton;
     public Button prevButton;
+    public GameObject characterSelectPanel;
 
     [Header("스테이지 데이터")]
     public List<StageData> stageDatas = new List<StageData>();
@@ -135,17 +136,24 @@ public class StageSelectManager : MonoBehaviour
 
     public void OnClickStageSelect(int index)
     {
-        Debug.Log(stageDatas[index].stageName + " 선택됨! 게임 씬으로 이동합니다.");
+        Debug.Log(stageDatas[index].stageName + " 선택됨! 캐릭터 선택창을 엽니다.");
 
-        // 1. GameSession에 선택된 스테이지의 StageData를 저장합니다.
+        // GameSession에 선택된 스테이지 정보를 저장
         GameSession.instance.selectedStage = stageDatas[index];
 
-        // 2. GameScene을 불러옵니다.
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
+        if (characterSelectPanel != null)
+        {
+            characterSelectPanel.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("StageSelectManager에 Character Select Panel이 연결되지 않았습니다!");
+        }
     }
     public void OnClickBackButton()
     {
         // MainMenu 씬을 불러옵니다.
         UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
+
 }
