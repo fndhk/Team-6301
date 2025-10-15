@@ -1,5 +1,5 @@
-//파일 이름: BaseTower.cs
 using UnityEngine;
+using System.Collections;
 
 
 public abstract class BaseTower : MonoBehaviour
@@ -7,6 +7,7 @@ public abstract class BaseTower : MonoBehaviour
     [Header("공통 능력치")]
     [SerializeField] protected float attackRange = 10f;
     [SerializeField] public int baseDamage = 25;
+    [SerializeField] private float baseAttackCooldown = 1.5f;
     [HideInInspector] public float itemDamageMultiplier = 1f;
 
     [Header("레벨")]
@@ -26,6 +27,7 @@ public abstract class BaseTower : MonoBehaviour
     // 캐릭터 능력치를 적용하기 위한 public 변수들
     [HideInInspector] public int characterDamageBonus = 0;
     [HideInInspector] public float characterAttackSpeedMultiplier = 1f;
+    private float permanentAttackSpeedBonus = 0f;
 
     // ------ 신규 수정: 시각적 표현을 위한 참조 ------
     private SpriteRenderer towerSpriteRenderer;
@@ -39,6 +41,7 @@ public abstract class BaseTower : MonoBehaviour
         if (SaveLoadManager.instance != null && SaveLoadManager.instance.gameData != null)
         {
             baseDamage += SaveLoadManager.instance.gameData.permanentAtkBonus;
+            permanentAttackSpeedBonus = SaveLoadManager.instance.gameData.permanentAtkSpeedBonus;
         }
 
         // 캐릭터 선택 능력치 적용
@@ -63,23 +66,37 @@ public abstract class BaseTower : MonoBehaviour
         if (target == null) return;
 
         int currentTotalLevel = level + tempLevelBuff;
-        if (currentTotalLevel <= 0) return; // 0레벨 이하는 공격 불가
+        if (currentTotalLevel <= 0) return;
 
         if (Time.time >= nextAttackTime)
         {
-            // 캐릭터 공속 배율 적용
-            float attackCooldown = 1.5f / characterAttackSpeedMultiplier;
-            nextAttackTime = Time.time + attackCooldown;
+            // ▼▼▼ 이 부분을 아래 내용으로 교체해주세요 ▼▼▼
 
-            // 캐릭터 공격력 보너스 적용
+            // --- 1. 최종 공격 속도 계산 ---
+            float totalSpeedMultiplier = characterAttackSpeedMultiplier * (1 + permanentAttackSpeedBonus);
+            float finalAttackCooldown = baseAttackCooldown / totalSpeedMultiplier;
+
+            // --- 2. 디버깅 로그 출력 (핵심!) ---
+            // 콘솔 창에 모든 계산 과정을 출력하여 원인을 찾습니다.
+            Debug.Log("===== 공격 속도 계산 과정 =====");
+            Debug.Log("1. 기본 쿨다운: " + baseAttackCooldown);
+            Debug.Log("2. 캐릭터 보너스 배율: " + characterAttackSpeedMultiplier);
+            Debug.Log("3. 상점 영구 강화 보너스: " + permanentAttackSpeedBonus + " (" + (permanentAttackSpeedBonus * 100) + "%)");
+            Debug.Log("4. 최종 속도 배율 (2번 * (1 + 3번)): " + totalSpeedMultiplier);
+            Debug.Log("5. 최종 공격 쿨다운 (1번 / 4번): " + finalAttackCooldown);
+            Debug.Log("=============================");
+
+            // --- 3. 다음 공격 시간 설정 ---
+            nextAttackTime = Time.time + finalAttackCooldown;
+
+            // --- 4. 공격 실행 ---
             int finalDamage = Mathf.RoundToInt((baseDamage + characterDamageBonus) * itemDamageMultiplier);
-
-            // ------ 신규 수정: 최대 레벨 6까지 허용 (스킬 사용 시) ------
-            // 레벨에 따른 데미지 계산 (예: 레벨당 20% 증가)
             float levelMultiplier = 1f + (currentTotalLevel - 1) * 0.2f;
             int damageWithLevel = Mathf.RoundToInt(finalDamage * levelMultiplier);
 
             Attack(damageWithLevel);
+
+            // ▲▲▲ 여기까지 교체 ▲▲▲
         }
     }
 
@@ -165,4 +182,5 @@ public abstract class BaseTower : MonoBehaviour
     {
         return level + tempLevelBuff;
     }
+
 }

@@ -445,10 +445,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Music Guardians
+  m_text: "\uC74C\uC545\uC218\uD638\uB2E8"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 1e6f7a92580b62a4198b7d511e9a0faa, type: 2}
+  m_sharedMaterial: {fileID: -4843035130931810418, guid: 1e6f7a92580b62a4198b7d511e9a0faa, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -472,8 +472,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 200
-  m_fontSizeBase: 200
+  m_fontSize: 500
+  m_fontSizeBase: 500
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4284,6 +4284,11 @@ MonoBehaviour:
     permanentAtkBonus: 0
     permanentCoreHpBonus: 0
     permanentAtkSpeedBonus: 0
+    permanentMultiShotCount: 0
+    permanentAtkLevel: 0
+    permanentAtkSpeedLevel: 0
+    permanentCoreHpLevel: 0
+    permanentMultiShotLevel: 0
 --- !u!4 &2092364352
 Transform:
   m_ObjectHideFlags: 0

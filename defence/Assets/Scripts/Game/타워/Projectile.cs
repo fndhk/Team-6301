@@ -53,11 +53,13 @@ public class Projectile : MonoBehaviour
     void Start()
     {
         // 저장된 게임 데이터에서 공격 속도 보너스를 불러와 적용
+        /*
         if (SaveLoadManager.instance != null && SaveLoadManager.instance.gameData != null)
         {
             float speedBonus = SaveLoadManager.instance.gameData.permanentAtkSpeedBonus;
             speed *= (1 + speedBonus);
         }
+        */
     }
 
     void Update()

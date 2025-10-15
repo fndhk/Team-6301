@@ -35,7 +35,10 @@ public class SaveLoadManager : MonoBehaviour
     void Start()
     {
         // 게임이 시작될 때 기본 데이터로 초기화
-        this.gameData = new GameData();
+        if (this.gameData == null)
+        {
+            this.gameData = new GameData();
+        }
     }
 
     // --- 주요 기능 함수들 ---

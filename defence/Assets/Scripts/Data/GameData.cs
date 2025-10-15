@@ -17,8 +17,13 @@ public class GameData
     public int enhancementMaterials; // 보유한 강화 재료 개수
     public int permanentAtkBonus;    // 영구 공격력 보너스
     public int permanentCoreHpBonus; // 영구 코어 체력 보너스
-
     public float permanentAtkSpeedBonus; // 공속 보너스
+    public int permanentMultiShotCount; // 타워 공속
+
+    public int permanentAtkLevel;
+    public int permanentAtkSpeedLevel;
+    public int permanentCoreHpLevel;
+    public int permanentMultiShotLevel; // 영구 연사 레벨 보너스 (레벨 1당 1발 추가)
 
     // 생성자: 새 게임 데이터를 만들 때 변수들을 초기화합니다.
     public GameData()
@@ -30,10 +35,16 @@ public class GameData
         this.lastSaveTime = "";
 
         // ▼▼▼ 추가된 변수들의 초기값을 설정합니다. ▼▼▼
-        this.enhancementMaterials = 500;
+        this.enhancementMaterials = 5000;
         this.permanentAtkBonus = 0;
         this.permanentCoreHpBonus = 0;
         this.permanentAtkSpeedBonus = 0f;
+        this.permanentMultiShotCount = 0;
+
+        this.permanentAtkLevel = 0;
+        this.permanentAtkSpeedLevel = 0;
+        this.permanentCoreHpLevel = 0;
+        this.permanentMultiShotLevel = 0; // 초기 레벨 0 (총 1발 발사)
     }
 }
 
