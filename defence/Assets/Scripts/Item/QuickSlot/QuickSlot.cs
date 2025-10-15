@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro; // TextMeshPro를 사용하기 위해 추가
+using TMPro;
 
 public class QuickSlot : MonoBehaviour
 {
@@ -41,6 +41,25 @@ public class QuickSlot : MonoBehaviour
         }
     }
 
+    public void UseItem()
+    {
+        // 1. 사용할 아이템의 수량이 0보다 큰지, 그리고 효과가 지정되어 있는지 확인
+        if (currentQuantity > 0 && designatedItem != null && designatedItem.itemEffect != null)
+        {
+            // 2. 아이템 데이터에 연결된 '효과'에게 직접 실행을 명령
+            designatedItem.itemEffect.ExecuteEffect();
+            Debug.Log(designatedItem.itemName + " 아이템을 사용했습니다.");
+
+            // 3. 수량을 1 감소시키고 UI를 업데이트
+            currentQuantity--;
+            UpdateQuantityText();
+        }
+        else
+        {
+            Debug.Log("사용할 아이템이 없거나, 아이템에 효과가 지정되지 않았습니다.");
+        }
+    }
+
     // 수량 텍스트를 업데이트하는 함수
     private void UpdateQuantityText()
     {
@@ -55,15 +74,9 @@ public class QuickSlot : MonoBehaviour
             quantityText.gameObject.SetActive(false);
         }
     }
-
-    // (나중에 아이템 사용 시 필요) 아이템을 1개 사용하는 함수
-    public void UseItem()
+    public void ClearSlot()
     {
-        if (currentQuantity > 0)
-        {
-            currentQuantity--;
-            UpdateQuantityText();
-            Debug.Log(designatedItem.itemName + " 아이템을 사용했습니다. 남은 수량: " + currentQuantity);
-        }
+        currentQuantity = 0; // 수량을 0으로 초기화
+        UpdateQuantityText(); // 수량 텍스트 업데이트 (숨김 처리)
     }
 }

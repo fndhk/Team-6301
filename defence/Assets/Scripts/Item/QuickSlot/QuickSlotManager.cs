@@ -14,6 +14,45 @@ public class QuickSlotManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    void Start()
+    {
+        foreach (QuickSlot slot in slots)
+        {
+            slot.ClearSlot();
+        }
+    }
+    void Update()
+    {
+        // 숫자 키 1번을 눌렀을 때
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            UseSlot(0); // 첫 번째 슬롯 (인덱스 0) 사용
+        }
+        // 숫자 키 2번을 눌렀을 때
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            UseSlot(1); // 두 번째 슬롯 (인덱스 1) 사용
+        }
+        // 숫자 키 3번을 눌렀을 때
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            UseSlot(2); // 세 번째 슬롯 (인덱스 2) 사용
+        }
+        // 숫자 키 4번을 눌렀을 때
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            UseSlot(3); // 네 번째 슬롯 (인덱스 3) 사용
+        }
+    }
+    public void UseSlot(int slotIndex)
+    {
+        // 유효한 슬롯 번호인지 확인 (슬롯이 4개 미만일 경우를 대비)
+        if (slotIndex >= 0 && slotIndex < slots.Count)
+        {
+            // 해당 슬롯에게 아이템을 사용하라고 명령
+            slots[slotIndex].UseItem();
+        }
+    }
     // 아이템을 추가하는 함수 (핵심 로직 변경)
     public void AddItem(ItemData itemData)
     {
