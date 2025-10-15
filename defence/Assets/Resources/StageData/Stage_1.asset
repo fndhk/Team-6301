@@ -34,4 +34,4 @@ MonoBehaviour:
     count: 5
     timeBetweenEnemies: 0
   clearReward: 100
-  beatmap: {fileID: 11400000, guid: 7ad35ed72bad1834baa11a9f4e96cc77, type: 2}
+  beatmap: {fileID: 11400000, guid: fa84d74b16148ed4f8eab87ed00ca876, type: 2}

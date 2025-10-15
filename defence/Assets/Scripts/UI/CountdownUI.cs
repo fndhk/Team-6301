@@ -102,10 +102,7 @@ public class CountdownUI : MonoBehaviour
         }
 
         // NoteSpawner에게 시작 신호
-        if (NoteSpawner.instance != null)
-        {
-            NoteSpawner.instance.StartSpawning();
-        }
+        
     }
 
     // 외부에서 카운트다운이 끝났는지 확인하는 함수

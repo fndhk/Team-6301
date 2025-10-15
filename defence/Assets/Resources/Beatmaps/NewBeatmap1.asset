@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942dcecd53a253a4d8701b495ff75118, type: 3}
+  m_Name: NewBeatmap1
+  m_EditorClassIdentifier: 
+  notes:
+  - beat: 12.75
+    laneIndex: 1
+  - beat: 13.75
+    laneIndex: 2
+  - beat: 14.75
+    laneIndex: 3
+  - beat: 15.75
+    laneIndex: 4
+  - beat: 17.25
+    laneIndex: 1
+  - beat: 20
+    laneIndex: 2
+  - beat: 21.25
+    laneIndex: 3
+  - beat: 22.25
+    laneIndex: 4
+  - beat: 23.5
+    laneIndex: 1
+  - beat: 24.5
+    laneIndex: 2
+  - beat: 25.75
+    laneIndex: 3
+  - beat: 28.75
+    laneIndex: 4
+  - beat: 30
+    laneIndex: 1
+  - beat: 31
+    laneIndex: 2
+  - beat: 32.25
+    laneIndex: 3
+  - beat: 33.25
+    laneIndex: 4
+  - beat: 34.75
+    laneIndex: 3
+  totalBeats: 34.75
+  useNewBeatmapSystem: 1
