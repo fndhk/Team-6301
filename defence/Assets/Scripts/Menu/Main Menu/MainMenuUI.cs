@@ -1,28 +1,41 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TMPro; // TextMeshProUGUI를 사용하기 위해 필요합니다.
+using TMPro;
 
 public class MainMenuUI : MonoBehaviour
 {
     [Header("UI Panels")]
-    public GameObject loadGamePanel; // 불러오기 슬롯들이 있는 패널
+    public GameObject loadGamePanel;
     public GameObject confirmDeletePanel;
+
     [Header("Slot UI Elements")]
-    // 각 슬롯의 정보를 표시할 Text 컴포넌트 배열입니다.
     public TextMeshProUGUI[] slotInfoTexts;
-    // 각 슬롯에 해당하는 불러오기 버튼 배열입니다.
     public UnityEngine.UI.Button[] slotLoadButtons;
+
     private int slotIndexToDelete = -1;
-    // "처음부터" 버튼을 누르면 호출될 함수
+
+    // 슬롯 패널이 '불러오기' 모드인지 '새 게임' 모드인지 구분하기 위한 변수
+    private enum SlotPanelMode { Load, NewGame }
+    private SlotPanelMode currentMode;
+
+    // "새 게임 시작" 버튼을 누르면 호출될 함수
     public void OnClickStartNewGame()
     {
-        SaveLoadManager.instance.gameData = new GameData();
-        SceneManager.LoadScene("NicknameSetup");
+        // 1. 현재 모드를 '새 게임'으로 설정합니다.
+        currentMode = SlotPanelMode.NewGame;
+
+        // 2. 슬롯 선택 패널을 엽니다.
+        UpdateLoadSlotsUI(); // UI를 최신 정보로 업데이트
+        loadGamePanel.SetActive(true);
     }
 
     // "불러오기" 버튼을 누르면 호출될 함수
     public void OnClickOpenLoadPanel()
     {
+        // 1. 현재 모드를 '불러오기'로 설정합니다.
+        currentMode = SlotPanelMode.Load;
+
+        // 2. 슬롯 선택 패널을 엽니다.
         UpdateLoadSlotsUI();
         loadGamePanel.SetActive(true);
     }
@@ -36,50 +49,61 @@ public class MainMenuUI : MonoBehaviour
     // 각 슬롯의 UI 정보를 업데이트하는 함수
     private void UpdateLoadSlotsUI()
     {
-        // 1번부터 5번 슬롯까지 반복합니다.
         for (int i = 0; i < 3; i++)
         {
             int slotIndex = i + 1;
-            // 해당 슬롯에 저장된 데이터 요약 정보를 불러옵니다.
             GameData summaryData = SaveLoadManager.instance.LoadSaveSummary(slotIndex);
 
-            // 저장된 데이터가 있다면,
             if (summaryData != null)
             {
-                // 텍스트에 닉네임, 레벨, 스테이지, 저장 시간 정보를 표시합니다.
-                slotInfoTexts[i].text = $"name: {summaryData.nickname}\n" +
-                                        $"Level: {summaryData.playerLevel}\n" +
-                                        $"Stage: {summaryData.currentStage}\n" +
+                slotInfoTexts[i].text = $"Name: {summaryData.nickname}\n" +
+                                        $"Stage: {summaryData.highestClearedStage}\n" +
                                         $"Last Play: {summaryData.lastSaveTime}";
-                // 불러오기 버튼을 활성화합니다.
-                slotLoadButtons[i].interactable = true;
+
+                // '불러오기' 모드일 때만 데이터가 있는 슬롯을 활성화합니다.
+                // '새 게임' 모드에서는 모든 슬롯을 선택할 수 있어야 하므로 항상 활성화합니다.
+                slotLoadButtons[i].interactable = (currentMode == SlotPanelMode.NewGame) ? true : true;
             }
-            // 저장된 데이터가 없다면,
             else
             {
-                // "비어있음" 이라고 표시하고,
                 slotInfoTexts[i].text = "- Empty -";
-                // 버튼을 비활성화합니다.
-                slotLoadButtons[i].interactable = false;
+
+                // '불러오기' 모드에서는 비어있는 슬롯을 비활성화합니다.
+                slotLoadButtons[i].interactable = (currentMode == SlotPanelMode.NewGame) ? true : false;
             }
         }
     }
 
-    // 슬롯의 불러오기 버튼을 클릭했을 때 호출될 함수
+    // 슬롯 버튼을 클릭했을 때 호출될 함수 (가장 큰 변화)
     public void OnClickLoadFromSlot(int slotIndex)
     {
-        // SaveLoadManager를 통해 해당 슬롯의 게임 데이터를 실제로 불러옵니다.
-        if (SaveLoadManager.instance.LoadGame(slotIndex))
+        // --- 현재 모드가 '불러오기'일 경우 ---
+        if (currentMode == SlotPanelMode.Load)
         {
-            // 불러오기에 성공했다면 InGame 씬으로 이동합니다.
-            SceneManager.LoadScene("InGame");
+            if (SaveLoadManager.instance.LoadGame(slotIndex))
+            {
+                GameSession.instance.currentSaveSlot = slotIndex;
+                SceneManager.LoadScene("StageSelect");
+            }
+            else
+            {
+                Debug.LogError($"슬롯 {slotIndex}에서 게임을 불러오는데 실패했습니다!");
+            }
         }
-        else
+        // --- 현재 모드가 '새 게임'일 경우 ---
+        else if (currentMode == SlotPanelMode.NewGame)
         {
-            // 만약의 경우 불러오기에 실패했다면, 에러 메시지를 표시합니다.
-            Debug.LogError($"Failed to load game from slot {slotIndex}!");
+            // TODO: 만약 이 슬롯에 이미 데이터가 있다면 "덮어쓰시겠습니까?" 확인 창을 띄우는 로직을 추가하면 더 좋습니다.
+            // 지금은 바로 덮어쓰도록 구현합니다.
+
+            GameSession.instance.currentSaveSlot = slotIndex;
+            SaveLoadManager.instance.gameData = new GameData(); // 새 게임 데이터를 생성합니다.
+            SceneManager.LoadScene("NicknameSetup");
+
+            loadGamePanel.SetActive(false); // 작업이 끝났으니 패널을 닫습니다.
         }
     }
+
     // '삭제' 버튼을 클릭했을 때 (삭제 확인 창 열기)
     public void OnClickDeleteSlot(int slotIndex)
     {

@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic; // List를 사용하기 위해 필수
+// 파일 이름: Enemy.cs
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
-// 이 부분은 Enemy 클래스 밖에 있어도 되고, 안에 있어도 됩니다.
-// 룻 테이블을 Inspector에서 보기 좋게 만들기 위한 클래스입니다.
 [System.Serializable]
 public class LootItem
 {
@@ -12,108 +11,129 @@ public class LootItem
     public float dropChance;
 }
 
-
 public class Enemy : MonoBehaviour
 {
+    public static int liveEnemyCount = 0;
     [Header("기본 능력치")]
+    public int scoreValue = 100;
     public float speed = 3f;
     public int maxHealth = 100;
     private int currentHealth;
 
     [Header("공격 능력치")]
-    public float stopYPosition = -8f; // 적이 이동을 멈출 Y 좌표
-    public int attackDamage = 10;     // 공격력
-    public float attackRate = 1f;       // 공격 속도 (1초에 1번)
+    public float stopYPosition = -8f;
+    public int attackDamage = 10;
+    public float attackRate = 1f;
 
     [Header("아이템 드랍")]
     public GameObject itemDropPrefab;
     public List<LootItem> lootTable = new List<LootItem>();
 
-    // 내부 상태 변수들
     private bool hasReachedDestination = false;
+    private bool isDead = false;
     private CoreFacility coreFacility;
+    private bool isFrozen = false;
 
-    // 게임 시작 시 단 한번 호출됩니다.
     void Start()
     {
         currentHealth = maxHealth;
-        // 게임에 있는 CoreFacility를 찾아 변수에 저장해 둡니다.
-        coreFacility = FindObjectOfType<CoreFacility>();
+        coreFacility = FindFirstObjectByType<CoreFacility>();
+        liveEnemyCount++;
+        EnemyManager.instance.RegisterEnemy(this);
     }
 
-    // 매 프레임마다 호출됩니다.
+    void OnDestroy()
+    {
+        if (EnemyManager.instance != null)
+        {
+            EnemyManager.instance.UnregisterEnemy(this);
+        }
+    }
+
     void Update()
     {
-        // 목적지에 도착했다면 더 이상 이동하지 않습니다.
-        if (hasReachedDestination)
-        {
-            return;
-        }
-
-        // 아래 방향으로 계속 이동합니다.
+        if (isFrozen) return;
+        if (hasReachedDestination || isDead) return;
         transform.Translate(Vector3.down * speed * Time.deltaTime);
-
-        // 지정된 Y좌표에 도달했는지 확인합니다.
         if (transform.position.y <= stopYPosition)
         {
-            hasReachedDestination = true; // 도착 상태로 변경
-            // 위치를 정확하게 고정시켜 떨림을 방지합니다.
+            hasReachedDestination = true;
             transform.position = new Vector3(transform.position.x, stopYPosition, transform.position.z);
-            // 공격을 시작합니다.
             StartCoroutine(AttackCoroutine());
         }
     }
 
-    // 공격을 반복하는 코루틴
     IEnumerator AttackCoroutine()
     {
-        // coreFacility가 존재하는 동안 무한 반복합니다.
-        while (coreFacility != null)
+        while (coreFacility != null && !isDead)
         {
-            // 핵심 시설에 데미지를 줍니다.
             coreFacility.TakeDamage(attackDamage);
-
-            // 다음 공격까지 정해진 시간만큼 기다립니다.
             yield return new WaitForSeconds(attackRate);
         }
     }
 
-    // 데미지를 받는 함수
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Transform damageSource)
     {
+        if (isDead) return;
+
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
+            isDead = true;
+
+            if (ScoreManager.instance != null && damageSource != null)
+            {
+                float distance = Vector3.Distance(transform.position, damageSource.position);
+                ScoreManager.instance.AddKillScore(scoreValue, distance);
+            }
+
             Die();
         }
     }
 
-    // 죽었을 때 처리하는 함수
+    public void ApplyFreeze(float duration)
+    {
+        if (!isFrozen)
+        {
+            StartCoroutine(FreezeCoroutine(duration));
+        }
+    }
+
+    private IEnumerator FreezeCoroutine(float duration)
+    {
+        isFrozen = true;
+        speed = 0;
+        yield return new WaitForSeconds(duration);
+        isFrozen = false;
+    }
+
     private void Die()
     {
         TryDropItems();
         Destroy(gameObject);
+        liveEnemyCount--;
     }
 
-    // 아이템을 드랍하는 함수
     private void TryDropItems()
     {
-        if (itemDropPrefab == null || lootTable.Count == 0) return;
+        if (QuickSlotManager.instance == null || lootTable.Count == 0) return;
 
         float randomValue = Random.Range(0f, 100f);
         float cumulativeChance = 0f;
-
         foreach (var loot in lootTable)
         {
             cumulativeChance += loot.dropChance;
             if (randomValue <= cumulativeChance)
             {
-                GameObject droppedItemGO = Instantiate(itemDropPrefab, transform.position, Quaternion.identity);
-                ItemPickup pickupScript = droppedItemGO.GetComponent<ItemPickup>();
-                if (pickupScript != null)
+                QuickSlotManager.instance.AddItem(loot.itemData);
+
+                // ------ 신규 추가: 재화 아이템 드롭 시 UI 업데이트 ------
+                // (만약 강화 재료를 직접 드롭하는 경우)
+                if (MaterialsUI.instance != null)
                 {
-                    pickupScript.Initialize(loot.itemData);
+                    MaterialsUI.instance.OnMaterialsChanged();
                 }
+
                 return;
             }
         }

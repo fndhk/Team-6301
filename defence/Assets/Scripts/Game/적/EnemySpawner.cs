@@ -2,79 +2,102 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 각 웨이브의 정보를 담는 '설계도'입니다. Inspector 창에서 직접 설정할 수 있습니다.
 [System.Serializable]
 public class Wave
 {
-    public GameObject enemyPrefab; // 이 웨이브에서 소환할 적 프리팹
-    public int count;              // 몇 마리를 소환할지
-    public float timeBetweenEnemies; // 각 적이 소환되는 시간 간격
+    public GameObject enemyPrefab;
+    public int count;
+    public float timeBetweenEnemies;
 }
 
 public class EnemySpawner : MonoBehaviour
 {
-    [Header("웨이브 설정")]
-    public List<Wave> waves = new List<Wave>(); // 여러 웨이브를 담을 리스트
-    public float timeBetweenWaves = 5f;       // 다음 웨이브가 시작되기까지의 대기 시간
-
+    // [Header("웨이브 설정")]
+    // public List<Wave> waves = new List<Wave>(); // 이 줄을 삭제합니다.
+    public float timeBetweenWaves = 5f;
+    private bool isWaveFinished = false;
     [Header("스폰 위치")]
-    public Transform[] spawnPoints; // 적이 생성될 위치들
+    public Transform[] spawnPoints;
 
-    private int currentWaveIndex = 0; // 현재 진행 중인 웨이브 번호
+    private int currentWaveIndex = 0;
+    private StageData currentStage; // 현재 스테이지 정보를 담을 변수
+    private bool isSpawningStarted = false;
 
     void Start()
     {
-        // 게임이 시작되면 모든 웨이브를 순차적으로 시작하는 코루틴을 실행
-        StartCoroutine(SpawnAllWaves());
+        // GameSession에서 선택된 스테이지 정보를 가져옵니다.
+        currentStage = GameSession.instance.selectedStage;
+
+        if (currentStage == null)
+        {
+            Debug.LogError("선택된 스테이지 정보가 없습니다! MainMenu부터 시작했는지 확인하세요.");
+        }
+    }
+    public void StartSpawning()
+    {
+        if (isSpawningStarted) return; // 이미 시작했으면 무시
+
+        isSpawningStarted = true;
+
+        if (currentStage != null)
+        {
+            StartCoroutine(SpawnAllWaves());
+            Debug.Log("EnemySpawner: 적 스폰 시작!");
+        }
     }
 
     IEnumerator SpawnAllWaves()
     {
-        // 모든 웨이브를 다 진행할 때까지 반복
-        while (currentWaveIndex < waves.Count)
+        // currentStage에 있는 waves 리스트를 사용하도록 수정합니다.
+        while (currentWaveIndex < currentStage.waves.Count)
         {
-            // 현재 웨이브 정보를 가져옴
-            Wave currentWave = waves[currentWaveIndex];
+            Wave currentWave = currentStage.waves[currentWaveIndex];
             Debug.Log((currentWaveIndex + 1) + "번째 웨이브 시작!");
 
-            // 현재 웨이브에서 소환해야 할 적의 수만큼 반복
             for (int i = 0; i < currentWave.count; i++)
             {
-                // 실제 적을 소환하는 함수 호출
                 SpawnEnemy(currentWave.enemyPrefab);
-
-                // 다음 적이 소환될 때까지 대기
                 yield return new WaitForSeconds(currentWave.timeBetweenEnemies);
             }
 
-            // 현재 웨이브가 모두 끝났으면, 다음 웨이브까지 대기
-            if (currentWaveIndex < waves.Count - 1)
+            // ------ 신규 수정: 마지막 웨이브가 아닐 때만 대기 ------
+            if (currentWaveIndex < currentStage.waves.Count - 1)
             {
                 Debug.Log("다음 웨이브까지 " + timeBetweenWaves + "초 대기...");
                 yield return new WaitForSeconds(timeBetweenWaves);
             }
-
-            // 다음 웨이브로 넘어감
             currentWaveIndex++;
         }
-
-        // 모든 웨이브가 끝나면 메시지 출력
         Debug.Log("모든 웨이브가 종료되었습니다!");
+        isWaveFinished = true;
+    }
+    void Update()
+    {
+        // 웨이브가 끝났고, 맵에 살아있는 적이 없다면
+        if (isWaveFinished && Enemy.liveEnemyCount <= 0)
+        {
+            // GameManager에 스테이지 클리어를 알림
+            GameManager gameManager = FindFirstObjectByType<GameManager>();
+            if (gameManager != null)
+            {
+                gameManager.StageClear();
+            }
+
+            // 클리어 처리는 한 번만 하도록 이 스크립트를 비활성화
+            this.enabled = false;
+        }
     }
 
     void SpawnEnemy(GameObject enemyPrefab)
     {
+        // 이 함수는 수정할 필요 없습니다.
         if (spawnPoints.Length == 0)
         {
             Debug.LogError("스폰 위치가 지정되지 않았습니다!");
             return;
         }
-
-        // 스폰 위치 중 한 곳을 랜덤으로 선택
         int spawnIndex = Random.Range(0, spawnPoints.Length);
         Transform spawnPoint = spawnPoints[spawnIndex];
-
-        // 적 프리팹을 선택된 위치에 생성
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 }

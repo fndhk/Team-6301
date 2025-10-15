@@ -33,7 +33,7 @@ public class CoreFacility : MonoBehaviour
         if (currentHealth <= 0)
         {
             // GameManager를 찾아 GameOver 함수를 호출
-            FindObjectOfType<GameManager>().GameOver();
+            FindFirstObjectByType<GameManager>().GameOver();
         }
     }
 
@@ -48,5 +48,9 @@ public class CoreFacility : MonoBehaviour
             // 슬라이더의 value 값을 계산된 체력 비율로 설정
             healthSlider.value = healthPercentage;
         }
+    }
+    public float GetCurrentHealthPercentage()
+    {
+        return (float)currentHealth / maxHealth;
     }
 }
