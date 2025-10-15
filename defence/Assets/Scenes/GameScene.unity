@@ -2499,7 +2499,7 @@ GameObject:
   - component: {fileID: 604285640}
   - component: {fileID: 604285641}
   m_Layer: 5
-  m_Name: HP Slider
+  m_Name: Tower HP Slider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9717,50 +9717,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2101572771}
   m_CullTransparentMesh: 1
---- !u!1 &2115428417
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2115428419}
-  - component: {fileID: 2115428418}
-  m_Layer: 0
-  m_Name: InventoryManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &2115428418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2115428417}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6df6fb7e00dedd5459c7d348e8efa37a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &2115428419
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2115428417}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.395904, y: -0.09950133, z: 35.087048}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2116331184
 GameObject:
   m_ObjectHideFlags: 0
@@ -10152,5 +10108,4 @@ SceneRoots:
   - {fileID: 1213391821}
   - {fileID: 53551267}
   - {fileID: 300176477}
-  - {fileID: 2115428419}
   - {fileID: 283625932}

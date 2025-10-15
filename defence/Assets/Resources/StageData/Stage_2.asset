@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageIndex: 2
   stageName: run
-  baseMusic: {fileID: 0}
+  baseMusic: {fileID: 8300000, guid: e34416baac3d653478bb96b8dd91e6b8, type: 3}
   drumTrack: {fileID: 0}
   pianoTrack: {fileID: 0}
   cymbalTrack: {fileID: 0}
   bpm: 120
-  stageMusic: {fileID: 0}
+  stageMusic: {fileID: 8300000, guid: e34416baac3d653478bb96b8dd91e6b8, type: 3}
   waves:
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
     count: 3
