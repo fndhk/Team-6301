@@ -42,7 +42,7 @@ public class ShopManager : MonoBehaviour
 
     void UpdateAllUI()
     {
-        materialsText.text = "Cost: " + gameData.enhancementMaterials;
+        materialsText.text = "소지금: " + gameData.enhancementMaterials;
 
         // 공격력 UI 업데이트
         int atkLevel = gameData.permanentAtkLevel;
@@ -63,7 +63,7 @@ public class ShopManager : MonoBehaviour
         speedLevelText.text = "Lv. " + (speedLevel + 1); // 레벨 표시
         if (speedLevel < attackSpeedUpgradeSteps.Count)
         {
-            speedCostText.text = "비용: " + attackSpeedUpgradeSteps[speedLevel].cost;
+            speedCostText.text = "" + attackSpeedUpgradeSteps[speedLevel].cost;
             // benefit 텍스트는 이제 정수이므로 *100을 제거합니다.
             speedBenefitText.text = "(+ " + attackSpeedUpgradeSteps[speedLevel].benefit + " 연사)";
         }
@@ -149,7 +149,7 @@ public class ShopManager : MonoBehaviour
 
     private void SaveChangesAndRefreshUI()
     {
-        Debug.LogError($"--- [1. 저장 시점] --- 공격 속도 보너스 '{gameData.permanentAtkSpeedBonus}' 값을 저장합니다.");
+        Debug.Log($"--- [1. 저장 시점] --- 공격 속도 보너스 '{gameData.permanentAtkSpeedBonus}' 값을 저장합니다.");
 
         SaveLoadManager.instance.SaveGame(currentSaveSlot);
         UpdateAllUI();
