@@ -1,4 +1,4 @@
-// ÆÄÀÏ ÀÌ¸§: GameManager.cs
+// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½: GameManager.cs
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        // GameSceneÀÌ ½ÃÀÛµÉ ¶§¸¶´Ù »ì¾ÆÀÖ´Â Àû Ä«¿îÆ®¸¦ 0À¸·Î ÃÊ±âÈ­
+        // GameSceneï¿½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ Ä«ï¿½ï¿½Æ®ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         Enemy.liveEnemyCount = 0;
         if (ScoreManager.instance != null)
         {
@@ -31,18 +31,13 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // ESC Å°¸¦ ´­·¶À» ¶§
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPaused)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-            }
-        }
+    {
+        if (isPaused)
+            ResumeGame();
+        else
+            PauseGame();
+    }
     }
 
     public void StageClear()
@@ -65,14 +60,14 @@ public class GameManager : MonoBehaviour
         GameData gameData = SaveLoadManager.instance.gameData;
         StageData currentStage = GameSession.instance.selectedStage;
 
-        // 1. ÇöÀç ½ºÅ×ÀÌÁöÀÇ Å¬¸®¾î º¸»óÀ» °¡Á®¿É´Ï´Ù.
+        // 1. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½.
         int reward = currentStage.clearReward;
 
-        // 2. ÇÃ·¹ÀÌ¾îÀÇ º¸À¯ Àç·á¿¡ º¸»óÀ» ´õÇØÁİ´Ï´Ù.
+        // 2. ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½á¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½İ´Ï´ï¿½.
         gameData.enhancementMaterials += reward;
-        Debug.Log($"½ºÅ×ÀÌÁö Å¬¸®¾î! °­È­ Àç·á {reward}°³ È¹µæ!");
+        Debug.Log($"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½È­ ï¿½ï¿½ï¿½ {reward}ï¿½ï¿½ È¹ï¿½ï¿½!");
 
-        // ------ ½Å±Ô Ãß°¡: ÀçÈ­ UI ¾÷µ¥ÀÌÆ® ------
+        // ------ ï¿½Å±ï¿½ ï¿½ß°ï¿½: ï¿½ï¿½È­ UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ------
         if (MaterialsUI.instance != null)
         {
             MaterialsUI.instance.OnMaterialsChanged();
@@ -102,7 +97,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    // --- UI ¹öÆ°°ú ¿¬°áÇÒ ÇÔ¼öµé ---
+    // --- UI ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ---
 
     public void OnClickRetry()
     {
@@ -133,7 +128,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("¸ğµç ½ºÅ×ÀÌÁö¸¦ Å¬¸®¾îÇß½À´Ï´Ù!");
+            Debug.Log("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½!");
             SceneManager.LoadScene("StageSelect");
         }
     }
@@ -147,7 +142,7 @@ public class GameManager : MonoBehaviour
                 AudioManager.instance.StopMusic();
             }
 
-            Debug.Log("°ÔÀÓ ¿À¹ö!");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
             gameOverPanel.SetActive(true);
             Time.timeScale = 0f;
         }
@@ -164,6 +159,11 @@ public class GameManager : MonoBehaviour
         isPaused = true;
         menuPanel.SetActive(true);
         Time.timeScale = 0f;
+
+        if (AudioManager.instance != null)
+        {
+            AudioManager.instance.PauseMusic();
+        }
     }
 
     public void ResumeGame()
@@ -171,11 +171,42 @@ public class GameManager : MonoBehaviour
         isPaused = false;
         menuPanel.SetActive(false);
         Time.timeScale = 1f;
+
+        // ìŒì•… ì¬ê°œ
+        if (AudioManager.instance != null)
+        {
+           AudioManager.instance.ResumeMusic();
+        }
     }
 
     public void QuitGame()
     {
-        Debug.Log("°ÔÀÓÀ» Á¾·áÇÕ´Ï´Ù.");
+        Debug.Log("ê²Œì„ ì¢…ë£Œ ë²„íŠ¼");
         Application.Quit();
+    }
+
+    public void OnClickPause_Resume()
+    {
+        ResumeGame();
+    }
+
+    public void OnClickPause_Restart()
+    {
+        // ì¬ì‹œì‘ ì‹œì—ëŠ” ìŒì•…ì„ ì™„ì „ ì •ì§€(Stop)í•´ë„ ì¢‹ìŒ
+        if (AudioManager.instance != null) AudioManager.instance.StopMusic();
+        RestartGame(); // ê¸°ì¡´ êµ¬í˜„ í˜¸ì¶œ
+    }
+
+    public void OnClickPause_StageSelect()
+    {
+        if (AudioManager.instance != null) AudioManager.instance.StopMusic();
+        OnClickStageSelect(); // ê¸°ì¡´ êµ¬í˜„: StageSelect ì”¬ ì´ë™
+    }
+
+    // ì„¤ì •ì°½ ì—´ê¸°(ìˆëŠ” ê²½ìš°) â€” ì—†ìœ¼ë©´ íŒ¨ë„ë§Œ ë„ìš°ë©´ ë©ë‹ˆë‹¤.
+    [SerializeField] private GameObject settingsPanel; // ì¸ìŠ¤í™í„°ì— íŒ¨ë„ ì—°ê²°
+    public void OnClickPause_Settings()
+    {
+        if (settingsPanel != null) settingsPanel.SetActive(true);
     }
 }
