@@ -3798,6 +3798,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 1000
   baseDamage: 25
+  baseAttackCooldown: 1.5
   itemDamageMultiplier: 1
   level: 0
   enemyTag: Enemy
@@ -5912,6 +5913,7 @@ MonoBehaviour:
   - {fileID: 1432995049}
   - {fileID: 1432995049}
   laneInstruments: 00000000010000000200000002000000
+  syncOffset: 1.7
   beatsToFall: 2
 --- !u!114 &1227775177
 MonoBehaviour:
@@ -6777,6 +6779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackRange: 1000
   baseDamage: 25
+  baseAttackCooldown: 1.5
   itemDamageMultiplier: 1
   level: 0
   enemyTag: Enemy

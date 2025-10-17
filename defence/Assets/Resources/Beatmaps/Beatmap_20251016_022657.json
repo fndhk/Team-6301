@@ -1,0 +1,74 @@
+{
+    "bpm": 120.0,
+    "totalBeats": 37.75,
+    "notes": [
+        {
+            "beat": 12.5,
+            "laneIndex": 1
+        },
+        {
+            "beat": 13.75,
+            "laneIndex": 2
+        },
+        {
+            "beat": 14.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 15.75,
+            "laneIndex": 4
+        },
+        {
+            "beat": 17.0,
+            "laneIndex": 1
+        },
+        {
+            "beat": 20.0,
+            "laneIndex": 2
+        },
+        {
+            "beat": 21.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 22.5,
+            "laneIndex": 4
+        },
+        {
+            "beat": 25.0,
+            "laneIndex": 2
+        },
+        {
+            "beat": 26.0,
+            "laneIndex": 2
+        },
+        {
+            "beat": 28.75,
+            "laneIndex": 2
+        },
+        {
+            "beat": 30.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 31.0,
+            "laneIndex": 4
+        },
+        {
+            "beat": 32.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 33.25,
+            "laneIndex": 2
+        },
+        {
+            "beat": 34.25,
+            "laneIndex": 1
+        },
+        {
+            "beat": 37.75,
+            "laneIndex": 2
+        }
+    ]
+}

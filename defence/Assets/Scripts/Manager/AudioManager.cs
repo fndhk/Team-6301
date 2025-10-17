@@ -62,7 +62,8 @@ public class AudioManager : MonoBehaviour
 
         isMusicStarted = true;
 
-        // 클립이 할당된 소스만 동시에 재생 시작!
+        float musicStartTime = Time.time;
+    
         foreach (var source in allSources)
         {
             if (source.clip != null)
@@ -70,8 +71,15 @@ public class AudioManager : MonoBehaviour
                 source.Play();
             }
         }
+    
+    // ------ 신규 추가: NoteSpawner에게 정확한 시작 시간 전달 ------
+        if (NoteSpawner.instance != null)
+        {
+            NoteSpawner.instance.StartSpawningAtTime(musicStartTime);
+        }
 
-        Debug.Log("AudioManager: 음악 재생 시작!");
+        Debug.Log($"<color=green>[AudioManager] 음악 시작: {musicStartTime:F4}초</color>");
+
     }
 
     // ------ 신규 추가: 음악 정지 함수 ------
