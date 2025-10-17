@@ -1,9 +1,11 @@
+//파일 명: StageSelectManager.cs
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using UnityEngine.SceneManagement;
 
 public class StageSelectManager : MonoBehaviour
 {
@@ -12,10 +14,15 @@ public class StageSelectManager : MonoBehaviour
     public GameObject stageButtonPrefab;
     public Button nextButton;
     public Button prevButton;
+    [Tooltip("캐릭터 선택 UI가 있는 패널 게임 오브젝트")]
     public GameObject characterSelectPanel;
 
     [Header("스테이지 데이터")]
     public List<StageData> stageDatas = new List<StageData>();
+
+    [Header("캐릭터 변경 UI")]
+    public Button characterChangeButton;
+    public Image characterIconImage;
 
     private int currentStageIndex = 0;
     private float buttonWidth;
@@ -24,7 +31,6 @@ public class StageSelectManager : MonoBehaviour
 
     void Start()
     {
-        // 디버그용 임시 로더 (MainMenu 씬에서 시작하지 않을 때를 대비)
         if (SaveLoadManager.instance == null)
         {
             GameObject managerPrefab = Resources.Load<GameObject>("SaveLoadManager");
@@ -33,7 +39,6 @@ public class StageSelectManager : MonoBehaviour
 
         buttonSpacing = contentPanel.GetComponent<HorizontalLayoutGroup>().spacing;
 
-        // StageData 파일들을 Resources/StageData 폴더에서 모두 불러옵니다.
         stageDatas = Resources.LoadAll<StageData>("StageData").ToList();
         stageDatas = stageDatas.OrderBy(data => data.stageIndex).ToList();
 
@@ -42,7 +47,6 @@ public class StageSelectManager : MonoBehaviour
         GameData gameData = SaveLoadManager.instance.gameData;
         if (gameData == null) gameData = new GameData();
 
-        // 각 스테이지 데이터에 맞춰 버튼 생성
         for (int i = 0; i < stageDatas.Count; i++)
         {
             GameObject buttonGO = Instantiate(stageButtonPrefab, contentPanel);
@@ -57,7 +61,6 @@ public class StageSelectManager : MonoBehaviour
                 buttonUI.lockedOverlay.SetActive(true);
                 buttonGO.GetComponent<Button>().interactable = false;
                 buttonUI.highScoreText.text = "";
-                
             }
             else
             {
@@ -75,8 +78,6 @@ public class StageSelectManager : MonoBehaviour
             }
         }
 
-        // --- [수정된 부분] ---
-        // for문이 끝난 후에 버튼 너비를 계산하고, 화살표 버튼을 업데이트합니다.
         if (stageButtonRects.Count > 0)
         {
             LayoutElement layoutElement = stageButtonRects[0].GetComponent<LayoutElement>();
@@ -86,44 +87,54 @@ public class StageSelectManager : MonoBehaviour
             }
         }
 
-        UpdateArrowButtons();
+        if (characterChangeButton != null)
+        {
+            UpdateCurrentCharacterUI();
 
-        // ▼▼▼▼▼ 시작 값 확인용 로그 ▼▼▼▼▼
+            // ▼▼▼ 게임 세션에 현재 선택된 캐릭터 정보도 업데이트 (SkillManager 오류 방지) ▼▼▼
+            string currentCharID = SaveLoadManager.instance.gameData.currentSelectedCharacterID;
+            if (!string.IsNullOrEmpty(currentCharID))
+            {
+                GameSession.instance.selectedCharacter = GetCharacterByID(currentCharID);
+            }
+            else // 혹시 모를 예외 처리 (기본 캐릭터 설정)
+            {
+                CharacterData boomChar = GetCharacterByID("Char_Boom");
+                if (boomChar != null)
+                {
+                    GameSession.instance.selectedCharacter = boomChar;
+                    SaveLoadManager.instance.gameData.currentSelectedCharacterID = "Char_Boom";
+                }
+            }
+
+            characterChangeButton.onClick.AddListener(OpenCharacterSelect);
+        }
+
+        UpdateArrowButtons();
         Debug.Log($"---[Start 완료]--- buttonWidth: {buttonWidth}, buttonSpacing: {buttonSpacing}");
     }
 
-    // --- [수정된 부분] ---
-    // Update 함수는 Start 함수와 같은 레벨에 있어야 합니다.
     void Update()
     {
         float targetX = -currentStageIndex * (buttonWidth + buttonSpacing);
         Vector2 targetPosition = new Vector2(targetX, contentPanel.anchoredPosition.y);
         contentPanel.anchoredPosition = Vector2.Lerp(contentPanel.anchoredPosition, targetPosition, Time.deltaTime * 10f);
-
-        // ▼▼▼▼▼ 매 프레임 상태 확인용 로그 (필요시 주석 해제) ▼▼▼▼▼
-        // Debug.Log($"Update - currentStageIndex: {currentStageIndex}, targetX: {targetX}, currentX: {contentPanel.anchoredPosition.x}");
     }
 
     public void OnClickNext()
     {
-        // ▼▼▼▼▼ 함수 호출 확인용 로그 ▼▼▼▼▼
-        Debug.Log("---[OnClickNext 함수 호출됨]---");
         if (currentStageIndex < stageDatas.Count - 1)
         {
             currentStageIndex++;
-            Debug.Log($"currentStageIndex가 {currentStageIndex}(으)로 변경됨");
             UpdateArrowButtons();
         }
     }
 
     public void OnClickPrevious()
     {
-        // ▼▼▼▼▼ 함수 호출 확인용 로그 ▼▼▼▼▼
-        Debug.Log("---[OnClickPrevious 함수 호출됨]---");
         if (currentStageIndex > 0)
         {
             currentStageIndex--;
-            Debug.Log($"currentStageIndex가 {currentStageIndex}(으)로 변경됨");
             UpdateArrowButtons();
         }
     }
@@ -136,24 +147,56 @@ public class StageSelectManager : MonoBehaviour
 
     public void OnClickStageSelect(int index)
     {
-        Debug.Log(stageDatas[index].stageName + " 선택됨! 캐릭터 선택창을 엽니다.");
+        // ▼▼▼ 핵심 수정 부분 ▼▼▼
+        // 1. 클릭된 버튼의 index를 사용하여 스테이지 목록(stageDatas)에서 올바른 StageData를 찾습니다.
+        StageData selected = stageDatas[index];
 
-        // GameSession에 선택된 스테이지 정보를 저장
-        GameSession.instance.selectedStage = stageDatas[index];
+        // 2. 찾은 StageData를 DontDestroyOnLoad로 유지되는 GameSession의 selectedStage 변수에 저장합니다.
+        GameSession.instance.selectedStage = selected;
+        Debug.Log($"<color=cyan>스테이지 선택:</color> {selected.stageName}. GameSession에 저장 완료.");
 
+        // 3. 이제 GameScene으로 넘어갑니다.
+        SceneManager.LoadScene("GameScene");
+        // ▲▲▲ 여기까지 수정 ▲▲▲
+    }
+
+    public void OnClickBackButton()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void UpdateCurrentCharacterUI()
+    {
+        if (characterIconImage == null) return;
+        if (SaveLoadManager.instance == null || SaveLoadManager.instance.gameData == null) return;
+
+        string currentCharID = SaveLoadManager.instance.gameData.currentSelectedCharacterID;
+        if (string.IsNullOrEmpty(currentCharID)) currentCharID = "Char_Boom";
+
+        CharacterData currentChar = GetCharacterByID(currentCharID);
+
+        if (currentChar != null && currentChar.characterIcon != null)
+        {
+            characterIconImage.sprite = currentChar.characterIcon;
+        }
+    }
+
+    void OpenCharacterSelect()
+    {
         if (characterSelectPanel != null)
         {
+            // 이 패널을 활성화합니다.
             characterSelectPanel.SetActive(true);
         }
         else
         {
-            Debug.LogError("StageSelectManager에 Character Select Panel이 연결되지 않았습니다!");
+            Debug.LogError("StageSelectManager에 characterSelectPanel이 연결되지 않았습니다!");
         }
     }
-    public void OnClickBackButton()
-    {
-        // MainMenu 씬을 불러옵니다.
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
-    }
 
+    CharacterData GetCharacterByID(string id)
+    {
+        if (GachaManager.instance == null || GachaManager.instance.allCharacters == null) return null;
+        return GachaManager.instance.allCharacters.Find(c => c != null && c.characterID == id);
+    }
 }

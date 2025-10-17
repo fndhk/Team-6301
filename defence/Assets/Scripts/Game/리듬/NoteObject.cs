@@ -1,5 +1,6 @@
-// 파일 이름: NoteObject.cs (전체 교체)
+// 파일 이름: NoteObject.cs (Image 컴포넌트 사용 버전)
 using UnityEngine;
+using UnityEngine.UI; // Image 컴포넌트를 사용하기 위해 이 네임스페이스를 추가해야 합니다.
 
 public class NoteObject : MonoBehaviour
 {
@@ -7,15 +8,43 @@ public class NoteObject : MonoBehaviour
     public InstrumentType instrumentType;
     public int laneIndex;
     public float destroyYPosition;
+    [Header("노트 타입")]
+    public bool isSpecialNote = false; // 파란 노트 여부
+    public Color normalColor = Color.yellow;
+    public Color specialColor = Color.blue;
+
+    // ▼▼▼ SpriteRenderer 대신 Image 변수로 변경 ▼▼▼
+    private Image noteImage;
+
+    void Awake()
+    {
+        // ▼▼▼ GetComponent<SpriteRenderer>() 대신 GetComponent<Image>()로 변경 ▼▼▼
+        noteImage = GetComponent<Image>();
+
+        // Image 컴포넌트가 있는지 먼저 확인합니다.
+        if (noteImage == null)
+        {
+            Debug.LogError("NoteObject에 Image 컴포넌트가 없습니다! 프리팹을 확인해주세요.", gameObject);
+            return; // 컴포넌트가 없으면 더 이상 진행하지 않아 에러를 방지합니다.
+        }
+
+        // ▼▼▼ spriteRenderer.color 대신 noteImage.color 로 색상 변경 ▼▼▼
+        if (isSpecialNote)
+        {
+            noteImage.color = specialColor;
+        }
+        else
+        {
+            noteImage.color = normalColor;
+        }
+    }
 
     void Update()
     {
         transform.Translate(Vector3.down * fallSpeed * Time.deltaTime);
 
-        // 노트가 파괴될 위치에 도달하면
         if (transform.position.y < destroyYPosition)
         {
-            // ▼▼▼ "Miss" 판정을 호출하는 코드를 추가합니다. ▼▼▼
             if (RhythmInputManager.instance != null)
             {
                 RhythmInputManager.instance.ShowMissFeedback();
@@ -24,15 +53,8 @@ public class NoteObject : MonoBehaviour
             {
                 SkillManager.instance.AddGaugeOnJudgment(JudgmentManager.Judgment.Miss);
             }
-
-            // 그 후에 스스로를 파괴합니다.
             Destroy(gameObject);
         }
     }
-
-    void Start()
-    {
-        // 이 부분은 디버깅이 끝났다면 지워도 좋습니다.
-        // Debug.Log($"[NoteObject] 내가 전달받은 속도: {fallSpeed}");
-    }
 }
+

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 082ae89f2b07c6c4e8cf8ac7c1c31b54, type: 3}
+  m_Name: TempoMagician
+  m_EditorClassIdentifier: 
+  rarity: 0
+  characterID: Char_magic
+  characterName: "\uC194\uB9B0\uB290"
+  characterDescription: "\uB9C8\uBC95\uC0AC"
+  characterIcon: {fileID: 8539215561246471712, guid: ec71cba6e873b0b449eeeb2934d6984e, type: 3}
+  characterIllustration: {fileID: 8539215561246471712, guid: ec71cba6e873b0b449eeeb2934d6984e, type: 3}
+  skillName: "\uD15C\uD3EC\uB9E4\uC9C1"
+  skillDescription: "\uC801\uC740 \uAC10\uC18D \uD0C0\uC6CC\uB294 \uAC00\uC18D"
+  skillCutsceneImage: {fileID: -8859438312553771732, guid: f6a2e38f9d1485445a94d5644cdddeb7, type: 3}
+  characterSkill: {fileID: 11400000, guid: 414bd70018d88ce4ea73b90dc25cbde9, type: 2}
+  baseStats:
+    coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  levelGrowthStats:
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1

@@ -12,11 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082ae89f2b07c6c4e8cf8ac7c1c31b54, type: 3}
   m_Name: Boom
   m_EditorClassIdentifier: 
-  characterName: 
-  characterDescription: 
-  characterIcon: {fileID: -4525706942401507556, guid: 4fc06f4a393225b4691b167661d66a4f, type: 3}
+  rarity: 0
+  characterID: Char_Boom
+  characterName: "\uB3C4\uD76C"
+  characterDescription: "\uCC29\uD55C\uC18C\uB140"
+  characterIcon: {fileID: 4729248311134359854, guid: 8f3552e6d75750f42a5c025e739a3c89, type: 3}
+  characterIllustration: {fileID: -4525706942401507556, guid: 4fc06f4a393225b4691b167661d66a4f, type: 3}
+  skillName: "\uB09C\uC0AC"
+  skillDescription: "\uB09C\uC0AC\uB97C \uD55C\uB2E4"
   skillCutsceneImage: {fileID: 6385128387233655916, guid: 1f65cdafd19bfea44a3817d8fb9b1960, type: 3}
-  coreHealthBonus: 0
-  towerAttackDamageBonus: 0
-  towerAttackSpeedMultiplier: 1
   characterSkill: {fileID: 11400000, guid: a8716b4c4eb435b4091b9d4a30a6d803, type: 2}
+  baseStats:
+    coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  levelGrowthStats:
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1

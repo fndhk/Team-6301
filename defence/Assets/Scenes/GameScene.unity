@@ -3290,7 +3290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 965d36b62b9bbea44a400883a42fa447, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1000
+  baseMaxHealth: 1000
   healthSlider: {fileID: 604285641}
 --- !u!4 &806488516
 Transform:
@@ -3804,8 +3804,6 @@ MonoBehaviour:
   enemyTag: Enemy
   projectilePrefab: {fileID: 2456671466611078129, guid: 2ddfb278b8f76e64db8581b1288ad946, type: 3}
   firePoint: {fileID: 896046995}
-  characterDamageBonus: 0
-  characterAttackSpeedMultiplier: 1
   baseExplosionRadius: 4
   explosionRadiusPerLevel: 0.5
   attackEffectPrefab: {fileID: 2215657483599903761, guid: 2c678f6bab95c6d47a19f879d35c5c79, type: 3}
@@ -5913,6 +5911,7 @@ MonoBehaviour:
   - {fileID: 1432995049}
   - {fileID: 1432995049}
   laneInstruments: 00000000010000000200000002000000
+  specialNoteChance: 0.1
   syncOffset: 1.7
   beatsToFall: 2
 --- !u!114 &1227775177
@@ -6785,8 +6784,6 @@ MonoBehaviour:
   enemyTag: Enemy
   projectilePrefab: {fileID: 2456671466611078129, guid: 2ddfb278b8f76e64db8581b1288ad946, type: 3}
   firePoint: {fileID: 1432995048}
-  characterDamageBonus: 0
-  characterAttackSpeedMultiplier: 1
   maxBounces: 2
   attackSound: {fileID: 0}
 --- !u!4 &1432995050 stripped

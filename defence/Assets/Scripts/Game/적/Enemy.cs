@@ -1,4 +1,3 @@
-// 파일 이름: Enemy.cs
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +18,7 @@ public class Enemy : MonoBehaviour
     public float speed = 3f;
     public int maxHealth = 100;
     private int currentHealth;
+    private float originalSpeed;
 
     [Header("공격 능력치")]
     public float stopYPosition = -8f;
@@ -30,16 +30,23 @@ public class Enemy : MonoBehaviour
     public List<LootItem> lootTable = new List<LootItem>();
 
     private bool hasReachedDestination = false;
-    private bool isDead = false;
+    public bool isDead { get; private set; } = false; // ▼▼▼ private -> public { get; private set; } 으로 변경 ▼▼▼
     private CoreFacility coreFacility;
+
     private bool isFrozen = false;
+    private Coroutine attackCoroutine;
+    private Coroutine speedDebuffCoroutine;
 
     void Start()
     {
         currentHealth = maxHealth;
+        originalSpeed = speed;
         coreFacility = FindFirstObjectByType<CoreFacility>();
         liveEnemyCount++;
-        EnemyManager.instance.RegisterEnemy(this);
+        if (EnemyManager.instance != null)
+        {
+            EnemyManager.instance.RegisterEnemy(this);
+        }
     }
 
     void OnDestroy()
@@ -54,12 +61,14 @@ public class Enemy : MonoBehaviour
     {
         if (isFrozen) return;
         if (hasReachedDestination || isDead) return;
+
         transform.Translate(Vector3.down * speed * Time.deltaTime);
+
         if (transform.position.y <= stopYPosition)
         {
             hasReachedDestination = true;
             transform.position = new Vector3(transform.position.x, stopYPosition, transform.position.z);
-            StartCoroutine(AttackCoroutine());
+            attackCoroutine = StartCoroutine(AttackCoroutine());
         }
     }
 
@@ -75,20 +84,42 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(int damage, Transform damageSource)
     {
         if (isDead) return;
-
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
             isDead = true;
-
             if (ScoreManager.instance != null && damageSource != null)
             {
                 float distance = Vector3.Distance(transform.position, damageSource.position);
                 ScoreManager.instance.AddKillScore(scoreValue, distance);
             }
-
             Die();
         }
+    }
+
+    // ▼▼▼ 신규: 즉사 함수 ▼▼▼
+    public void InstantKill(GameObject effectPrefab)
+    {
+        if (isDead) return;
+
+        Debug.Log($"<color=red>암살!</color> {gameObject.name}을(를) 즉사시킵니다.");
+
+        // 즉사 이펙트 생성
+        if (effectPrefab != null)
+        {
+            Instantiate(effectPrefab, transform.position, Quaternion.identity);
+        }
+
+        isDead = true;
+
+        // 점수는 기본 점수만 지급
+        if (ScoreManager.instance != null)
+        {
+            ScoreManager.instance.AddKillScore(scoreValue, 0);
+        }
+
+        // 기존 사망 처리 로직 호출
+        Die();
     }
 
     public void ApplyFreeze(float duration)
@@ -102,9 +133,32 @@ public class Enemy : MonoBehaviour
     private IEnumerator FreezeCoroutine(float duration)
     {
         isFrozen = true;
-        speed = 0;
+        if (attackCoroutine != null) StopCoroutine(attackCoroutine);
+
         yield return new WaitForSeconds(duration);
+
         isFrozen = false;
+        if (hasReachedDestination)
+        {
+            attackCoroutine = StartCoroutine(AttackCoroutine());
+        }
+    }
+
+    public void ApplySpeedDebuff(float multiplier, float duration)
+    {
+        if (speedDebuffCoroutine != null)
+        {
+            StopCoroutine(speedDebuffCoroutine);
+        }
+        speedDebuffCoroutine = StartCoroutine(SpeedDebuffCoroutine(multiplier, duration));
+    }
+
+    private IEnumerator SpeedDebuffCoroutine(float multiplier, float duration)
+    {
+        speed = originalSpeed * multiplier;
+        yield return new WaitForSeconds(duration);
+        speed = originalSpeed;
+        speedDebuffCoroutine = null;
     }
 
     private void Die()
@@ -117,7 +171,6 @@ public class Enemy : MonoBehaviour
     private void TryDropItems()
     {
         if (QuickSlotManager.instance == null || lootTable.Count == 0) return;
-
         float randomValue = Random.Range(0f, 100f);
         float cumulativeChance = 0f;
         foreach (var loot in lootTable)
@@ -126,16 +179,13 @@ public class Enemy : MonoBehaviour
             if (randomValue <= cumulativeChance)
             {
                 QuickSlotManager.instance.AddItem(loot.itemData);
-
-                // ------ 신규 추가: 재화 아이템 드롭 시 UI 업데이트 ------
-                // (만약 강화 재료를 직접 드롭하는 경우)
                 if (MaterialsUI.instance != null)
                 {
                     MaterialsUI.instance.OnMaterialsChanged();
                 }
-
                 return;
             }
         }
     }
 }
+

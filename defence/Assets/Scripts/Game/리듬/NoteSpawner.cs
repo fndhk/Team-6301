@@ -21,6 +21,9 @@ public class NoteSpawner : MonoBehaviour
     public Transform noteParent;
     public BaseTower[] correspondingTowers;
     public InstrumentType[] laneInstruments = { InstrumentType.Drum, InstrumentType.Piano, InstrumentType.Cymbal, InstrumentType.Drum }; // 레인이 4개이므로 아이템도 4개로 맞춰주는 것이 안전합니다.
+    
+    [Header("특수 노트 설정")]
+    [SerializeField] private float specialNoteChance = 0.01f; // 1% 확률
 
     [Header("싱크 조정")]
     public float syncOffset = 0f;
@@ -170,6 +173,10 @@ public class NoteSpawner : MonoBehaviour
 
         GameObject noteGO = Instantiate(notePrefab, spawnPoints[noteInfo.laneIndex].position, Quaternion.identity, noteParent);
         NoteObject noteObject = noteGO.GetComponent<NoteObject>();
+        if (Random.value < specialNoteChance)
+        {
+            noteObject.isSpecialNote = true;
+        }
         if (noteObject != null)
         {
             noteObject.fallSpeed = this.noteFallSpeed;

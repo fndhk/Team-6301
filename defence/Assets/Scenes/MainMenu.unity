@@ -4194,6 +4194,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1870965318}
   m_CullTransparentMesh: 1
+--- !u!1 &2002962344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2002962346}
+  - component: {fileID: 2002962345}
+  m_Layer: 0
+  m_Name: GachaManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2002962345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002962344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af0def2590be4194f9847f744d415e72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allCharacters:
+  - {fileID: 11400000, guid: 6c33ca06f65e6314e8b710f1852d9eb9, type: 2}
+  - {fileID: 11400000, guid: af4608c474e791d49b8a4bbaeda09e6a, type: 2}
+  - {fileID: 11400000, guid: 69f841ea248941c45819af2cb4509dc1, type: 2}
+  - {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+  - {fileID: 11400000, guid: 8e926fee808351047be127f060efcb67, type: 2}
+  - {fileID: 11400000, guid: 05f0be9774868ee44a832352c824b16a, type: 2}
+  raritySSR: 0.05
+  raritySR: 0.25
+  rarityR: 0.7
+--- !u!4 &2002962346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002962344}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.8830526, y: -1.9645298, z: 25.223028}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2092364350
 GameObject:
   m_ObjectHideFlags: 0
@@ -4226,6 +4280,13 @@ MonoBehaviour:
   gameData:
     nickname: 
     highestClearedStage: 0
+    currentSelectedCharacterID: char_default
+    gachaTickets: 0
+    characterLevels:
+      keys:
+      - char_default
+      values: 01000000
+    firstClearRewards: []
     stageHighScores:
       keys: 
       values: 
@@ -4483,3 +4544,4 @@ SceneRoots:
   - {fileID: 683146562}
   - {fileID: 2092364352}
   - {fileID: 1537724752}
+  - {fileID: 2002962346}

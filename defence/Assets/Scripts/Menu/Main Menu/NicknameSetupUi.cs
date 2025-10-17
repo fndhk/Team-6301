@@ -16,23 +16,35 @@ public class NicknameSetupUI : MonoBehaviour
     }
 
     // 확인 버튼이 클릭되었을 때 호출될 함수
+    //파일 명: NicknameSetupUI.cs (OnConfirmButtonClick 함수 수정)
+
     private void OnConfirmButtonClick()
     {
         string nickname = nicknameInputField.text;
 
-        // 닉네임이 비어있거나 공백만 있는지 확인
         if (string.IsNullOrWhiteSpace(nickname))
         {
             Debug.LogWarning("Insert your name");
-            // 여기에 사용자에게 알림을 주는 UI를 추가할 수도 있습니다.
-            return; // 함수 종료
+            return;
         }
 
-        // SaveLoadManager를 통해 현재 게임 데이터에 닉네임 저장
         SaveLoadManager.instance.gameData.nickname = nickname;
+
+        // ------ 신규 추가: 기본 캐릭터 설정 ------
+        if (string.IsNullOrEmpty(SaveLoadManager.instance.gameData.currentSelectedCharacterID))
+        {
+            SaveLoadManager.instance.gameData.currentSelectedCharacterID = "Char_Boom";
+
+            // characterLevels에도 추가
+            if (!SaveLoadManager.instance.gameData.characterLevels.ContainsKey("Char_Boom"))
+            {
+                SaveLoadManager.instance.gameData.characterLevels.Add("Char_Boom", 1);
+            }
+
+            Debug.Log("NicknameSetupUI: 기본 캐릭터(Char_Boom)로 설정 완료");
+        }
+
         SaveLoadManager.instance.SaveGame(GameSession.instance.currentSaveSlot);
-        // 데이터가 준비되었으니 InGame 씬으로 이동
-        //SceneManager.LoadScene("InGame");
         SceneManager.LoadScene("StageSelect");
     }
 }

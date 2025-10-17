@@ -1,7 +1,7 @@
-// 파일 이름: EnemyManager.cs (새 파일)
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -30,21 +30,36 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    // 모든 적에게 데미지를 주는 스킬 효과
+    // ▼▼▼ 신규: 가장 앞에 있는 적을 찾는 함수 ▼▼▼
+    public Enemy FindFrontmostEnemy()
+    {
+        // 살아있는 적이 없으면 null 반환
+        if (activeEnemies.Count == 0)
+        {
+            return null;
+        }
+
+        // Linq를 사용하여 y 좌표가 가장 낮은 적을 찾아서 반환합니다.
+        Enemy frontmostEnemy = activeEnemies
+            .Where(e => e != null && !e.isDead) // 살아있는 적 중에서
+            .OrderBy(e => e.transform.position.y) // y좌표 오름차순으로 정렬
+            .FirstOrDefault(); // 그 중 첫 번째 적
+
+        return frontmostEnemy;
+    }
+
     public void DamageAllEnemies(int damage)
     {
-        // 리스트 복사본을 만들어 순회 (안전한 삭제를 위해)
         List<Enemy> enemiesToDamage = new List<Enemy>(activeEnemies);
         foreach (Enemy enemy in enemiesToDamage)
         {
             if (enemy != null)
             {
-                enemy.TakeDamage(damage, null); // 스킬 공격의 경우 공격자를 null로 전달
+                enemy.TakeDamage(damage, null);
             }
         }
     }
 
-    // 모든 적을 얼리는 스킬 효과
     public void FreezeAllEnemies(float duration)
     {
         foreach (Enemy enemy in activeEnemies)
@@ -55,4 +70,26 @@ public class EnemyManager : MonoBehaviour
             }
         }
     }
+
+    public void ApplySpeedDebuffToAll(float multiplier, float duration)
+    {
+        Debug.Log($"<color=purple>템포의 마법: 모든 적의 이동 속도를 {multiplier}배로 {duration}초간 변경합니다.</color>");
+        List<Enemy> enemiesToDebuff = new List<Enemy>(activeEnemies);
+        foreach (Enemy enemy in enemiesToDebuff)
+        {
+            if (enemy != null)
+            {
+                enemy.ApplySpeedDebuff(multiplier, duration);
+            }
+        }
+    }
+
+    public Enemy FindClosestEnemyInLane(Vector3 position, float laneWidth)
+    {
+        return activeEnemies
+            .Where(e => e != null && Mathf.Abs(e.transform.position.x - position.x) < laneWidth / 2f)
+            .OrderBy(e => e.transform.position.y)
+            .FirstOrDefault();
+    }
 }
+

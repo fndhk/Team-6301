@@ -2,6 +2,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections;
+using static JudgmentManager;
 
 public class RhythmInputManager : MonoBehaviour
 {
@@ -90,6 +91,13 @@ public class RhythmInputManager : MonoBehaviour
             if (minDistance <= perfectWindow) { judgmentEnum = JudgmentManager.Judgment.Perfect; judgmentString = "Perfect"; }
             else if (minDistance <= greatWindow) { judgmentEnum = JudgmentManager.Judgment.Great; judgmentString = "Great"; }
             else if (minDistance <= goodWindow) { judgmentEnum = JudgmentManager.Judgment.Good; judgmentString = "Good"; }
+
+            // 특수 노트이고 Great 이상이면 티켓 지급
+            if (closestNote.isSpecialNote && judgmentEnum <= JudgmentManager.Judgment.Great)
+            {
+                SaveLoadManager.instance.gameData.gachaTickets++;
+                Debug.Log("특수 노트 획득! 티켓 +1");
+            }
 
             if (judgmentEnum != JudgmentManager.Judgment.Miss)
             {

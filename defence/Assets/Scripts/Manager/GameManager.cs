@@ -95,11 +95,22 @@ public class GameManager : MonoBehaviour
             gameData.highestClearedStage = currentStage.stageIndex;
         }
 
+        StageData clearedStage = GameSession.instance.selectedStage;
+        string stageID = clearedStage.stageIndex.ToString();
+        GameData data = SaveLoadManager.instance.gameData;
+
+        if (!data.firstClearRewards.Contains(stageID))
+        {
+            data.firstClearRewards.Add(stageID);
+            data.gachaTickets += 3; // 첫 클리어 시 티켓 3개 지급
+            Debug.Log("첫 클리어 보너스! 티켓 +3");
+        }
         SaveLoadManager.instance.SaveGame(GameSession.instance.currentSaveSlot);
 
         stageClearPanel.SetActive(true);
         scoreText.text = "Score: " + finalScore;
         Time.timeScale = 0f;
+
     }
 
     // --- UI 버튼과 연결할 함수들 ---

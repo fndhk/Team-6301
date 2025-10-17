@@ -12,11 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082ae89f2b07c6c4e8cf8ac7c1c31b54, type: 3}
   m_Name: Ice
   m_EditorClassIdentifier: 
-  characterName: 
-  characterDescription: 
+  rarity: 2
+  characterID: Char_Ice
+  characterName: "\uBBF8\uC8FC"
+  characterDescription: "\uCC28\uAC00\uC6B4 \uC18C\uB140"
   characterIcon: {fileID: -3518269194388524973, guid: d93d7523ca205714cb4e8726ad017c4c, type: 3}
+  characterIllustration: {fileID: -3518269194388524973, guid: d93d7523ca205714cb4e8726ad017c4c, type: 3}
+  skillName: "\uC544\uC774\uC2A4\uC5D0\uC774\uC9C0"
+  skillDescription: "\uD788\uC57C~ \uB0B4\uAC00 9\uCD08\uB098 \uBA48\uCD9C \uC218
+    \uC788\uB2E4"
   skillCutsceneImage: {fileID: -2281172864177128579, guid: add84560c2cff9842ac730b54ed2f475, type: 3}
-  coreHealthBonus: 0
-  towerAttackDamageBonus: 0
-  towerAttackSpeedMultiplier: 1
   characterSkill: {fileID: 11400000, guid: 5e699e9e2ab67454c8269aebbbc73e76, type: 2}
+  baseStats:
+    coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  levelGrowthStats:
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
