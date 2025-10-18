@@ -5,6 +5,7 @@ using UnityEngine;
 // 오직 다른 클래스가 상속하기 위한 '설계도' 역할만 합니다.
 public abstract class ItemEffect : ScriptableObject
 {
-    // 이 클래스를 상속받는 모든 효과는 반드시 ExecuteEffect 메소드를 구현해야 합니다.
+    [HideInInspector] public bool isAutomatic = false; // 자동 발동 스킬인지 여부
+
     public abstract void ExecuteEffect();
 }

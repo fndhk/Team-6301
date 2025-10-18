@@ -187,4 +187,27 @@ public class AudioManager : MonoBehaviour
             source.pitch = pitchMultiplier;
         }
     }
+    public void PauseAllMusic()
+    {
+        foreach (var source in allSources)
+        {
+            if (source != null && source.isPlaying)
+            {
+                source.Pause();
+            }
+        }
+        Debug.Log("AudioManager: 모든 음악 일시정지!");
+    }
+
+    public void UnpauseAllMusic()
+    {
+        foreach (var source in allSources)
+        {
+            if (source != null)
+            {
+                source.UnPause();
+            }
+        }
+        Debug.Log("AudioManager: 모든 음악 재개!");
+    }
 }

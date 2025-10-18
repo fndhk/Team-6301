@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7baab39b80c42454ca72611c034ba2b2, type: 3}
+  m_Name: RyuSkill
+  m_EditorClassIdentifier: 
+  positioningPanelPrefab: {fileID: 7510823992548209353, guid: f38c349aa12304345a275ec2f3e82bcd, type: 3}
+  pillarPrefab: {fileID: 1537319718123585163, guid: f2b46370373d1904f94eaac3202f23f2, type: 3}
+  characterImagePrefab: {fileID: 6317058765928140771, guid: ce78dbc1d42926f48a8a81a2e2038716, type: 3}
+  durationByLevel:
+  - 3
+  - 4
+  - 5
+  damagePerSecondByLevel: 500000006e00000096000000
+  skillPositions:
+  - activationKey: 113
+    positionObject: {fileID: 667747313432988614, guid: 6e1b1c241ce54f042ae7d21cba1c9878, type: 3}
+  - activationKey: 119
+    positionObject: {fileID: 2124839656650723974, guid: dedd835e6f49ee849b9361d60a0d7e14, type: 3}
+  - activationKey: 101
+    positionObject: {fileID: 6967350455429633260, guid: 3bc9a38bef0088441a35a83cbfb06418, type: 3}
+  - activationKey: 114
+    positionObject: {fileID: 7184377098446118604, guid: ec978fe7a704ff947aaeccfd04aeb79f, type: 3}
+  - activationKey: 116
+    positionObject: {fileID: 4060181215938852396, guid: 7a448a4ecc47a1245a063f687f5733b8, type: 3}

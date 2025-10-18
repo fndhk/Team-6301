@@ -1,15 +1,31 @@
-// 파일 이름: CharacterSelectUI.cs (LockOverlay 처리 추가)
+// 파일 이름: CharacterSelectUI.cs (수동 배치 버전)
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
-using System.Linq;
+
+// ▼▼▼ 스크립트 상단에 이 클래스를 추가합니다 ▼▼▼
+[System.Serializable]
+public class CharacterButtonSetup
+{
+    [Tooltip("이 버튼이 대표할 캐릭터 데이터를 연결하세요.")]
+    public CharacterData characterData;
+    [Tooltip("씬에 배치된 캐릭터 버튼 UI를 연결하세요.")]
+    public Button characterButton;
+    [Tooltip("버튼의 자식 오브젝트인 'Icon' 이미지를 연결하세요.")]
+    public Image iconImage;
+    [Tooltip("버튼의 자식 오브젝트인 'LockOverlay'를 연결하세요.")]
+    public GameObject lockOverlay;
+}
+
 
 public class CharacterSelectUI : MonoBehaviour
 {
-    [Header("캐릭터 목록 UI")]
-    public Transform iconContainer;
-    public GameObject characterButtonPrefab;
+    // ▼▼▼ 기존 변수들을 아래 리스트로 대체합니다 ▼▼▼
+    [Header("캐릭터 버튼 수동 설정")]
+    [Tooltip("씬에 수동으로 배치한 캐릭터 버튼들을 여기에 등록하세요.")]
+    public List<CharacterButtonSetup> characterButtons = new List<CharacterButtonSetup>();
+
 
     [Header("캐릭터 정보창 UI")]
     public GameObject infoPanel;
@@ -26,7 +42,7 @@ public class CharacterSelectUI : MonoBehaviour
     [Header("페이지 닫기 버튼")]
     public Button closePageButton;
 
-    private List<GameObject> spawnedButtons = new List<GameObject>();
+    // private List<GameObject> spawnedButtons = new List<GameObject>(); // 이 줄은 더 이상 필요 없으므로 삭제합니다.
     private CharacterData selectedCharacterForInfo;
 
     void OnEnable()
@@ -34,44 +50,38 @@ public class CharacterSelectUI : MonoBehaviour
         infoPanel.SetActive(false);
         closePageButton.onClick.RemoveAllListeners();
         closePageButton.onClick.AddListener(CloseCharacterSelectPage);
-        GenerateCharacterButtons();
+        // ▼▼▼ 함수 이름을 변경합니다 ▼▼"
+        SetupManualCharacterButtons();
     }
 
-    void GenerateCharacterButtons()
+    // ▼▼▼ GenerateCharacterButtons 함수를 아래 내용으로 전체 교체합니다 ▼▼▼
+    void SetupManualCharacterButtons()
     {
-        foreach (var btn in spawnedButtons)
+        if (SaveLoadManager.instance == null || SaveLoadManager.instance.gameData == null)
         {
-            Destroy(btn);
+            Debug.LogError("CharacterSelectUI: SaveLoadManager의 데이터가 없습니다!");
+            return;
         }
-        spawnedButtons.Clear();
 
         GameData data = SaveLoadManager.instance.gameData;
 
-        // GachaManager에 등록된 모든 캐릭터를 가져와 정렬
-        List<CharacterData> allCharacters = GachaManager.instance.allCharacters
-            .Where(c => c != null)
-            .OrderBy(c => c.characterID)
-            .ToList();
-
-        foreach (CharacterData charData in allCharacters)
+        // 등록된 모든 버튼을 순회하며 상태를 설정합니다.
+        foreach (var buttonSetup in characterButtons)
         {
-            GameObject buttonGO = Instantiate(characterButtonPrefab, iconContainer);
-
-            // --- Icon 이미지 설정 ---
-            Image iconImage = buttonGO.transform.Find("Icon")?.GetComponent<Image>();
-            if (iconImage != null)
+            // 필수 요소가 연결되지 않았으면 건너뜁니다.
+            if (buttonSetup.characterData == null || buttonSetup.characterButton == null || buttonSetup.iconImage == null || buttonSetup.lockOverlay == null)
             {
-                iconImage.sprite = charData.characterIcon;
-                iconImage.color = Color.white;
-            }
-            else
-            {
-                Debug.LogError("CharacterButtonPrefab에 'Icon' 자식 오브젝트가 없습니다!");
+                Debug.LogWarning("CharacterButtons 리스트의 일부 항목이 제대로 설정되지 않았습니다. Inspector를 확인해주세요.");
+                continue;
             }
 
-            // --- LockOverlay 및 버튼 상호작용 설정 ---
-            GameObject lockOverlay = buttonGO.transform.Find("LockOverlay")?.gameObject;
-            Button button = buttonGO.GetComponent<Button>();
+            CharacterData charData = buttonSetup.characterData;
+
+            // 아이콘 이미지 설정
+            buttonSetup.iconImage.sprite = charData.characterIcon;
+
+            // 리스너 초기화 (OnEnable마다 중복 추가 방지)
+            buttonSetup.characterButton.onClick.RemoveAllListeners();
 
             // 보유 여부 확인 (레벨 1 이상)
             bool isOwned = data.characterLevels.ContainsKey(charData.characterID) && data.characterLevels[charData.characterID] > 0;
@@ -79,28 +89,22 @@ public class CharacterSelectUI : MonoBehaviour
             if (isOwned)
             {
                 // 보유한 캐릭터일 경우
-                if (lockOverlay != null)
-                {
-                    lockOverlay.SetActive(false); // 잠금 오버레이 비활성화
-                }
-                button.interactable = true; // 버튼 클릭 가능
-                button.onClick.AddListener(() => ShowCharacterInfo(charData));
+                buttonSetup.lockOverlay.SetActive(false);
+                buttonSetup.characterButton.interactable = true;
+                buttonSetup.iconImage.color = Color.white; // 원래 색상으로
+                // 버튼 클릭 시 ShowCharacterInfo 함수를 해당 캐릭터 데이터와 함께 호출하도록 설정
+                buttonSetup.characterButton.onClick.AddListener(() => ShowCharacterInfo(charData));
             }
             else
             {
                 // 미보유 캐릭터일 경우
-                if (lockOverlay != null)
-                {
-                    lockOverlay.SetActive(true); // 잠금 오버레이 활성화
-                }
-                button.interactable = false; // 버튼 클릭 불가능
-                // 미보유 캐릭터 아이콘을 약간 어둡게 처리 (선택 사항)
-                if (iconImage != null) iconImage.color = new Color(0.5f, 0.5f, 0.5f, 0.8f);
+                buttonSetup.lockOverlay.SetActive(true);
+                buttonSetup.characterButton.interactable = false;
+                buttonSetup.iconImage.color = new Color(0.5f, 0.5f, 0.5f, 0.8f); // 어둡게 처리
             }
-
-            spawnedButtons.Add(buttonGO);
         }
     }
+
 
     void ShowCharacterInfo(CharacterData data)
     {
@@ -110,7 +114,16 @@ public class CharacterSelectUI : MonoBehaviour
         characterIllustrationImage.sprite = data.characterIllustration;
         characterNameText.text = data.characterName;
         rarityText.text = data.rarity.ToString();
-        levelText.text = "Lv. " + SaveLoadManager.instance.gameData.characterLevels[data.characterID];
+        // ▼▼▼ 캐릭터 레벨을 표시할 때도 보유 여부를 한 번 더 확인하는 것이 안전합니다. ▼▼▼
+        if (SaveLoadManager.instance.gameData.characterLevels.ContainsKey(data.characterID))
+        {
+            levelText.text = "Lv. " + SaveLoadManager.instance.gameData.characterLevels[data.characterID];
+        }
+        else
+        {
+            levelText.text = "Lv. 1 (미보유)";
+        }
+
         descriptionText.text = data.characterDescription;
         skillNameText.text = data.skillName;
         skillDescriptionText.text = data.skillDescription;

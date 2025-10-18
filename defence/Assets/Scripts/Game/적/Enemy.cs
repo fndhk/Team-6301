@@ -1,3 +1,4 @@
+// 파일 이름: Enemy.cs (버그 수정 완료 버전)
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,12 +31,14 @@ public class Enemy : MonoBehaviour
     public List<LootItem> lootTable = new List<LootItem>();
 
     private bool hasReachedDestination = false;
-    public bool isDead { get; private set; } = false; // ▼▼▼ private -> public { get; private set; } 으로 변경 ▼▼▼
+    public bool isDead { get; private set; } = false;
     private CoreFacility coreFacility;
 
     private bool isFrozen = false;
     private Coroutine attackCoroutine;
     private Coroutine speedDebuffCoroutine;
+    // ▼▼▼ 밀쳐내기 전용 코루틴 변수를 추가합니다 ▼▼▼
+    private Coroutine pushbackCoroutine;
 
     void Start()
     {
@@ -76,7 +79,7 @@ public class Enemy : MonoBehaviour
     {
         while (coreFacility != null && !isDead)
         {
-            coreFacility.TakeDamage(attackDamage);
+            coreFacility.TakeDamage(attackDamage, this);
             yield return new WaitForSeconds(attackRate);
         }
     }
@@ -97,28 +100,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    // ▼▼▼ 신규: 즉사 함수 ▼▼▼
     public void InstantKill(GameObject effectPrefab)
     {
         if (isDead) return;
-
         Debug.Log($"<color=red>암살!</color> {gameObject.name}을(를) 즉사시킵니다.");
-
-        // 즉사 이펙트 생성
         if (effectPrefab != null)
         {
             Instantiate(effectPrefab, transform.position, Quaternion.identity);
         }
-
         isDead = true;
-
-        // 점수는 기본 점수만 지급
         if (ScoreManager.instance != null)
         {
             ScoreManager.instance.AddKillScore(scoreValue, 0);
         }
-
-        // 기존 사망 처리 로직 호출
         Die();
     }
 
@@ -134,9 +128,7 @@ public class Enemy : MonoBehaviour
     {
         isFrozen = true;
         if (attackCoroutine != null) StopCoroutine(attackCoroutine);
-
         yield return new WaitForSeconds(duration);
-
         isFrozen = false;
         if (hasReachedDestination)
         {
@@ -170,6 +162,7 @@ public class Enemy : MonoBehaviour
 
     private void TryDropItems()
     {
+        // ... (기존과 동일, 변경 없음) ...
         if (QuickSlotManager.instance == null || lootTable.Count == 0) return;
         float randomValue = Random.Range(0f, 100f);
         float cumulativeChance = 0f;
@@ -187,5 +180,40 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-}
 
+    // ▼▼▼ 아래 두 함수(ApplyPushback, PushbackCoroutine)를 통째로 교체해주세요 ▼▼▼
+
+    public void ApplyPushback(float force, float duration)
+    {
+        // 만약 이미 밀려나는 중이라면, 기존 효과를 중지하고 새로 시작합니다.
+        if (pushbackCoroutine != null)
+        {
+            StopCoroutine(pushbackCoroutine);
+        }
+        pushbackCoroutine = StartCoroutine(PushbackCoroutine(force, duration));
+    }
+
+    private IEnumerator PushbackCoroutine(float force, float duration)
+    {
+        // 1. 밀려나기 전 상태 저장 및 변경
+        if (attackCoroutine != null)
+        {
+            StopCoroutine(attackCoroutine);
+            attackCoroutine = null;
+        }
+        // ★★★ 핵심: "목적지 도착" 상태를 '거짓'으로 되돌려 다시 움직이게 만듭니다. ★★★
+        hasReachedDestination = false;
+
+        // 2. 지정된 시간 동안 뒤로 밀려남
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            transform.Translate(Vector3.up * force * Time.deltaTime, Space.World);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 3. 밀려나기가 끝났음을 시스템에 알림
+        pushbackCoroutine = null;
+    }
+}

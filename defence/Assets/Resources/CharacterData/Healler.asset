@@ -15,7 +15,7 @@ MonoBehaviour:
   rarity: 0
   characterID: Char_Heal
   characterName: "\uD30C\uB2C8"
-  characterDescription: "\uAC04\uD638\uC0AC\uB2E4"
+  characterDescription: "\uC758\uC0AC\uB2E4"
   characterIcon: {fileID: 4882623248252516587, guid: c1909847554bdc641b8b62e3eb39d4ba, type: 3}
   characterIllustration: {fileID: 2141686765020684764, guid: 9f47a073afcaa6f489e43fc5d580364b, type: 3}
   skillName: "\uD68C\uBCF5"

@@ -1,4 +1,4 @@
-// 파일 이름: SkillManager.cs
+// 파일 이름: SkillManager.cs (수정 완료 버전)
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,12 +15,12 @@ public class SkillManager : MonoBehaviour
     [Tooltip("Miss일 때 깎이는 양입니다. 양수로 입력해주세요.")]
     public float pointsLostForMiss = 8f;
     private float currentGauge = 0f;
-    private ItemEffect activeSkill; // 현재 캐릭터의 스킬
+    private ItemEffect activeSkill;
 
     [Header("UI 연결")]
     public Slider skillGaugeSlider;
-    public Button skillButton; // UI 버튼으로도 스킬을 쓸 수 있게 연결
-    public KeyCode skillKey = KeyCode.Space; // 스킬 사용 키
+    public Button skillButton;
+    public KeyCode skillKey = KeyCode.Space;
     private Image skillButtonImage;
 
     void Awake()
@@ -31,12 +31,6 @@ public class SkillManager : MonoBehaviour
 
     void Start()
     {
-        // GameSession에서 현재 선택한 캐릭터의 스킬 정보를 가져옵니다.
-        if (skillButton != null)
-        {
-            skillButtonImage = skillButton.GetComponent<Image>();
-            skillButton.onClick.AddListener(TryUseSkill);
-        }
         if (GameSession.instance != null && GameSession.instance.selectedCharacter != null)
         {
             activeSkill = GameSession.instance.selectedCharacter.characterSkill;
@@ -46,6 +40,7 @@ public class SkillManager : MonoBehaviour
         skillGaugeSlider.value = 0;
         if (skillButton != null)
         {
+            skillButtonImage = skillButton.GetComponent<Image>();
             skillButton.onClick.AddListener(TryUseSkill);
             if (skillButtonImage != null && GameSession.instance.selectedCharacter.characterIcon != null)
             {
@@ -62,7 +57,6 @@ public class SkillManager : MonoBehaviour
         }
     }
 
-    // 판정 결과에 따라 게이지를 채우거나 깎는 함수
     public void AddGaugeOnJudgment(JudgmentManager.Judgment judgment)
     {
         float amount = 0;
@@ -71,17 +65,25 @@ public class SkillManager : MonoBehaviour
             case JudgmentManager.Judgment.Perfect: amount = pointsForPerfect; break;
             case JudgmentManager.Judgment.Great: amount = pointsForGreat; break;
             case JudgmentManager.Judgment.Good: amount = pointsForGood; break;
-            case JudgmentManager.Judgment.Miss: amount = -pointsLostForMiss; break; // 뺄셈 처리
+            case JudgmentManager.Judgment.Miss: amount = -pointsLostForMiss; break;
         }
+
+        // 자동 스킬이 활성화 상태(게이지 100)일 때는 게이지가 오르지 않음
+        if (activeSkill != null && activeSkill.isAutomatic && currentGauge >= maxGauge)
+        {
+            return;
+        }
+
+        // ▼▼▼ isAutomatic 변수를 한 번만 체크하도록 로직을 정리했습니다 ▼▼▼
+        bool wasGaugeFull = currentGauge >= maxGauge; // 게이지가 차기 전 상태 저장
+
         currentGauge = Mathf.Clamp(currentGauge + amount, 0, maxGauge);
         skillGaugeSlider.value = currentGauge;
-    }
 
-    void TryUseSkill()
-    {
-        if (currentGauge >= maxGauge && activeSkill != null)
+        // 게이지가 꽉 차지 않았다가 -> 꽉 찼고, 현재 스킬이 '자동 스킬'이라면
+        if (!wasGaugeFull && currentGauge >= maxGauge && activeSkill != null && activeSkill.isAutomatic)
         {
-            // ------ 신규 추가: 컷신 재생 ------
+            // ▼▼▼ 컷신 재생 코드를 여기에 추가합니다 ▼▼▼
             if (SkillCutsceneUI.instance != null && GameSession.instance != null && GameSession.instance.selectedCharacter != null)
             {
                 Sprite cutsceneSprite = GameSession.instance.selectedCharacter.skillCutsceneImage;
@@ -92,6 +94,37 @@ public class SkillManager : MonoBehaviour
             }
 
             // 스킬 효과 실행
+            activeSkill.ExecuteEffect();
+            Debug.Log("자동 스킬 발동!");
+        }
+    }
+
+    public void ConsumeGauge(float amount)
+    {
+        currentGauge -= amount;
+        if (currentGauge < 0) currentGauge = 0;
+        skillGaugeSlider.value = currentGauge;
+    }
+
+    public float GetCurrentGauge()
+    {
+        return currentGauge;
+    }
+
+    void TryUseSkill()
+    {
+        // ▼▼▼ 자동 스킬(isAutomatic)일 경우 수동으로 사용할 수 없도록 조건을 추가했습니다 ▼▼▼
+        if (currentGauge >= maxGauge && activeSkill != null && !activeSkill.isAutomatic)
+        {
+            if (SkillCutsceneUI.instance != null && GameSession.instance != null && GameSession.instance.selectedCharacter != null)
+            {
+                Sprite cutsceneSprite = GameSession.instance.selectedCharacter.skillCutsceneImage;
+                if (cutsceneSprite != null)
+                {
+                    SkillCutsceneUI.instance.PlayCutscene(cutsceneSprite);
+                }
+            }
+
             activeSkill.ExecuteEffect();
 
             // 게이지 초기화

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 746067aa7f8eb084fb506db24f552c85, type: 3}
   m_Name: AssassinationSkill
   m_EditorClassIdentifier: 
-  assassinationEffectPrefab: {fileID: 6841346132971159551, guid: 60a67e2b9fe12c84b9fa8559c099fa4d, type: 3}
+  assassinationEffectPrefab: {fileID: 4677278894029956600, guid: ab9ab18d62188d546bc494afccabb830, type: 3}

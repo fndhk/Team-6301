@@ -3136,6 +3136,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1537724752}
   - component: {fileID: 1537724751}
+  - component: {fileID: 1537724753}
   m_Layer: 0
   m_Name: GameSession
   m_TagString: Untagged
@@ -3173,6 +3174,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1537724753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1537724750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d245f4c3c7db18745a47a24262811873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1545059131
 GameObject:
   m_ObjectHideFlags: 0
@@ -4230,6 +4243,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
   - {fileID: 11400000, guid: 8e926fee808351047be127f060efcb67, type: 2}
   - {fileID: 11400000, guid: 05f0be9774868ee44a832352c824b16a, type: 2}
+  - {fileID: 11400000, guid: abddc5b6c96699540b870b62b2da0497, type: 2}
+  - {fileID: 11400000, guid: 7de7a017436589842b9a7cab811befc2, type: 2}
   raritySSR: 0.05
   raritySR: 0.25
   rarityR: 0.7
