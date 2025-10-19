@@ -1,4 +1,4 @@
-// ÆÄÀÏ ÀÌ¸§: AudioManager.cs
+// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½: AudioManager.cs
 using UnityEngine;
 using System.Collections;
 
@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     private AudioSource[] allSources;
     private AudioSource drumSource, pianoSource, cymbalSource;
     private bool isMusicStarted = false;
+    private bool isMusicPaused = false;
 
     void Awake()
     {
@@ -20,29 +21,29 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        // 1. ÇöÀç ½ºÅ×ÀÌÁö Á¤º¸¸¦ °¡Á®¿É´Ï´Ù.
+        // 1. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½.
         StageData currentStage = GameSession.instance.selectedStage;
         if (currentStage == null)
         {
-            Debug.LogError("AudioManager: ÇöÀç ½ºÅ×ÀÌÁö Á¤º¸¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù!");
+            Debug.LogError("AudioManager: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!");
             return;
         }
 
-        // 2. ÀÌ ¿ÀºêÁ§Æ®¿¡ ºÙ¾îÀÖ´Â ¸ðµç AudioSource ÄÄÆ÷³ÍÆ®¸¦ °¡Á®¿É´Ï´Ù. (4°³¿©¾ß ÇÔ)
+        // 2. ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Ù¾ï¿½ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ AudioSource ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½. (4ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
         allSources = GetComponents<AudioSource>();
         if (allSources.Length < 4)
         {
-            Debug.LogError("AudioManager¿¡ AudioSource ÄÄÆ÷³ÍÆ®°¡ 4°³ ÇÊ¿äÇÕ´Ï´Ù!");
+            Debug.LogError("AudioManagerï¿½ï¿½ AudioSource ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ 4ï¿½ï¿½ ï¿½Ê¿ï¿½ï¿½Õ´Ï´ï¿½!");
             return;
         }
 
-        // 3. StageData¿¡¼­ ¿Àµð¿À Å¬¸³À» °¡Á®¿Í °¢ AudioSource¿¡ ÇÒ´çÇÕ´Ï´Ù.
+        // 3. StageDataï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ AudioSourceï¿½ï¿½ ï¿½Ò´ï¿½ï¿½Õ´Ï´ï¿½.
         allSources[0].clip = currentStage.baseMusic;
         allSources[1].clip = currentStage.drumTrack;
         allSources[2].clip = currentStage.pianoTrack;
         allSources[3].clip = currentStage.cymbalTrack;
 
-        // 4. ÂüÁ¶ º¯¼ö ¼³Á¤ ¹× ÃÊ±âÈ­
+        // 4. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ê±ï¿½È­
         drumSource = allSources[1];
         pianoSource = allSources[2];
         cymbalSource = allSources[3];
@@ -52,10 +53,10 @@ public class AudioManager : MonoBehaviour
         cymbalSource.volume = 0f;
         allSources[0].volume = 1f;
 
-        // 5. À½¾ÇÀº ¹Ù·Î Àç»ýÇÏÁö ¾Ê°í ´ë±â (CountdownUI°¡ StartMusicÀ» È£ÃâÇÒ ¶§±îÁö)
+        // 5. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½ ï¿½ï¿½ï¿½ (CountdownUIï¿½ï¿½ StartMusicï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
     }
 
-    // CountdownUI¿¡¼­ Ä«¿îÆ®´Ù¿îÀÌ ³¡³ª¸é È£ÃâÇÒ ÇÔ¼ö
+    // CountdownUIï¿½ï¿½ï¿½ï¿½ Ä«ï¿½ï¿½Æ®ï¿½Ù¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½
     public void StartMusic()
     {
         if (isMusicStarted) return;
@@ -72,22 +73,22 @@ public class AudioManager : MonoBehaviour
             }
         }
     
-    // ------ ½Å±Ô Ãß°¡: NoteSpawner¿¡°Ô Á¤È®ÇÑ ½ÃÀÛ ½Ã°£ Àü´Þ ------
+    // ------ ï¿½Å±ï¿½ ï¿½ß°ï¿½: NoteSpawnerï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ------
         if (NoteSpawner.instance != null)
         {
             NoteSpawner.instance.StartSpawningAtTime(musicStartTime);
         }
 
-        Debug.Log($"<color=green>[AudioManager] À½¾Ç ½ÃÀÛ: {musicStartTime:F4}ÃÊ</color>");
+        Debug.Log($"<color=green>[AudioManager] ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½: {musicStartTime:F4}ï¿½ï¿½</color>");
 
     }
 
-    // ------ ½Å±Ô Ãß°¡: À½¾Ç Á¤Áö ÇÔ¼ö ------
+    // ------ ï¿½Å±ï¿½ ï¿½ß°ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ ------
     public void StopMusic()
     {
-        if (!isMusicStarted) return; // À½¾ÇÀÌ ½ÃÀÛµÇÁö ¾Ê¾ÒÀ¸¸é ¹«½Ã
+        if (!isMusicStarted) return; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ï¿½ï¿½ ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
-        // ¸ðµç ¿Àµð¿À ¼Ò½º Á¤Áö
+        // ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½
         foreach (var source in allSources)
         {
             if (source != null && source.isPlaying)
@@ -97,10 +98,10 @@ public class AudioManager : MonoBehaviour
         }
 
         isMusicStarted = false;
-        Debug.Log("AudioManager: À½¾Ç Á¤Áö!");
+        Debug.Log("AudioManager: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
     }
 
-    // ------ ½Å±Ô Ãß°¡: À½¾Ç ÆäÀÌµå¾Æ¿ô ÇÔ¼ö (ºÎµå·¯¿î Á¤Áö) ------
+    // ------ ï¿½Å±ï¿½ ï¿½ß°ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½Æ¿ï¿½ ï¿½Ô¼ï¿½ (ï¿½Îµå·¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½) ------
     public void FadeOutMusic(float duration = 1f)
     {
         if (!isMusicStarted) return;
@@ -113,13 +114,13 @@ public class AudioManager : MonoBehaviour
         float startTime = Time.time;
         float[] startVolumes = new float[allSources.Length];
 
-        // ÇöÀç º¼·ý ÀúÀå
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         for (int i = 0; i < allSources.Length; i++)
         {
             startVolumes[i] = allSources[i].volume;
         }
 
-        // ÆäÀÌµå¾Æ¿ô
+        // ï¿½ï¿½ï¿½Ìµï¿½Æ¿ï¿½
         while (Time.time < startTime + duration)
         {
             float t = (Time.time - startTime) / duration;
@@ -135,19 +136,19 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
 
-        // ¿ÏÀüÈ÷ Á¤Áö
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         StopMusic();
 
-        // º¼·ý º¹¿ø (´ÙÀ½ Àç»ýÀ» À§ÇØ)
+        // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
         allSources[0].volume = 1f;
         drumSource.volume = 0f;
         pianoSource.volume = 0f;
         cymbalSource.volume = 0f;
 
-        Debug.Log("AudioManager: ÆäÀÌµå¾Æ¿ô ¿Ï·á!");
+        Debug.Log("AudioManager: ï¿½ï¿½ï¿½Ìµï¿½Æ¿ï¿½ ï¿½Ï·ï¿½!");
     }
 
-    // ¼º°ø ÆÇÁ¤ ½Ã, ÇØ´ç ¾Ç±â ¼Ò¸®¸¦ Àá±ñ µé·ÁÁÖ´Â ÇÔ¼ö
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½Ø´ï¿½ ï¿½Ç±ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½
     public void PlayInstrumentSound(InstrumentType type)
     {
         switch (type)
@@ -164,7 +165,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // º¼·ýÀ» Àá½Ã ¿Ã·È´Ù°¡ ³»¸®´Â ÄÚ·çÆ¾
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ã·È´Ù°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾
     private IEnumerator FadeInAndOut(AudioSource source, float sustainTime, float fadeOutTime)
     {
         source.volume = 1f;
@@ -179,7 +180,7 @@ public class AudioManager : MonoBehaviour
         source.volume = 0f;
     }
 
-    // °ÔÀÓ ³»¿¡¼­ À½¾Ç Àç»ý ¼Óµµ(ÇÇÄ¡)¸¦ º¯°æÇÏ´Â ÇÔ¼ö
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Óµï¿½(ï¿½ï¿½Ä¡)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½
     public void ChangePitch(float pitchMultiplier)
     {
         foreach (var source in allSources)
@@ -196,7 +197,7 @@ public class AudioManager : MonoBehaviour
                 source.Pause();
             }
         }
-        Debug.Log("AudioManager: ¸ðµç À½¾Ç ÀÏ½ÃÁ¤Áö!");
+        Debug.Log("AudioManager: ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ï½ï¿½ï¿½ï¿½ï¿½ï¿½!");
     }
 
     public void UnpauseAllMusic()
@@ -208,6 +209,31 @@ public class AudioManager : MonoBehaviour
                 source.UnPause();
             }
         }
-        Debug.Log("AudioManager: ¸ðµç À½¾Ç Àç°³!");
+        Debug.Log("AudioManager: ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ç°³!");
+    }
+
+    //esc ëˆ„ë¥¼ ë•Œ ë…¸ëž˜ ë©ˆì¶”ê¸°
+    public void PauseMusic()
+    {
+        if (!isMusicStarted || isMusicPaused || allSources == null) return;
+
+        foreach (var src in allSources)
+        {
+            if (src != null && src.isPlaying) src.Pause();
+        }
+        isMusicPaused = true;
+        Debug.Log("AudioManager: ìŒì•… ì¼ì‹œì •ì§€");
+    }
+    //escë¡œ ë‹¤ì‹œ ë‚˜ì˜¬ë•Œ ìž¬ìƒ
+    public void ResumeMusic()
+    {
+        if (!isMusicStarted || !isMusicPaused || allSources == null) return;
+
+        foreach (var src in allSources)
+        {
+            if (src != null) src.UnPause();
+        }
+        isMusicPaused = false;
+        Debug.Log("AudioManager: ìŒì•… ìž¬ê°œ");
     }
 }
