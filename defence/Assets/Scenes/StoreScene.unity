@@ -602,7 +602,7 @@ GameObject:
   - component: {fileID: 298408818}
   - component: {fileID: 298408817}
   m_Layer: 5
-  m_Name: ATK_DAMEGE_LV
+  m_Name: SPECIAL_TILE_UP_LV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -876,7 +876,7 @@ GameObject:
   - component: {fileID: 370725349}
   - component: {fileID: 370725348}
   m_Layer: 5
-  m_Name: ATK_BTN
+  m_Name: ???_BTN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1144,7 +1144,7 @@ GameObject:
   - component: {fileID: 438510755}
   - component: {fileID: 438510754}
   m_Layer: 5
-  m_Name: ATK_DAMEGE_benefit
+  m_Name: CLEAR_GOLD_UP_benefit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1280,7 +1280,7 @@ GameObject:
   - component: {fileID: 445447521}
   - component: {fileID: 445447520}
   m_Layer: 5
-  m_Name: ATK_DAMEGE_benefit
+  m_Name: ???_benefit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1416,7 +1416,7 @@ GameObject:
   - component: {fileID: 501870186}
   - component: {fileID: 501870185}
   m_Layer: 5
-  m_Name: ATK_DAMEGE_LV
+  m_Name: CLEAR_GOLD_UP_LV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1822,7 +1822,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3335345068809930712, guid: 31a0945de196b674f9b47b4b92c65c34, type: 3}
       propertyPath: m_Name
-      value: storeSlot (1)
+      value: storeSlot ???
       objectReference: {fileID: 0}
     - target: {fileID: 4330948499210237034, guid: 31a0945de196b674f9b47b4b92c65c34, type: 3}
       propertyPath: m_Sprite
@@ -2308,7 +2308,7 @@ GameObject:
   - component: {fileID: 705328320}
   - component: {fileID: 705328319}
   m_Layer: 5
-  m_Name: ATK_DAMEGE_LV
+  m_Name: ???_LV
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2580,7 +2580,7 @@ GameObject:
   - component: {fileID: 725700387}
   - component: {fileID: 725700386}
   m_Layer: 5
-  m_Name: ATK_DAMEGE
+  m_Name: SPECIAL_TILE_UP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2625,7 +2625,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ???
+  m_text: "\uC2A4\uD398\uC15C   \uD0C0\uC77C \uD655\uB960\uC99D\uAC00"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76fea41aebefa5940a76013c2d3afe13, type: 2}
   m_sharedMaterial: {fileID: -459385179201269827, guid: 76fea41aebefa5940a76013c2d3afe13, type: 2}
@@ -3075,7 +3075,7 @@ GameObject:
   - component: {fileID: 940900775}
   - component: {fileID: 940900774}
   m_Layer: 5
-  m_Name: ATK_BTN
+  m_Name: SPECIAL_TILE_UP_BTN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4154,7 +4154,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3335345068809930712, guid: 31a0945de196b674f9b47b4b92c65c34, type: 3}
       propertyPath: m_Name
-      value: storeSlot (3)
+      value: storeSlot SPECIAL_TILE_UP
       objectReference: {fileID: 0}
     - target: {fileID: 4330948499210237034, guid: 31a0945de196b674f9b47b4b92c65c34, type: 3}
       propertyPath: m_Sprite
@@ -4194,7 +4194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5049689198630811411, guid: 31a0945de196b674f9b47b4b92c65c34, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 1
+      value: 0.99999976
       objectReference: {fileID: 0}
     - target: {fileID: 5049689198630811411, guid: 31a0945de196b674f9b47b4b92c65c34, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4483,7 +4483,7 @@ GameObject:
   - component: {fileID: 1311325322}
   - component: {fileID: 1311325321}
   m_Layer: 5
-  m_Name: ATK_DAMEGE
+  m_Name: ???
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5220,7 +5220,7 @@ Transform:
   m_GameObject: {fileID: 1545712234}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -122, y: -12, z: 144603.19}
+  m_LocalPosition: {x: -122, y: 75, z: 144603.19}
   m_LocalScale: {x: 108, y: 108, z: 108}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5791,7 +5791,7 @@ GameObject:
   - component: {fileID: 1668615154}
   - component: {fileID: 1668615153}
   m_Layer: 5
-  m_Name: ATK_BTN
+  m_Name: CLEAR_GOLD_UP_BTN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6057,7 +6057,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3335345068809930712, guid: 31a0945de196b674f9b47b4b92c65c34, type: 3}
       propertyPath: m_Name
-      value: storeSlot (2)
+      value: storeSlot CLEAR_GOLD_UP
       objectReference: {fileID: 0}
     - target: {fileID: 4330948499210237034, guid: 31a0945de196b674f9b47b4b92c65c34, type: 3}
       propertyPath: m_Sprite
@@ -6157,7 +6157,7 @@ GameObject:
   - component: {fileID: 1792887322}
   - component: {fileID: 1792887321}
   m_Layer: 5
-  m_Name: ATK_DAMEGE_benefit
+  m_Name: SPECIAL_TILE_UP_benefit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6293,7 +6293,7 @@ GameObject:
   - component: {fileID: 1886483411}
   - component: {fileID: 1886483410}
   m_Layer: 5
-  m_Name: ATK_DAMEGE
+  m_Name: CLEAR_GOLD_UP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6338,7 +6338,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ???
+  m_text: "\uD074\uB9AC\uC5B4   \uACE8\uB4DC \uC99D\uAC00"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76fea41aebefa5940a76013c2d3afe13, type: 2}
   m_sharedMaterial: {fileID: -459385179201269827, guid: 76fea41aebefa5940a76013c2d3afe13, type: 2}
