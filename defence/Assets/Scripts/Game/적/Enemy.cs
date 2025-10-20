@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
 
     [Header("아이템 드랍")]
     public GameObject itemDropPrefab;
+    public GameObject itemDropEffectPrefab;
     public List<LootItem> lootTable = new List<LootItem>();
 
     private bool hasReachedDestination = false;
@@ -162,19 +163,43 @@ public class Enemy : MonoBehaviour
 
     private void TryDropItems()
     {
-        // ... (기존과 동일, 변경 없음) ...
-        if (QuickSlotManager.instance == null || lootTable.Count == 0) return;
+        if (QuickSlotManager.instance == null || itemDropEffectPrefab == null || lootTable.Count == 0) return;
+
         float randomValue = Random.Range(0f, 100f);
         float cumulativeChance = 0f;
+
         foreach (var loot in lootTable)
         {
             cumulativeChance += loot.dropChance;
             if (randomValue <= cumulativeChance)
             {
-                QuickSlotManager.instance.AddItem(loot.itemData);
-                if (MaterialsUI.instance != null)
+                //  수정된 부분 시작 
+                // 1. 이름이 "Canvas"인 게임 오브젝트를 명확하게 찾습니다.
+                GameObject mainCanvas = GameObject.Find("Canvas");
+                if (mainCanvas == null)
                 {
-                    MaterialsUI.instance.OnMaterialsChanged();
+                    Debug.LogError("이름이 'Canvas'인 UI 캔버스를 찾을 수 없습니다!");
+                    // 캔버스를 못찾았을 경우 아이템만이라도 추가되도록 처리
+                    QuickSlotManager.instance.AddItem(loot.itemData);
+                    return;
+                }
+
+                // 2. 찾은 mainCanvas의 자식으로 프리팹을 생성합니다.
+                GameObject effectGO = Instantiate(itemDropEffectPrefab, mainCanvas.transform);
+                effectGO.transform.SetAsLastSibling();
+                //  수정된 부분 끝 
+
+                ItemDropAnimator animator = effectGO.GetComponent<ItemDropAnimator>();
+
+                if (animator != null)
+                {
+                    animator.Initialize(loot.itemData, transform.position);
+                }
+                else
+                {
+                    Debug.LogError("ItemDropEffect 프리팹에 ItemDropAnimator 스크립트가 없습니다!");
+                    QuickSlotManager.instance.AddItem(loot.itemData);
+                    Destroy(effectGO);
                 }
                 return;
             }

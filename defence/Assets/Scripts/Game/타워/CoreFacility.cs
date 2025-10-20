@@ -52,44 +52,17 @@ public class CoreFacility : MonoBehaviour
         int previousHealth = currentHealth;
         currentHealth += amount;
 
-        int overhealAmount = 0;
+        // 현재 체력이 최대 체력을 넘지 않도록 제한합니다.
         if (currentHealth > CurrentMaxHealth)
         {
-            overhealAmount = currentHealth - CurrentMaxHealth;
             currentHealth = CurrentMaxHealth;
         }
 
         Debug.Log($"<color=green>코어 체력 {amount} 회복! ({previousHealth} -> {currentHealth})</color>");
         UpdateHealthUI();
-
-        if (overhealAmount > 0)
-        {
-            ApplyTemporaryMaxHealthBuff(overhealAmount, 10f);
-        }
     }
 
-    public void ApplyTemporaryMaxHealthBuff(int amount, float duration)
-    {
-        Debug.Log($"<color=cyan>오버힐 발생! 최대 체력이 {amount}만큼 {duration}초간 증가합니다.</color>");
-        StartCoroutine(MaxHealthBuffCoroutine(amount, duration));
-    }
-
-    private IEnumerator MaxHealthBuffCoroutine(int amount, float duration)
-    {
-        temporaryMaxHealthBonus += amount;
-        UpdateHealthUI();
-
-        yield return new WaitForSeconds(duration);
-
-        temporaryMaxHealthBonus -= amount;
-        if (currentHealth > CurrentMaxHealth)
-        {
-            currentHealth = CurrentMaxHealth;
-        }
-        UpdateHealthUI();
-        Debug.Log("<color=orange>최대 체력 증가 효과 종료.</color>");
-    }
-
+    
     void UpdateHealthUI()
     {
         if (healthSlider != null)

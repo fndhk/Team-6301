@@ -4913,6 +4913,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1054185862}
     m_Modifications:
+    - target: {fileID: 1951171827918594797, guid: 947f85d800aee8140b2a902302ee4d0e, type: 3}
+      propertyPath: designatedItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 11f12b14cb77cb54ab5882088c8f6334, type: 2}
     - target: {fileID: 8046817493103915016, guid: 947f85d800aee8140b2a902302ee4d0e, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -5000,7 +5004,7 @@ PrefabInstance:
     - target: {fileID: 8588938840950953854, guid: 947f85d800aee8140b2a902302ee4d0e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1852851776039644076, guid: af8a4836bb6f1d7408bca7bb735c89ce, type: 3}
+      objectReference: {fileID: -1467010021776339907, guid: a1e54445f1aed8f4eacaec0a312efbf3, type: 3}
     - target: {fileID: 8882720066238759458, guid: 947f85d800aee8140b2a902302ee4d0e, type: 3}
       propertyPath: m_Name
       value: Slot (2)
@@ -10079,7 +10083,7 @@ Canvas:
   m_GameObject: {fileID: 1867855117}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 656243907}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -10413,6 +10417,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1054185862}
     m_Modifications:
+    - target: {fileID: 1951171827918594797, guid: 947f85d800aee8140b2a902302ee4d0e, type: 3}
+      propertyPath: designatedItem
+      value: 
+      objectReference: {fileID: 11400000, guid: 9ba8563a15da5b0438c76ae248716aa7, type: 2}
     - target: {fileID: 8046817493103915016, guid: 947f85d800aee8140b2a902302ee4d0e, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -10500,7 +10508,7 @@ PrefabInstance:
     - target: {fileID: 8588938840950953854, guid: 947f85d800aee8140b2a902302ee4d0e, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 6663351734690151557, guid: 138c6883e3cce9242a6f5dbc66661423, type: 3}
+      objectReference: {fileID: -3442273424303929756, guid: cb9577fa469488743a8b3ac62a184108, type: 3}
     - target: {fileID: 8882720066238759458, guid: 947f85d800aee8140b2a902302ee4d0e, type: 3}
       propertyPath: m_Name
       value: Slot (3)

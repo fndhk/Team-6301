@@ -182,8 +182,13 @@ MonoBehaviour:
   attackDamage: 15
   attackRate: 1
   itemDropPrefab: {fileID: 8142636595811851953, guid: 8c7dd9cff4b78e745913b303382a0f75, type: 3}
+  itemDropEffectPrefab: {fileID: 3731824565046660661, guid: fea909f25f4feb9449eaa0d678e2e810, type: 3}
   lootTable:
   - itemData: {fileID: 11400000, guid: 2b66e52b7b4b1a7419862e4054ac7135, type: 2}
-    dropChance: 10
+    dropChance: 5
   - itemData: {fileID: 11400000, guid: 558b0710d073d7f44bbf286c117a7464, type: 2}
-    dropChance: 10
+    dropChance: 5
+  - itemData: {fileID: 11400000, guid: 11f12b14cb77cb54ab5882088c8f6334, type: 2}
+    dropChance: 5
+  - itemData: {fileID: 11400000, guid: 9ba8563a15da5b0438c76ae248716aa7, type: 2}
+    dropChance: 5

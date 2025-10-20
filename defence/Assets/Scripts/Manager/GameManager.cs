@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        // GameScene�� ���۵� ������ ����ִ� �� ī��Ʈ�� 0���� �ʱ�ȭ
+        // GameScene�� ���۵� ������ ����ִ�?�� ī��Ʈ�� 0���� �ʱ�ȭ
         Enemy.liveEnemyCount = 0;
         if (ScoreManager.instance != null)
         {
@@ -63,9 +63,9 @@ public class GameManager : MonoBehaviour
         // 1. ���� ���������� Ŭ���� ������ �����ɴϴ�.
         int reward = currentStage.clearReward;
 
-        // 2. �÷��̾��� ���� ��ῡ ������ �����ݴϴ�.
+        // 2. �÷��̾��� ���� ���?������ �����ݴϴ�.
         gameData.enhancementMaterials += reward;
-        Debug.Log($"�������� Ŭ����! ��ȭ ��� {reward}�� ȹ��!");
+        Debug.Log($"�������� Ŭ����! ��ȭ ���?{reward}�� ȹ��!");
 
         // ------ �ű� �߰�: ��ȭ UI ������Ʈ ------
         if (MaterialsUI.instance != null)
@@ -139,7 +139,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("��� ���������� Ŭ�����߽��ϴ�!");
+            Debug.Log("���?���������� Ŭ�����߽��ϴ�!");
             SceneManager.LoadScene("StageSelect");
         }
     }
@@ -183,7 +183,7 @@ public class GameManager : MonoBehaviour
         menuPanel.SetActive(false);
         Time.timeScale = 1f;
 
-        // 음악 재개
+        // ?�악 ?�개
         if (AudioManager.instance != null)
         {
            AudioManager.instance.ResumeMusic();
@@ -203,19 +203,19 @@ public class GameManager : MonoBehaviour
 
     public void OnClickPause_Restart()
     {
-        // 재시작 시에는 음악을 완전 정지(Stop)해도 좋음
+        // ?�시???�에???�악???�전 ?��?(Stop)?�도 좋음
         if (AudioManager.instance != null) AudioManager.instance.StopMusic();
-        RestartGame(); // 기존 구현 호출
+        RestartGame(); // 기존 구현 ?�출
     }
 
     public void OnClickPause_StageSelect()
     {
         if (AudioManager.instance != null) AudioManager.instance.StopMusic();
-        OnClickStageSelect(); // 기존 구현: StageSelect 씬 이동
+        OnClickStageSelect(); // 기존 구현: StageSelect ???�동
     }
 
-    // 설정창 열기(있는 경우) — 없으면 패널만 띄우면 됩니다.
-    [SerializeField] private GameObject settingsPanel; // 인스펙터에 패널 연결
+    // ?�정�??�기(?�는 경우) ???�으�??�널�??�우�??�니??
+    [SerializeField] private GameObject settingsPanel; // ?�스?�터???�널 ?�결
     public void OnClickPause_Settings()
     {
         if (settingsPanel != null) settingsPanel.SetActive(true);
