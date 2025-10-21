@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 082ae89f2b07c6c4e8cf8ac7c1c31b54, type: 3}
+  m_Name: Ryu
+  m_EditorClassIdentifier: 
+  rarity: 2
+  characterID: Char_Ryu
+  characterName: "\uC2DC\uB958"
+  characterDescription: "\uBB34\uB3C4\uAC00"
+  characterIcon: {fileID: 7882649550181529229, guid: a7abeb77a008544498b934f8f707e131, type: 3}
+  characterIllustration: {fileID: -3100223570178520826, guid: 96ee100dc1d2ad448b5d0ce4deca82aa, type: 3}
+  skillName: "\uD30C\uB3D9\uAD8C"
+  skillDescription: "\u2193\u2198\u2192 + \uD380\uCE58"
+  skillCutsceneImage: {fileID: -3624081843510575391, guid: 3c93e1ab1d20b764da002abc2cbf926c, type: 3}
+  characterSkill: {fileID: 11400000, guid: 3ba03ac3b6806d44dae29218bd1bc226, type: 2}
+  baseStats:
+    coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  levelGrowthStats:
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1

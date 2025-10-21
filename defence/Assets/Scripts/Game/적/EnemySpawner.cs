@@ -21,20 +21,28 @@ public class EnemySpawner : MonoBehaviour
 
     private int currentWaveIndex = 0;
     private StageData currentStage; // 현재 스테이지 정보를 담을 변수
+    private bool isSpawningStarted = false;
 
     void Start()
     {
         // GameSession에서 선택된 스테이지 정보를 가져옵니다.
         currentStage = GameSession.instance.selectedStage;
 
-        if (currentStage != null)
-        {
-            // 스테이지 정보가 있으면 웨이브 시작
-            StartCoroutine(SpawnAllWaves());
-        }
-        else
+        if (currentStage == null)
         {
             Debug.LogError("선택된 스테이지 정보가 없습니다! MainMenu부터 시작했는지 확인하세요.");
+        }
+    }
+    public void StartSpawning()
+    {
+        if (isSpawningStarted) return; // 이미 시작했으면 무시
+
+        isSpawningStarted = true;
+
+        if (currentStage != null)
+        {
+            StartCoroutine(SpawnAllWaves());
+            Debug.Log("EnemySpawner: 적 스폰 시작!");
         }
     }
 
@@ -52,6 +60,7 @@ public class EnemySpawner : MonoBehaviour
                 yield return new WaitForSeconds(currentWave.timeBetweenEnemies);
             }
 
+            // ------ 신규 수정: 마지막 웨이브가 아닐 때만 대기 ------
             if (currentWaveIndex < currentStage.waves.Count - 1)
             {
                 Debug.Log("다음 웨이브까지 " + timeBetweenWaves + "초 대기...");

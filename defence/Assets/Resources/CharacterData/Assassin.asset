@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 082ae89f2b07c6c4e8cf8ac7c1c31b54, type: 3}
+  m_Name: Assassin
+  m_EditorClassIdentifier: 
+  rarity: 1
+  characterID: Char_Assassin
+  characterName: "\uC2DC\uBB34\uB77C"
+  characterDescription: "\uC5EC\uC790 \uB2CC\uC790"
+  characterIcon: {fileID: 6100466000221947961, guid: 7ac17b0caa06ee440a4fd02987e99623, type: 3}
+  characterIllustration: {fileID: 6100466000221947961, guid: 7ac17b0caa06ee440a4fd02987e99623, type: 3}
+  skillName: "\uC0B4\uC0DD\uBD80"
+  skillDescription: "\uAC00\uC7A5 \uC55E\uC5D0 \uB098\uC640 \uC788\uB294 \uC801\uC744
+    \uC989\uC0AC\uC2DC\uD0B5\uB2C8\uB2E4"
+  skillCutsceneImage: {fileID: -4260053189635897718, guid: c7925a6c203cc7f4eb3c9b79075ee858, type: 3}
+  characterSkill: {fileID: 11400000, guid: 4f421c3d5c57ff9438abad1913baffef, type: 2}
+  baseStats:
+    coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  levelGrowthStats:
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1

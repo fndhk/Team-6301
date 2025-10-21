@@ -1,56 +1,79 @@
+// 파일 이름: CoreFacility.cs (수정 완료 버전)
 using UnityEngine;
-using UnityEngine.UI; // UI(Text)를 사용하기 위해 추가
+using UnityEngine.UI;
+using System.Collections;
 
 public class CoreFacility : MonoBehaviour
 {
     [Header("능력치")]
-    public int maxHealth = 1000;
+    public int baseMaxHealth = 1000;
     private int currentHealth;
+    private int temporaryMaxHealthBonus = 0;
+
+    public int CurrentMaxHealth => baseMaxHealth + temporaryMaxHealthBonus;
 
     [Header("UI 연결")]
-    public Slider healthSlider; // 체력바 슬라이더를 연결할 변수
+    public Slider healthSlider;
 
     void Start()
     {
-        currentHealth = maxHealth;
+        // ▼▼▼ 잘못된 코드를 삭제하고 이 두 줄만 남깁니다 ▼▼▼
+        currentHealth = CurrentMaxHealth;
         UpdateHealthUI();
     }
 
-    // 외부(주로 적)에서 호출할 데미지를 받는 함수
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, Enemy attacker)
     {
-        currentHealth -= damage;
+        // 1. FurShield 컴포넌트가 있는지 확인
+        FurShield shield = GetComponent<FurShield>();
 
-        // 체력이 0보다 아래로 내려가지 않도록 보정
-        if (currentHealth < 0)
+        // 2. 쉴드가 존재하고, 공격한 적이 있다면
+        if (shield != null && attacker != null)
         {
-            currentHealth = 0;
+            // 쉴드에게 반격하라고 명령하고, 데미지는 받지 않음
+            shield.OnCoreHit(attacker);
+            return; // 데미지 처리 로직을 건너뜀
         }
+
+        // (쉴드가 없을 경우에만 아래 데미지 로직이 실행됨)
+        currentHealth -= damage;
+        if (currentHealth < 0) currentHealth = 0;
 
         UpdateHealthUI();
 
-        // 체력이 0 이하가 되면 게임오버 처리
         if (currentHealth <= 0)
         {
-            // GameManager를 찾아 GameOver 함수를 호출
             FindFirstObjectByType<GameManager>().GameOver();
         }
     }
 
+    public void Heal(int amount)
+    {
+        int previousHealth = currentHealth;
+        currentHealth += amount;
+
+        // 현재 체력이 최대 체력을 넘지 않도록 제한합니다.
+        if (currentHealth > CurrentMaxHealth)
+        {
+            currentHealth = CurrentMaxHealth;
+        }
+
+        Debug.Log($"<color=green>코어 체력 {amount} 회복! ({previousHealth} -> {currentHealth})</color>");
+        UpdateHealthUI();
+    }
+
+    
     void UpdateHealthUI()
     {
         if (healthSlider != null)
         {
-            // 현재 체력을 최대 체력으로 나누어 0과 1 사이의 비율 값을 계산
-            // (float)를 붙여주는 이유: 정수끼리 나누면 결과가 0 또는 1만 나오는 것을 방지
-            float healthPercentage = (float)currentHealth / maxHealth;
-
-            // 슬라이더의 value 값을 계산된 체력 비율로 설정
+            float healthPercentage = (float)currentHealth / CurrentMaxHealth;
             healthSlider.value = healthPercentage;
         }
     }
+
     public float GetCurrentHealthPercentage()
     {
-        return (float)currentHealth / maxHealth;
+        return (float)currentHealth / CurrentMaxHealth;
     }
 }

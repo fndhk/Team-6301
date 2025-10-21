@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 082ae89f2b07c6c4e8cf8ac7c1c31b54, type: 3}
+  m_Name: Default
+  m_EditorClassIdentifier: 
+  rarity: 1
+  characterID: Char_Default
+  characterName: "\uB808\uC544"
+  characterDescription: "\uACF5\uC21C\uC774"
+  characterIcon: {fileID: 8912134496340247764, guid: 595d21f9a0e943c4d9e099ddd58094a4, type: 3}
+  characterIllustration: {fileID: 1700888086884366184, guid: 72bcfa572111eee42a8b770b1cdee2e3, type: 3}
+  skillName: "\uB69D\uB531\uB69D\uB531"
+  skillDescription: "\uC77C\uC2DC\uC801\uC73C\uB85C \uD0C0\uC6CC \uB808\uBCA8\uC744
+    \uC62C\uB9B0\uB2E4"
+  skillCutsceneImage: {fileID: 8842527449695605369, guid: 4712654959886154695114705b20af4a, type: 3}
+  characterSkill: {fileID: 11400000, guid: 1a98c8b7d6a57c549a1322c3942ff0c3, type: 2}
+  baseStats:
+    coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  levelGrowthStats:
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1

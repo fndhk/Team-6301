@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d74f768c19c7fe41b0a4d2109d05990, type: 3}
+  m_Name: BurstShotEffect
+  m_EditorClassIdentifier: 
+  isAutomatic: 0
+  projectilePrefab: {fileID: 2456671466611078129, guid: 2ddfb278b8f76e64db8581b1288ad946, type: 3}
+  damage: 50
+  firePositions:
+  - {fileID: 667747313432988614, guid: 6e1b1c241ce54f042ae7d21cba1c9878, type: 3}
+  - {fileID: 2124839656650723974, guid: dedd835e6f49ee849b9361d60a0d7e14, type: 3}
+  - {fileID: 6967350455429633260, guid: 3bc9a38bef0088441a35a83cbfb06418, type: 3}
+  - {fileID: 7184377098446118604, guid: ec978fe7a704ff947aaeccfd04aeb79f, type: 3}
+  - {fileID: 4060181215938852396, guid: 7a448a4ecc47a1245a063f687f5733b8, type: 3}

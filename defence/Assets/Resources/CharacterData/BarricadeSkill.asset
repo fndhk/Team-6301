@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3bb6390955cb4c48995a8b9363fecde, type: 3}
+  m_Name: BarricadeSkill
+  m_EditorClassIdentifier: 
+  isAutomatic: 0
+  barricadePrefab: {fileID: 5125437473721683820, guid: 683a101c4914b624a879bf32903cfffe, type: 3}
+  spawnCountByLevel: 010000000200000003000000
+  lanePositions:
+  - {fileID: 7660276745793674556, guid: 6e1b1c241ce54f042ae7d21cba1c9878, type: 3}
+  - {fileID: 7146344096848003827, guid: dedd835e6f49ee849b9361d60a0d7e14, type: 3}
+  - {fileID: 3516718135828637007, guid: 3bc9a38bef0088441a35a83cbfb06418, type: 3}
+  - {fileID: 5952991319107550438, guid: ec978fe7a704ff947aaeccfd04aeb79f, type: 3}
+  - {fileID: 9119053163464947224, guid: 7a448a4ecc47a1245a063f687f5733b8, type: 3}

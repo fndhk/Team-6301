@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 082ae89f2b07c6c4e8cf8ac7c1c31b54, type: 3}
+  m_Name: Healler
+  m_EditorClassIdentifier: 
+  rarity: 0
+  characterID: Char_Heal
+  characterName: "\uD30C\uB2C8"
+  characterDescription: "\uC758\uC0AC\uB2E4"
+  characterIcon: {fileID: 4882623248252516587, guid: c1909847554bdc641b8b62e3eb39d4ba, type: 3}
+  characterIllustration: {fileID: 2141686765020684764, guid: 9f47a073afcaa6f489e43fc5d580364b, type: 3}
+  skillName: "\uD68C\uBCF5"
+  skillDescription: "\uD68C\uBCF5\uD568. \uB118\uCE58\uBA74 \uADF8\uB9CC\uD07C \uCD94\uAC00
+    \uCCB4\uB825"
+  skillCutsceneImage: {fileID: -4747168808526742603, guid: 565de6a7d7adc054c854d0570d75689b, type: 3}
+  characterSkill: {fileID: 11400000, guid: 581c63ab965cf2c41bf3d4bd298469c2, type: 2}
+  baseStats:
+    coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  levelGrowthStats:
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  - coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
