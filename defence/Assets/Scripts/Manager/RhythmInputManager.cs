@@ -23,7 +23,11 @@ public class RhythmInputManager : MonoBehaviour
 
     [Header("타워 연결")]
     public BaseTower[] correspondingTowers;
-
+    // --- 판정 강화용 변수 ---
+    private float currentPerfectWindow;
+    private float currentGreatWindow;
+    private float currentGoodWindow;
+    private Coroutine judgmentBuffCoroutine; // 버프 지속시간을 제어할 코루틴
     void Awake()
     {
         if (instance == null) instance = this;
@@ -36,6 +40,9 @@ public class RhythmInputManager : MonoBehaviour
         {
             judgmentText.gameObject.SetActive(false);
         }
+        currentPerfectWindow = perfectWindow;
+        currentGreatWindow = greatWindow;
+        currentGoodWindow = goodWindow;
     }
 
     void Update()
@@ -88,9 +95,9 @@ public class RhythmInputManager : MonoBehaviour
             JudgmentManager.Judgment judgmentEnum = JudgmentManager.Judgment.Miss;
             string judgmentString = "";
 
-            if (minDistance <= perfectWindow) { judgmentEnum = JudgmentManager.Judgment.Perfect; judgmentString = "Perfect"; }
-            else if (minDistance <= greatWindow) { judgmentEnum = JudgmentManager.Judgment.Great; judgmentString = "Great"; }
-            else if (minDistance <= goodWindow) { judgmentEnum = JudgmentManager.Judgment.Good; judgmentString = "Good"; }
+            if (minDistance <= currentPerfectWindow) { judgmentEnum = JudgmentManager.Judgment.Perfect; judgmentString = "Perfect"; }
+            else if (minDistance <= currentGreatWindow) { judgmentEnum = JudgmentManager.Judgment.Great; judgmentString = "Great"; }
+            else if (minDistance <= currentGoodWindow) { judgmentEnum = JudgmentManager.Judgment.Good; judgmentString = "Good"; }
 
             // 특수 노트이고 Great 이상이면 티켓 지급
             if (closestNote.isSpecialNote && judgmentEnum <= JudgmentManager.Judgment.Great)
@@ -146,5 +153,36 @@ public class RhythmInputManager : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         judgmentText.gameObject.SetActive(false);
+    }
+
+    public void ApplyJudgmentBuff(float multiplier, float duration)
+    {
+        // 이미 버프가 걸려있다면, 기존 버프를 중지하고 새로 시작
+        if (judgmentBuffCoroutine != null)
+        {
+            StopCoroutine(judgmentBuffCoroutine);
+        }
+        judgmentBuffCoroutine = StartCoroutine(JudgmentBuffCoroutine(multiplier, duration));
+    }
+
+    private IEnumerator JudgmentBuffCoroutine(float multiplier, float duration)
+    {
+        Debug.Log($"<color=cyan>판정 강화 시작! (x{multiplier}, {duration}초)</color>");
+
+        // 버프 적용: 현재 판정 범위를 기본값 * 배율로 설정
+        currentPerfectWindow = perfectWindow * multiplier;
+        currentGreatWindow = greatWindow * multiplier;
+        currentGoodWindow = goodWindow * multiplier;
+
+        // 지속시간만큼 대기
+        yield return new WaitForSeconds(duration);
+
+        // 버프 종료: 모든 값을 다시 기본값으로 복구
+        Debug.Log("판정 강화 종료.");
+        currentPerfectWindow = perfectWindow;
+        currentGreatWindow = greatWindow;
+        currentGoodWindow = goodWindow;
+
+        judgmentBuffCoroutine = null;
     }
 }
