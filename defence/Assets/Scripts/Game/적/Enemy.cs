@@ -40,6 +40,9 @@ public class Enemy : MonoBehaviour
     private Coroutine speedDebuffCoroutine;
     // ▼▼▼ 밀쳐내기 전용 코루틴 변수를 추가합니다 ▼▼▼
     private Coroutine pushbackCoroutine;
+    private Barricade targetBarricade;
+    private bool isBlockedByBarricade = false;
+    private Coroutine attackBarricadeCoroutine;
 
     void Start()
     {
@@ -64,7 +67,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         if (isFrozen) return;
-        if (hasReachedDestination || isDead) return;
+        if (hasReachedDestination || isDead || isBlockedByBarricade) return;
 
         transform.Translate(Vector3.down * speed * Time.deltaTime);
 
@@ -226,8 +229,17 @@ public class Enemy : MonoBehaviour
             StopCoroutine(attackCoroutine);
             attackCoroutine = null;
         }
-        // ★★★ 핵심: "목적지 도착" 상태를 '거짓'으로 되돌려 다시 움직이게 만듭니다. ★★★
+
+        //  바리케이드 공격 중이었다면 중지
+        if (attackBarricadeCoroutine != null)
+        {
+            StopCoroutine(attackBarricadeCoroutine);
+            attackBarricadeCoroutine = null;
+        }
+
         hasReachedDestination = false;
+        isBlockedByBarricade = false; //  막힌 상태 해제
+        targetBarricade = null;     //  타겟 해제
 
         // 2. 지정된 시간 동안 뒤로 밀려남
         float elapsedTime = 0f;
@@ -240,5 +252,42 @@ public class Enemy : MonoBehaviour
 
         // 3. 밀려나기가 끝났음을 시스템에 알림
         pushbackCoroutine = null;
+    }
+
+    public void OnBarricadeDetected(Barricade barricade)
+    {
+        // 이미 다른 바리케이드를 공격 중이거나, 감지된 바리케이드가 없으면 무시
+        if (isBlockedByBarricade || barricade == null) return;
+
+        Debug.Log(gameObject.name + "가 바리케이드 감지! 공격 시작!");
+        isBlockedByBarricade = true;
+        targetBarricade = barricade;
+
+        // 코어 공격 코루틴이 실행 중일 수 있으니 중지
+        if (attackCoroutine != null)
+        {
+            StopCoroutine(attackCoroutine);
+            attackCoroutine = null;
+        }
+
+        // 바리케이드 공격 시작
+        attackBarricadeCoroutine = StartCoroutine(AttackBarricadeCoroutine());
+    }
+    // 파일 이름: Enemy.cs (파일 하단에 추가)
+
+    IEnumerator AttackBarricadeCoroutine()
+    {
+        // 타겟 바리케이드가 존재하고, 내가 죽지 않은 동안 반복
+        while (targetBarricade != null && !isDead)
+        {
+            // 바리케이드의 TakeDamage 함수 호출
+            targetBarricade.TakeDamage(attackDamage, this);
+            yield return new WaitForSeconds(attackRate);
+        }
+
+        // 바리케이드가 파괴되면 (targetBarricade가 null이 됨)
+        // 막힌 상태를 풀고 다시 아래로 이동 시작
+        isBlockedByBarricade = false;
+        attackBarricadeCoroutine = null;
     }
 }

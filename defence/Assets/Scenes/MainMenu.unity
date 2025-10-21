@@ -4245,9 +4245,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05f0be9774868ee44a832352c824b16a, type: 2}
   - {fileID: 11400000, guid: abddc5b6c96699540b870b62b2da0497, type: 2}
   - {fileID: 11400000, guid: 7de7a017436589842b9a7cab811befc2, type: 2}
-  raritySSR: 0.05
-  raritySR: 0.25
-  rarityR: 0.7
+  - {fileID: 11400000, guid: 3165901c99c2bc94aa9fa7e32b252318, type: 2}
+  raritySSR: 0.1
+  raritySR: 0.3
+  rarityR: 0.6
 --- !u!4 &2002962346
 Transform:
   m_ObjectHideFlags: 0

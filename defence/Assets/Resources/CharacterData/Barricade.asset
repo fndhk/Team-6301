@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 082ae89f2b07c6c4e8cf8ac7c1c31b54, type: 3}
-  m_Name: Furry
+  m_Name: Barricade
   m_EditorClassIdentifier: 
-  rarity: 0
-  characterID: Char_fur
-  characterName: "\uB3C4\uB85C\uC2DC"
-  characterDescription: "\uBC29\uD328\uAC78"
-  characterIcon: {fileID: -1956930893815171045, guid: ac061172e92e64b4eac4e70203041397, type: 3}
-  characterIllustration: {fileID: 5908497529255625476, guid: 4c2f532f9f1c761489269921adb24316, type: 3}
-  skillName: "\uD138\uBC29\uD328"
-  skillDescription: "\uACF5\uACA9\uB2F9\uD558\uBA74 \uBC00\uCCD0\uB0C5\uB2C8\uB2E4"
-  skillCutsceneImage: {fileID: -53395559825591360, guid: 17c6654da7a04034caf75b83d590f72e, type: 3}
-  characterSkill: {fileID: 11400000, guid: 0696a932db0f51d488a78b37949b49be, type: 2}
+  rarity: 1
+  characterID: Char_Barr
+  characterName: "\uBBF8\uC5F0 \uC21C\uACBD"
+  characterDescription: "\uACBD\uCC30\uAD00"
+  characterIcon: {fileID: 2767534882005991233, guid: 5da893ee6ea30d64bbe48ba2505defbb, type: 3}
+  characterIllustration: {fileID: 2767534882005991233, guid: 5da893ee6ea30d64bbe48ba2505defbb, type: 3}
+  skillName: "\uBC14\uB9AC\uCF00\uC774\uB4DC \uC124\uCE58"
+  skillDescription: "\uBC14\uB9AC\uCF00\uC774\uB4DC \uC124\uCE58"
+  skillCutsceneImage: {fileID: 5994418939259527497, guid: 6325c8cc0bce6df438f641f27b88598e, type: 3}
+  characterSkill: {fileID: 11400000, guid: 76969bd6649a3af47a7f2fc6bebaf702, type: 2}
   baseStats:
     coreHealthBonus: 0
     towerAttackDamageBonus: 0

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 57207a6ab2b507341ba5eb44b59dddab
+guid: 2635bc4a299c5594f8e1def071390b42
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1043709193006854155
-    second: "\uC0C1\uC810 \uBC15\uC2A4_0"
+      213: 130897971453368569
+    second: Barr_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,30 +122,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "\uC0C1\uC810 \uBC15\uC2A4_0"
+      name: Barr_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 668
-        height: 136
+        width: 148
+        height: 120
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5ff440ec4000481f0800000000000000
-      internalID: -1043709193006854155
+      spriteID: 9f81c42f20b01d100800000000000000
+      internalID: 130897971453368569
       vertices: []
       indices: 
       edges: []
@@ -173,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "\uC0C1\uC810 \uBC15\uC2A4_0": -1043709193006854155
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
