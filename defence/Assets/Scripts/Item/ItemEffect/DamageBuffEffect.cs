@@ -5,14 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New DamageBuffEffect", menuName = "TowerDefense/ItemEffects/Damage Buff")]
 public class DamageBuffEffect : ItemEffect
 {
-    [Header("버프 정보")]
-    public float damageMultiplier = 1.5f; // 데미지 배율
-    public float duration = 10f;          // 지속 시간
+    public float baseMultiplier = 2f; // 기본 배율
+    public float increasePerLevel = 0.2f; // 레벨당 증가량
+    public float duration = 10f;
 
     public override void ExecuteEffect()
     {
-        // TowerManager의 기존 기능을 그대로 호출합니다.
-        // 이 효과는 자신이 어떤 버프를 줘야 하는지에 대한 '데이터'만 가지고 있습니다.
-        TowerManager.instance.ApplyDamageBuff(damageMultiplier, duration);
+        int upgradeLevel = SaveLoadManager.instance.gameData.quickSlotUpgradeLevel;
+        float finalMultiplier = baseMultiplier + (upgradeLevel * increasePerLevel);
+
+        TowerManager.instance.ApplyDamageBuff(finalMultiplier, duration);
     }
 }

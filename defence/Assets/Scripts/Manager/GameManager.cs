@@ -1,4 +1,3 @@
-// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½: GameManager.cs
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -16,16 +15,31 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public CoreFacility coreFacility;
 
+    [Header("Å¸¿ö ¼³Á¤")]
+    public List<BaseTower> allTowersInOrder;
+
     private bool isPaused = false;
     private bool isGameEnded = false;
 
     void Awake()
     {
-        // GameSceneï¿½ï¿½ ï¿½ï¿½ï¿½Ûµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ö´ï¿?ï¿½ï¿½ Ä«ï¿½ï¿½Æ®ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
         Enemy.liveEnemyCount = 0;
         if (ScoreManager.instance != null)
         {
             ScoreManager.instance.ResetScore();
+        }
+
+        if (SaveLoadManager.instance != null && SaveLoadManager.instance.gameData != null)
+        {
+            int unlockedCount = SaveLoadManager.instance.gameData.unlockedTowerCount;
+            for (int i = 0; i < allTowersInOrder.Count; i++)
+            {
+                if (allTowersInOrder[i] != null)
+                {
+                    // ÇØ±ÝµÈ Å¸¿ö´Â ·¹º§ 1(È°¼º), ¾Æ´Ï¸é ·¹º§ 0(ºñÈ°¼º)À¸·Î ¼³Á¤
+                    allTowersInOrder[i].SetLevel(i < unlockedCount ? 1 : 0);
+                }
+            }
         }
     }
 
@@ -60,14 +74,11 @@ public class GameManager : MonoBehaviour
         GameData gameData = SaveLoadManager.instance.gameData;
         StageData currentStage = GameSession.instance.selectedStage;
 
-        // 1. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½É´Ï´ï¿½.
         int reward = currentStage.clearReward;
 
-        // 2. ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½á¿?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ý´Ï´ï¿½.
         gameData.enhancementMaterials += reward;
-        Debug.Log($"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½! ï¿½ï¿½È­ ï¿½ï¿½ï¿?{reward}ï¿½ï¿½ È¹ï¿½ï¿½!");
+        Debug.Log($"{reward}");
 
-        // ------ ï¿½Å±ï¿½ ï¿½ß°ï¿½: ï¿½ï¿½È­ UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ------
         if (MaterialsUI.instance != null)
         {
             MaterialsUI.instance.OnMaterialsChanged();
@@ -94,6 +105,22 @@ public class GameManager : MonoBehaviour
         string stageID = clearedStage.stageIndex.ToString();
         GameData data = SaveLoadManager.instance.gameData;
 
+        // 1. ÇöÀç ½ºÅ×ÀÌÁöÀÇ ±âº» º¸»óÀ» °¡Á®¿É´Ï´Ù.
+        int baseReward = currentStage.clearReward;
+
+        // 2. ÀúÀåµÈ °­È­ ·¹º§À» °¡Á®¿É´Ï´Ù.
+        int rewardLevel = gameData.clearRewardBonusLevel;
+
+        // 3. ÃÖÁ¾ º¸³Ê½º ¹èÀ²À» °è»êÇÕ´Ï´Ù (·¹º§´ç 0.2¹è = 20%).
+        float bonusMultiplier = 1f + (rewardLevel * 0.2f); // ±âº» 1¹è + º¸³Ê½º
+
+        // 4. ÃÖÁ¾ º¸»ó = ±âº» º¸»ó * ÃÖÁ¾ ¹èÀ² (Á¤¼ö·Î º¯È¯)
+        int finalReward = Mathf.RoundToInt(baseReward * bonusMultiplier);
+
+        // 5. ÇÃ·¹ÀÌ¾îÀÇ º¸À¯ Àç·á¿¡ ÃÖÁ¾ º¸»óÀ» ´õÇØÁÝ´Ï´Ù.
+        gameData.enhancementMaterials += finalReward;
+        Debug.Log($"½ºÅ×ÀÌÁö Å¬¸®¾î! ±âº» º¸»ó: {baseReward}, º¸³Ê½º: +{(bonusMultiplier - 1f) * 100:F0}%, ÃÖÁ¾ È¹µæ: {finalReward}°³!");
+
         if (!data.firstClearRewards.Contains(stageID))
         {
             data.firstClearRewards.Add(stageID);
@@ -108,7 +135,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-    // --- UI ï¿½ï¿½Æ°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ---
 
     public void OnClickRetry()
     {
@@ -139,7 +165,6 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("ï¿½ï¿½ï¿?ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½!");
             SceneManager.LoadScene("StageSelect");
         }
     }
@@ -153,7 +178,7 @@ public class GameManager : MonoBehaviour
                 AudioManager.instance.StopMusic();
             }
 
-            Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!");
+            Debug.Log("Die!");
             gameOverPanel.SetActive(true);
             Time.timeScale = 0f;
         }
@@ -183,7 +208,6 @@ public class GameManager : MonoBehaviour
         menuPanel.SetActive(false);
         Time.timeScale = 1f;
 
-        // ?Œì•… ?¬ê°œ
         if (AudioManager.instance != null)
         {
            AudioManager.instance.ResumeMusic();
@@ -192,7 +216,7 @@ public class GameManager : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("ê²Œìž„ ì¢…ë£Œ ë²„íŠ¼");
+        Debug.Log("quitgame");
         Application.Quit();
     }
 
@@ -203,19 +227,17 @@ public class GameManager : MonoBehaviour
 
     public void OnClickPause_Restart()
     {
-        // ?¬ì‹œ???œì—???Œì•…???„ì „ ?•ì?(Stop)?´ë„ ì¢‹ìŒ
         if (AudioManager.instance != null) AudioManager.instance.StopMusic();
-        RestartGame(); // ê¸°ì¡´ êµ¬í˜„ ?¸ì¶œ
+        RestartGame();
     }
 
     public void OnClickPause_StageSelect()
     {
         if (AudioManager.instance != null) AudioManager.instance.StopMusic();
-        OnClickStageSelect(); // ê¸°ì¡´ êµ¬í˜„: StageSelect ???´ë™
+        OnClickStageSelect();
     }
 
-    // ?¤ì •ì°??´ê¸°(?ˆëŠ” ê²½ìš°) ???†ìœ¼ë©??¨ë„ë§??„ìš°ë©??©ë‹ˆ??
-    [SerializeField] private GameObject settingsPanel; // ?¸ìŠ¤?™í„°???¨ë„ ?°ê²°
+    [SerializeField] private GameObject settingsPanel;
     public void OnClickPause_Settings()
     {
         if (settingsPanel != null) settingsPanel.SetActive(true);

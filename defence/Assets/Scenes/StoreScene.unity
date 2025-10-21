@@ -455,6 +455,15 @@ MonoBehaviour:
   coreHpLevelText: {fileID: 1471196470}
   coreHpCostText: {fileID: 1452054998}
   coreHpBenefitText: {fileID: 1976957659}
+  unlockTowerLevelText: {fileID: 1771243351}
+  unlockTowerCostText: {fileID: 716609805}
+  unlockTowerBenefitText: {fileID: 1075761477}
+  quickSlotLevelText: {fileID: 1091847693}
+  quickSlotCostText: {fileID: 1003058127}
+  quickSlotBenefitText: {fileID: 1611476327}
+  rewardLevelText: {fileID: 501870185}
+  rewardCostText: {fileID: 518939491}
+  rewardBenefitText: {fileID: 438510754}
   attackUpgradeSteps:
   - cost: 100
     benefit: 5
@@ -488,6 +497,47 @@ MonoBehaviour:
     benefit: 200
   - cost: 1000
     benefit: 200
+  towerUnlockSteps:
+  - cost: 3000
+    benefit: 1
+  - cost: 15000
+    benefit: 1
+  quickSlotUpgradeSteps:
+  - cost: 150
+    benefit: 0
+  - cost: 300
+    benefit: 0
+  - cost: 500
+    benefit: 0
+  - cost: 750
+    benefit: 0
+  - cost: 1000
+    benefit: 0
+  - cost: 1500
+    benefit: 0
+  - cost: 3000
+    benefit: 0
+  - cost: 5000
+    benefit: 0
+  - cost: 7500
+    benefit: 0
+  - cost: 7500
+    benefit: 0
+  clearRewardUpgradeSteps:
+  - cost: 500
+    benefit: 0
+  - cost: 1500
+    benefit: 0
+  - cost: 3000
+    benefit: 0
+  - cost: 4500
+    benefit: 0
+  - cost: 6000
+    benefit: 0
+  - cost: 7500
+    benefit: 0
+  - cost: 10000
+    benefit: 0
   gachaButton: {fileID: 1907794763}
 --- !u!4 &271477864
 Transform:
@@ -1466,7 +1516,7 @@ GameObject:
   - component: {fileID: 518939492}
   - component: {fileID: 518939491}
   m_Layer: 5
-  m_Name: ATK
+  m_Name: CLEAR_GOLD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1910,7 +1960,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 271477863}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
-        m_MethodName: OnClickUpgradeAttack
+        m_MethodName: OnClickUnlockTower
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2360,7 +2410,7 @@ GameObject:
   - component: {fileID: 716609806}
   - component: {fileID: 716609805}
   m_Layer: 5
-  m_Name: ATK
+  m_Name: TOWER+
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3469,7 +3519,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 271477863}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
-        m_MethodName: OnClickUpgradeAttack
+        m_MethodName: OnClickUpgradeQuickslots
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3529,7 +3579,7 @@ GameObject:
   - component: {fileID: 1003058128}
   - component: {fileID: 1003058127}
   m_Layer: 5
-  m_Name: ATK
+  m_Name: ITEM_UP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5392,7 +5442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1611476326
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5868,7 +5918,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 271477863}
         m_TargetAssemblyTypeName: ShopManager, Assembly-CSharp
-        m_MethodName: OnClickUpgradeAttack
+        m_MethodName: OnClickUpgradeClearReward
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

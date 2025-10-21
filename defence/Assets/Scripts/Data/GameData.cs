@@ -27,6 +27,10 @@ public class GameData
     public int permanentAtkSpeedLevel;
     public int permanentCoreHpLevel;
     public int permanentMultiShotLevel; // 영구 연사 레벨 보너스 (레벨 1당 1발 추가)
+    public int unlockedTowerCount; // 해금된 타워의 총 개수
+
+    public int quickSlotUpgradeLevel;
+    public int clearRewardBonusLevel;
 
     // 생성자: 새 게임 데이터를 만들 때 변수들을 초기화합니다.
     public GameData()
@@ -44,7 +48,7 @@ public class GameData
         this.lastSaveTime = "";
 
         // ▼▼▼ 추가된 변수들의 초기값을 설정합니다. ▼▼▼
-        this.enhancementMaterials = 5000;
+        this.enhancementMaterials = 50000;
         this.permanentAtkBonus = 0;
         this.permanentCoreHpBonus = 0;
         this.permanentAtkSpeedBonus = 0f;
@@ -54,6 +58,11 @@ public class GameData
         this.permanentAtkSpeedLevel = 0;
         this.permanentCoreHpLevel = 0;
         this.permanentMultiShotLevel = 0; // 초기 레벨 0 (총 1발 발사)
+
+        this.unlockedTowerCount = 1; // 기본 타워 1개는 처음부터 해금
+
+        this.quickSlotUpgradeLevel = 0; // 초기 레벨 0
+        this.clearRewardBonusLevel = 0;
     }
 }
 
