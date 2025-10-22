@@ -48,7 +48,7 @@ public class GameData
         this.lastSaveTime = "";
 
         // ▼▼▼ 추가된 변수들의 초기값을 설정합니다. ▼▼▼
-        this.enhancementMaterials = 50000;
+        this.enhancementMaterials = 500;
         this.permanentAtkBonus = 0;
         this.permanentCoreHpBonus = 0;
         this.permanentAtkSpeedBonus = 0f;

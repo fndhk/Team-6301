@@ -4318,6 +4318,9 @@ MonoBehaviour:
     permanentAtkSpeedLevel: 0
     permanentCoreHpLevel: 0
     permanentMultiShotLevel: 0
+    unlockedTowerCount: 1
+    quickSlotUpgradeLevel: 0
+    clearRewardBonusLevel: 0
 --- !u!4 &2092364352
 Transform:
   m_ObjectHideFlags: 0

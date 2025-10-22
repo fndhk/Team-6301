@@ -1,0 +1,135 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 942dcecd53a253a4d8701b495ff75118, type: 3}
+  m_Name: 123
+  m_EditorClassIdentifier: 
+  notes:
+  - beat: 7.5
+    laneIndex: 1
+  - beat: 8.25
+    laneIndex: 2
+  - beat: 9
+    laneIndex: 3
+  - beat: 9.5
+    laneIndex: 1
+  - beat: 12
+    laneIndex: 2
+  - beat: 12
+    laneIndex: 3
+  - beat: 13.25
+    laneIndex: 1
+  - beat: 13.25
+    laneIndex: 3
+  - beat: 16
+    laneIndex: 2
+  - beat: 16
+    laneIndex: 3
+  - beat: 16.75
+    laneIndex: 4
+  - beat: 17
+    laneIndex: 1
+  - beat: 18
+    laneIndex: 2
+  - beat: 18.75
+    laneIndex: 3
+  - beat: 20
+    laneIndex: 3
+  - beat: 21.25
+    laneIndex: 4
+  - beat: 22.25
+    laneIndex: 2
+  - beat: 23.5
+    laneIndex: 1
+  - beat: 24.5
+    laneIndex: 2
+  - beat: 25.25
+    laneIndex: 3
+  - beat: 26.25
+    laneIndex: 2
+  - beat: 27.25
+    laneIndex: 4
+  - beat: 28.25
+    laneIndex: 1
+  - beat: 29.75
+    laneIndex: 2
+  - beat: 29.75
+    laneIndex: 3
+  - beat: 30.5
+    laneIndex: 4
+  - beat: 31.75
+    laneIndex: 2
+  - beat: 32
+    laneIndex: 1
+  - beat: 32
+    laneIndex: 2
+  - beat: 32.75
+    laneIndex: 2
+  - beat: 33.25
+    laneIndex: 3
+  - beat: 33.75
+    laneIndex: 4
+  - beat: 34.25
+    laneIndex: 3
+  - beat: 35
+    laneIndex: 1
+  - beat: 35.75
+    laneIndex: 2
+  - beat: 36.25
+    laneIndex: 4
+  - beat: 36.5
+    laneIndex: 4
+  - beat: 36.75
+    laneIndex: 3
+  - beat: 37.5
+    laneIndex: 2
+  - beat: 40
+    laneIndex: 1
+  - beat: 40.75
+    laneIndex: 2
+  - beat: 40.75
+    laneIndex: 3
+  - beat: 42
+    laneIndex: 4
+  - beat: 43
+    laneIndex: 3
+  - beat: 44.25
+    laneIndex: 2
+  - beat: 45.5
+    laneIndex: 1
+  - beat: 47.25
+    laneIndex: 3
+  - beat: 48
+    laneIndex: 2
+  - beat: 49.25
+    laneIndex: 4
+  - beat: 50.75
+    laneIndex: 1
+  - beat: 51.5
+    laneIndex: 2
+  - beat: 53
+    laneIndex: 3
+  - beat: 53.25
+    laneIndex: 2
+  - beat: 54.25
+    laneIndex: 2
+  - beat: 54.25
+    laneIndex: 3
+  - beat: 55
+    laneIndex: 4
+  - beat: 55
+    laneIndex: 1
+  - beat: 55
+    laneIndex: 2
+  - beat: 55
+    laneIndex: 3
+  totalBeats: 55
+  useNewBeatmapSystem: 1

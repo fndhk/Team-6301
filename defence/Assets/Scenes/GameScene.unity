@@ -1760,7 +1760,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxGauge: 100
-  pointsForPerfect: 100
+  pointsForPerfect: 15
   pointsForGreat: 5
   pointsForGood: 2
   pointsLostForMiss: 0
