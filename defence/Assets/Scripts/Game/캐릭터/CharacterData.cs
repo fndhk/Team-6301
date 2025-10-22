@@ -35,7 +35,7 @@ public class CharacterData : ScriptableObject
     public string skillDescription;
     public Sprite skillCutsceneImage;
     public ItemEffect characterSkill;
-
+    public AudioClip skillSound;
     [Header("캐릭터 기본 능력치 (1레벨 기준)")]
     public CharacterLevelGrowth baseStats;
 

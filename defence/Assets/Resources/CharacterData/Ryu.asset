@@ -22,6 +22,7 @@ MonoBehaviour:
   skillDescription: "\u2193\u2198\u2192 + \uD380\uCE58"
   skillCutsceneImage: {fileID: -3624081843510575391, guid: 3c93e1ab1d20b764da002abc2cbf926c, type: 3}
   characterSkill: {fileID: 11400000, guid: 3ba03ac3b6806d44dae29218bd1bc226, type: 2}
+  skillSound: {fileID: 8300000, guid: ee2e4a03565248a4bbf59dbd5e5311d0, type: 3}
   baseStats:
     coreHealthBonus: 0
     towerAttackDamageBonus: 0

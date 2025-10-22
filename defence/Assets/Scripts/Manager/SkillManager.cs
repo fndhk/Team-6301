@@ -16,24 +16,33 @@ public class SkillManager : MonoBehaviour
     public float pointsLostForMiss = 8f;
     private float currentGauge = 0f;
     private ItemEffect activeSkill;
-
+    private CharacterData activeCharacter;
     [Header("UI 연결")]
     public Slider skillGaugeSlider;
     public Button skillButton;
     public KeyCode skillKey = KeyCode.Space;
     private Image skillButtonImage;
+    private AudioSource audioSource;
 
     void Awake()
     {
         if (instance == null) instance = this;
         else Destroy(gameObject);
+        // AudioSource 컴포넌트를 찾거나, 없으면 새로 추가합니다.
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+            audioSource.playOnAwake = false; // 게임 시작 시 자동 재생 방지
+        }
     }
 
     void Start()
     {
         if (GameSession.instance != null && GameSession.instance.selectedCharacter != null)
         {
-            activeSkill = GameSession.instance.selectedCharacter.characterSkill;
+            activeCharacter = GameSession.instance.selectedCharacter;
+            activeSkill = activeCharacter.characterSkill; // 스킬은 activeCharacter에서 가져옵니다.
         }
 
         skillGaugeSlider.maxValue = maxGauge;
@@ -92,7 +101,10 @@ public class SkillManager : MonoBehaviour
                     SkillCutsceneUI.instance.PlayCutscene(cutsceneSprite);
                 }
             }
-
+            if (activeCharacter != null && activeCharacter.skillSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(activeCharacter.skillSound);
+            }
             // 스킬 효과 실행
             activeSkill.ExecuteEffect();
             Debug.Log("자동 스킬 발동!");
@@ -123,6 +135,10 @@ public class SkillManager : MonoBehaviour
                 {
                     SkillCutsceneUI.instance.PlayCutscene(cutsceneSprite);
                 }
+            }
+            if (activeCharacter != null && activeCharacter.skillSound != null && audioSource != null)
+            {
+                audioSource.PlayOneShot(activeCharacter.skillSound);
             }
 
             activeSkill.ExecuteEffect();
