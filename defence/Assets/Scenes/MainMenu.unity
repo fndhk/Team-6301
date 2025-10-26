@@ -951,6 +951,7 @@ MonoBehaviour:
   - {fileID: 1415188098}
   - {fileID: 1846157544}
   - {fileID: 140938511}
+  firstPlayCutscene: {fileID: 11400000, guid: 6ad04e7d10663ad42a4b386bc19800f6, type: 2}
 --- !u!4 &683146562
 Transform:
   m_ObjectHideFlags: 0
@@ -3159,6 +3160,8 @@ MonoBehaviour:
   selectedStage: {fileID: 0}
   currentSaveSlot: 0
   selectedCharacter: {fileID: 0}
+  cutsceneToPlay: {fileID: 0}
+  isNewGameCutscene: 0
 --- !u!4 &1537724752
 Transform:
   m_ObjectHideFlags: 0
@@ -4307,6 +4310,7 @@ MonoBehaviour:
     stageHighScores:
       keys: 
       values: 
+    watchedCutsceneStageIndices: 
     items: []
     lastSaveTime: 
     enhancementMaterials: 500

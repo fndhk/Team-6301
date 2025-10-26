@@ -29,4 +29,7 @@ public class StageData : ScriptableObject
 
     [Header("채보 정보")]
     public BeatmapData beatmap;
+
+    [Header("스테이지 진입 컷신")] // <-- 이 헤더와 아래 변수 추가
+    public CutsceneData entryCutscene;
 }

@@ -11,7 +11,8 @@ public class MainMenuUI : MonoBehaviour
     [Header("Slot UI Elements")]
     public TextMeshProUGUI[] slotInfoTexts;
     public UnityEngine.UI.Button[] slotLoadButtons;
-
+    [Header("컷신 설정")]
+    public CutsceneData firstPlayCutscene;
     private int slotIndexToDelete = -1;
 
     // 슬롯 패널이 '불러오기' 모드인지 '새 게임' 모드인지 구분하기 위한 변수
@@ -93,14 +94,31 @@ public class MainMenuUI : MonoBehaviour
         // --- 현재 모드가 '새 게임'일 경우 ---
         else if (currentMode == SlotPanelMode.NewGame)
         {
-            // TODO: 만약 이 슬롯에 이미 데이터가 있다면 "덮어쓰시겠습니까?" 확인 창을 띄우는 로직을 추가하면 더 좋습니다.
-            // 지금은 바로 덮어쓰도록 구현합니다.
+            // TODO: 덮어쓰기 확인 로직 (선택사항)
 
             GameSession.instance.currentSaveSlot = slotIndex;
-            SaveLoadManager.instance.gameData = new GameData(); // 새 게임 데이터를 생성합니다.
-            SceneManager.LoadScene("NicknameSetup");
+            SaveLoadManager.instance.gameData = new GameData(); // 새 게임 데이터 생성
 
-            loadGamePanel.SetActive(false); // 작업이 끝났으니 패널을 닫습니다.
+            // --- ( 수정 시작) ---
+            if (firstPlayCutscene != null)
+            {
+                // GameSession에 첫 컷신 정보와 '새 게임' 상태를 임시 저장
+                GameSession.instance.cutsceneToPlay = firstPlayCutscene;
+                GameSession.instance.isNewGameCutscene = true;
+                GameSession.instance.selectedStage = null; // 스테이지 컷신이 아님을 명확히 함
+
+                // 닉네임 설정 대신 CutScene 씬 로드
+                SceneManager.LoadScene("CutScene");
+            }
+            else
+            {
+                // 첫 컷신이 없으면 바로 닉네임 설정으로
+                Debug.LogWarning("첫 플레이 컷신이 설정되지 않았습니다. NicknameSetup으로 바로 이동합니다.");
+                SceneManager.LoadScene("NicknameSetup");
+            }
+            // --- ( 수정 끝) ---
+
+            loadGamePanel.SetActive(false);
         }
     }
 

@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     public int scoreValue = 100;
     public float speed = 3f;
     public int maxHealth = 100;
-    private int currentHealth;
+    public int currentHealth { get; private set; }
     private float originalSpeed;
 
     [Header("공격 능력치")]

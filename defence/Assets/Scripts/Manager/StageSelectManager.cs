@@ -147,17 +147,31 @@ public class StageSelectManager : MonoBehaviour
 
     public void OnClickStageSelect(int index)
     {
-        // ▼▼▼ 핵심 수정 부분 ▼▼▼
-        // 1. 클릭된 버튼의 index를 사용하여 스테이지 목록(stageDatas)에서 올바른 StageData를 찾습니다.
         StageData selected = stageDatas[index];
+        GameSession.instance.selectedStage = selected; // 선택된 스테이지는 항상 저장
 
-        // 2. 찾은 StageData를 DontDestroyOnLoad로 유지되는 GameSession의 selectedStage 변수에 저장합니다.
-        GameSession.instance.selectedStage = selected;
-        Debug.Log($"<color=cyan>스테이지 선택:</color> {selected.stageName}. GameSession에 저장 완료.");
+        GameData gameData = SaveLoadManager.instance.gameData;
 
-        // 3. 이제 GameScene으로 넘어갑니다.
-        SceneManager.LoadScene("GameScene");
-        // ▲▲▲ 여기까지 수정 ▲▲▲
+        //  컷신 시청 여부 확인
+        bool alreadyWatched = gameData.watchedCutsceneStageIndices.Contains(selected.stageIndex);
+
+        //  해당 스테이지에 진입 컷신이 있고, 아직 보지 않았다면
+        if (selected.entryCutscene != null && !alreadyWatched)
+        {
+            Debug.Log($"<color=yellow>컷신 재생 필요:</color> {selected.stageName}. CutScene 씬으로 이동합니다.");
+            GameSession.instance.cutsceneToPlay = selected.entryCutscene;
+            GameSession.instance.isNewGameCutscene = false; // 새 게임 컷신이 아님
+            SceneManager.LoadScene("CutScene");
+        }
+        else //  컷신이 없거나 이미 봤다면
+        {
+            if (selected.entryCutscene != null && alreadyWatched)
+                Debug.Log($"<color=gray>컷신 이미 시청함:</color> {selected.stageName}. GameScene으로 바로 이동합니다.");
+            else if (selected.entryCutscene == null)
+                Debug.Log($"<color=gray>진입 컷신 없음:</color> {selected.stageName}. GameScene으로 바로 이동합니다.");
+
+            SceneManager.LoadScene("GameScene");
+        }
     }
 
     public void OnClickBackButton()

@@ -91,5 +91,25 @@ public class EnemyManager : MonoBehaviour
             .OrderBy(e => e.transform.position.y)
             .FirstOrDefault();
     }
+    // 파일 이름: EnemyManager.cs (파일 맨 아래에 추가)
+
+    /// <summary>
+    /// 현재 맵에 살아있는 적 중, 남은 체력이 가장 많은 적을 찾습니다.
+    /// </summary>
+    public Enemy FindHighestHealthEnemy()
+    {
+        if (activeEnemies.Count == 0)
+        {
+            return null;
+        }
+
+        // Linq를 사용하여 현재 체력(currentHealth) 기준으로 내림차순 정렬 후 첫 번째 적을 반환
+        Enemy highestHealthEnemy = activeEnemies
+            .Where(e => e != null && !e.isDead) // 살아있는 적 중에서
+            .OrderByDescending(e => e.currentHealth) // 체력이 높은 순으로 정렬
+            .FirstOrDefault(); // 그 중 첫 번째 적
+
+        return highestHealthEnemy;
+    }
 }
 

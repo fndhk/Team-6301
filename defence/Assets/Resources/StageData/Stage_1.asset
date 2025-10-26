@@ -35,3 +35,4 @@ MonoBehaviour:
     timeBetweenEnemies: 0
   clearReward: 100
   beatmap: {fileID: 11400000, guid: 1349a14eb592651438cea9c2596d2ec0, type: 2}
+  entryCutscene: {fileID: 11400000, guid: 58babf80de5d9f244be3744545d8df23, type: 2}

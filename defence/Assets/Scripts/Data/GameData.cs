@@ -12,6 +12,7 @@ public class GameData
     public List<string> firstClearRewards; // 첫 클리어한 스테이지 목록
     // 스테이지별 최고 점수를 저장할 Dictionary
     public SerializableDictionary<int, int> stageHighScores;
+    public List<int> watchedCutsceneStageIndices;
 
     public List<string> items;
     public string lastSaveTime;
@@ -40,6 +41,7 @@ public class GameData
         characterLevels = new SerializableDictionary<string, int>();
         characterLevels.Add("Char_Boom", 1); // 기본 캐릭터는 1레벨로 시작
         firstClearRewards = new List<string>();
+        watchedCutsceneStageIndices = new List<int>();
 
         this.nickname = "";
         this.highestClearedStage = 0;
