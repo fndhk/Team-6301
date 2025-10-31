@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c1909847554bdc641b8b62e3eb39d4ba
+guid: beeb860a137debf49b707c8a98d3cfa4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4882623248252516587
-    second: "ChatGPT Image 2025\uB144 10\uC6D4 18\uC77C \uC624\uC804 02_44_56_0"
+      213: -2991420814392545272
+    second: FurryIcon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,30 +122,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "ChatGPT Image 2025\uB144 10\uC6D4 18\uC77C \uC624\uC804 02_44_56_0"
+      name: FurryIcon_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 1536
+        x: 60
+        y: 17
+        width: 931
+        height: 973
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: be8b72c99ff82c340800000000000000
-      internalID: 4882623248252516587
+      spriteID: 8003c685e965c76d0800000000000000
+      internalID: -2991420814392545272
       vertices: []
       indices: 
       edges: []
@@ -173,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "ChatGPT Image 2025\uB144 10\uC6D4 18\uC77C \uC624\uC804 02_44_56_0": 4882623248252516587
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

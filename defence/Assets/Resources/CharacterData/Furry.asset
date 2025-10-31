@@ -16,8 +16,8 @@ MonoBehaviour:
   characterID: Char_fur
   characterName: "\uB3C4\uB85C\uC2DC"
   characterDescription: "\uBC29\uD328\uAC78"
-  characterIcon: {fileID: -1956930893815171045, guid: ac061172e92e64b4eac4e70203041397, type: 3}
-  characterIllustration: {fileID: 5908497529255625476, guid: 4c2f532f9f1c761489269921adb24316, type: 3}
+  characterIcon: {fileID: -2991420814392545272, guid: beeb860a137debf49b707c8a98d3cfa4, type: 3}
+  characterIllustration: {fileID: 200717927686787771, guid: 4f31c620ec84726448a03a61f89ccd84, type: 3}
   skillName: "\uD138\uBC29\uD328"
   skillDescription: "\uACF5\uACA9\uB2F9\uD558\uBA74 \uBC00\uCCD0\uB0C5\uB2C8\uB2E4"
   skillCutsceneImage: {fileID: -53395559825591360, guid: 17c6654da7a04034caf75b83d590f72e, type: 3}

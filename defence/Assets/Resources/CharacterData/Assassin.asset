@@ -16,8 +16,8 @@ MonoBehaviour:
   characterID: Char_Assassin
   characterName: "\uC2DC\uBB34\uB77C"
   characterDescription: "\uC5EC\uC790 \uB2CC\uC790"
-  characterIcon: {fileID: 6100466000221947961, guid: 7ac17b0caa06ee440a4fd02987e99623, type: 3}
-  characterIllustration: {fileID: 6100466000221947961, guid: 7ac17b0caa06ee440a4fd02987e99623, type: 3}
+  characterIcon: {fileID: -6120729570775077060, guid: 46dcab95a844dcb4cb6c3bd76d0bb891, type: 3}
+  characterIllustration: {fileID: -6120729570775077060, guid: 46dcab95a844dcb4cb6c3bd76d0bb891, type: 3}
   skillName: "\uC0B4\uC0DD\uBD80"
   skillDescription: "\uAC00\uC7A5 \uC55E\uC5D0 \uB098\uC640 \uC788\uB294 \uC801\uC744
     \uC989\uC0AC\uC2DC\uD0B5\uB2C8\uB2E4"
