@@ -33,6 +33,8 @@ public class StageData : ScriptableObject
     [Header("스테이지 배경")]
     [Tooltip("이 스테이지에서 사용할 배경 이미지입니다.")]
     public Sprite stageBackground;
+    [Tooltip("이 스테이지에서 사용할 디펜스 라인 배경 이미지입니다.")]
+    public Sprite defenseBackground;
 
     [Header("스테이지 진입 컷신")] // <-- 이 헤더와 아래 변수 추가
     public CutsceneData entryCutscene;

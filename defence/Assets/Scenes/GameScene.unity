@@ -2291,6 +2291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundRenderer: {fileID: 530283151}
+  defenseBackgroundRenderer: {fileID: 935787366}
 --- !u!1 &343671815
 GameObject:
   m_ObjectHideFlags: 0
@@ -3186,7 +3187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &600642819
 RectTransform:
   m_ObjectHideFlags: 0
