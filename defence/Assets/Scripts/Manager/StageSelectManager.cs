@@ -71,7 +71,7 @@ public class StageSelectManager : MonoBehaviour
                 {
                     highScore = gameData.stageHighScores[stageIndex];
                 }
-                buttonUI.highScoreText.text = "Best: " + highScore;
+                buttonUI.highScoreText.text = "Best: " + highScore.ToString("N0");
 
                 int index = i;
                 buttonGO.GetComponent<Button>().onClick.AddListener(() => OnClickStageSelect(index));

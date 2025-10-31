@@ -47,12 +47,12 @@ public class NoteObject : MonoBehaviour
         {
             if (RhythmInputManager.instance != null)
             {
+                // 이 함수가 체력, 점수, 게이지 페널티를 모두 처리합니다.
                 RhythmInputManager.instance.ShowMissFeedback();
             }
-            if (SkillManager.instance != null)
-            {
-                SkillManager.instance.AddGaugeOnJudgment(JudgmentManager.Judgment.Miss);
-            }
+
+            //  SkillManager 중복 호출 코드가 삭제되었습니다.
+
             Destroy(gameObject);
         }
     }

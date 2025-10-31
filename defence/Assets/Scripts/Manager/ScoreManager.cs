@@ -1,14 +1,17 @@
+// 파일 이름: ScoreManager.cs (실시간 최종 점수 계산 버전)
 using UnityEngine;
-using TMPro; // TextMeshPro를 사용하기 위해 추가
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
 
-    public long currentScore { get; private set; }
+    public long totalKillScore { get; private set; }
+    private long totalJudgmentPoints = 0;
+    private int totalJudgmentCount = 0;
 
     [Header("UI 연결")]
-    public TextMeshProUGUI scoreText; // 화면에 점수를 표시할 UI 텍스트
+    public TextMeshProUGUI scoreText; // "SCORE: " 텍스트
 
     [Header("리듬 점수 설정")]
     [SerializeField] private int perfectScore = 50;
@@ -16,82 +19,115 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private int goodScore = 5;
     [SerializeField] private int syncBonusScore = 500;
 
+    //  실시간 계산을 위해 CoreFacility 참조
+    private CoreFacility coreFacility;
+
     void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
     }
 
     void Start()
     {
-        // 게임 시작 시 점수 초기화
         ResetScore();
-    }
 
-    // [수정] 점수를 추가하고 UI를 업데이트하는 중앙 함수
-    private void AddToScore(long amount)
-    {
-        currentScore += amount;
-        UpdateScoreUI();
-    }
-
-    // [이름 변경] 기존의 AddScore 함수. 이제 적 사살 전용.
-    public void AddKillScore(int baseScore, float distance)
-    {
-        long scoreToAdd = Mathf.RoundToInt(baseScore * (1 + distance * 0.1f)); // 거리가 10 unit당 100% 보너스
-        AddToScore(baseScore);
-    }
-
-    // [새 함수] 리듬 판정에 따른 점수 추가
-    public void AddRhythmScore(JudgmentManager.Judgment judgment)
-    {
-        switch (judgment)
+        //  CoreFacility를 찾아 변수에 저장
+        coreFacility = FindFirstObjectByType<CoreFacility>();
+        if (coreFacility == null)
         {
-            case JudgmentManager.Judgment.Perfect:
-                AddToScore(perfectScore);
-                break;
-            case JudgmentManager.Judgment.Great:
-                AddToScore(greatScore);
-                break;
-            case JudgmentManager.Judgment.Good:
-                AddToScore(goodScore);
-                break;
+            Debug.LogError("ScoreManager: CoreFacility를 찾을 수 없습니다!");
         }
     }
 
-    // [새 함수] 싱크 보너스 점수 추가
-    public void AddSyncBonusScore()
+    // ---  실시간 점수 계산 (핵심) ---
+    void Update()
     {
-        AddToScore(syncBonusScore);
-        // TODO: "SYNC BONUS!" 같은 UI 피드백을 띄워주면 좋습니다.
-    }
+        if (coreFacility == null) return;
 
-    // 최종 점수 계산 (기존과 동일)
-    public int GetFinalScore(float healthPercentage)
-    {
-        return Mathf.RoundToInt(currentScore * healthPercentage *103);
-    }
+        // 1. 평균 리듬 점수 계산
+        double averageRhythmScore = 0.0;
+        if (totalJudgmentCount > 0)
+        {
+            averageRhythmScore = (double)totalJudgmentPoints / totalJudgmentCount;
+        }
 
-    // 점수 초기화 (UI 업데이트 호출 추가)
-    public void ResetScore()
-    {
-        currentScore = 0;
-        UpdateScoreUI();
-    }
+        // 2. 현재 체력 % 계산
+        float healthPercentage = coreFacility.GetCurrentHealthPercentage();
 
-    // [새 함수] 점수 UI 업데이트
-    private void UpdateScoreUI()
-    {
+        // 3. 실시간 최종 점수 계산
+        double currentFinalScore = (double)totalKillScore * averageRhythmScore * (double)healthPercentage * 3.0;
+
+        // 4. UI 업데이트
+        // (A)  "SCORE: " 텍스트는 이제 업데이트하지 않습니다. (아래 3줄 삭제 또는 주석 처리)
+        /*
         if (scoreText != null)
         {
-            // 숫자를 1,000 단위 콤마로 구분하여 표시
-            scoreText.text = "SCORE: " + currentScore.ToString("N0");
+            scoreText.text = "SCORE: " + totalKillScore.ToString("N0");
+        }
+        */
+
+        // (B) 재화 UI(MaterialsUI)는 실시간 최종 점수를 계속 표시
+        if (MaterialsUI.instance != null)
+        {
+            MaterialsUI.instance.OnScoreChanged((long)currentFinalScore);
         }
     }
+
+    // ---  점수 추가 함수들은 이제 UI 업데이트를 호출하지 않음 ---
+
+    private void AddKillScoreToTotal(long amount)
+    {
+        totalKillScore += amount;
+        // Update()가 처리하므로 UpdateScoreUI() 호출 삭제
+    }
+
+    public void AddKillScore(int baseScore, float distance)
+    {
+        long scoreToAdd = Mathf.RoundToInt(baseScore * (1 + distance * 0.1f));
+        AddKillScoreToTotal(scoreToAdd);
+    }
+
+    public void AddRhythmScore(JudgmentManager.Judgment judgment)
+    {
+        totalJudgmentCount++;
+        switch (judgment)
+        {
+            case JudgmentManager.Judgment.Perfect: totalJudgmentPoints += 100; break;
+            case JudgmentManager.Judgment.Great: totalJudgmentPoints += 90; break;
+            case JudgmentManager.Judgment.Good: totalJudgmentPoints += 70; break;
+            case JudgmentManager.Judgment.Miss: totalJudgmentPoints += 0; break;
+        }
+        // Update()가 처리하므로 UI 업데이트 호출 필요 없음
+    }
+
+    public void AddSyncBonusScore()
+    {
+        AddKillScoreToTotal(syncBonusScore);
+        // Update()가 처리하므로 UpdateScoreUI() 호출 삭제
+    }
+
+    //  최종 점수 계산 (GameManager가 마지막에 호출)
+    public int GetFinalScore(float healthPercentage)
+    {
+        // 이 로직은 Update()의 계산과 동일
+        double averageRhythmScore = 0.0;
+        if (totalJudgmentCount > 0)
+        {
+            averageRhythmScore = (double)totalJudgmentPoints / totalJudgmentCount;
+        }
+
+        double finalScore = (double)totalKillScore * averageRhythmScore * (double)healthPercentage * 3.0;
+        return Mathf.RoundToInt((float)finalScore);
+    }
+
+    public void ResetScore()
+    {
+        totalKillScore = 0;
+        totalJudgmentPoints = 0;
+        totalJudgmentCount = 0;
+        // Update()가 처리하므로 UpdateScoreUI() 호출 삭제
+    }
+
+    //  UpdateScoreUI() 함수는 이제 Update() 함수로 통합되었으므로 삭제
 }

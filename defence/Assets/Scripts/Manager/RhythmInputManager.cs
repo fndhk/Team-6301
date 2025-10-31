@@ -23,6 +23,12 @@ public class RhythmInputManager : MonoBehaviour
 
     [Header("타워 연결")]
     public BaseTower[] correspondingTowers;
+    public CoreFacility coreFacility;
+
+    [Header("페널티 설정")]
+    [Tooltip("Miss 판정 시 코어 체력이 감소하는 양입니다.")]
+    public int missDamage = 5;
+    
     // --- 판정 강화용 변수 ---
     private float currentPerfectWindow;
     private float currentGreatWindow;
@@ -40,6 +46,7 @@ public class RhythmInputManager : MonoBehaviour
         {
             judgmentText.gameObject.SetActive(false);
         }
+        
         currentPerfectWindow = perfectWindow;
         currentGreatWindow = greatWindow;
         currentGoodWindow = goodWindow;
@@ -67,7 +74,7 @@ public class RhythmInputManager : MonoBehaviour
 
         Debug.Log($"<color=yellow>키 입력:</color> {laneIndex}번 키 눌림");
 
-        Collider2D[] hitNotes = Physics2D.OverlapCircleAll(hitZone[laneIndex].position, goodWindow);
+        Collider2D[] hitNotes = Physics2D.OverlapCircleAll(hitZone[laneIndex].position, currentGoodWindow);
         NoteObject closestNote = null;
         float minDistance = float.MaxValue;
 
@@ -99,17 +106,22 @@ public class RhythmInputManager : MonoBehaviour
             else if (minDistance <= currentGreatWindow) { judgmentEnum = JudgmentManager.Judgment.Great; judgmentString = "Great"; }
             else if (minDistance <= currentGoodWindow) { judgmentEnum = JudgmentManager.Judgment.Good; judgmentString = "Good"; }
 
-            // 특수 노트이고 Great 이상이면 티켓 지급
-            if (closestNote.isSpecialNote && judgmentEnum <= JudgmentManager.Judgment.Great)
-            {
-                SaveLoadManager.instance.gameData.gachaTickets++;
-                Debug.Log("특수 노트 획득! 티켓 +1");
-            }
 
-            if (judgmentEnum != JudgmentManager.Judgment.Miss)
+            // ---  수정된 판정 로직 ---
+            if (judgmentEnum == JudgmentManager.Judgment.Miss)
             {
+                // Case 1: 노트를 너무 일찍/늦게 쳐서 Miss
+                ShowMissFeedback(); // Miss에 대한 모든 페널티(체력, 점수, 게이지) 처리
+            }
+            else
+            {
+                // Case 2: Good, Great, Perfect 성공
+                // 점수 기록
+                ScoreManager.instance.AddRhythmScore(judgmentEnum);
+                // 게이지 획득
                 SkillManager.instance.AddGaugeOnJudgment(judgmentEnum);
 
+                // 사운드 재생
                 if (judgmentEnum == JudgmentManager.Judgment.Perfect || judgmentEnum == JudgmentManager.Judgment.Great)
                 {
                     if (AudioManager.instance != null)
@@ -117,9 +129,23 @@ public class RhythmInputManager : MonoBehaviour
                         AudioManager.instance.PlayInstrumentSound(closestNote.instrumentType);
                     }
                 }
+
+                // 피드백 및 노트 제거
                 ShowJudgmentFeedback(judgmentString);
                 Destroy(closestNote.gameObject);
+
+                // 특수 노트 처리
+                if (closestNote.isSpecialNote && judgmentEnum <= JudgmentManager.Judgment.Great)
+                {
+                    SaveLoadManager.instance.gameData.gachaTickets++;
+                    Debug.Log("특수 노트 획득! 티켓 +1");
+                }
             }
+        }
+        else
+        {
+            // Case 3: 허공에 키를 누름 (Miss)
+            ShowMissFeedback(); // Miss에 대한 모든 페널티(체력, 점수, 게이지) 처리
         }
     }
 
@@ -128,6 +154,24 @@ public class RhythmInputManager : MonoBehaviour
     public void ShowMissFeedback()
     {
         ShowJudgmentFeedback("Miss");
+
+        // 1. 코어 체력 5 감소 (기존 로직)
+        if (coreFacility != null)
+        {
+            coreFacility.TakeDamage(missDamage, null);
+        }
+
+        // 2.  ScoreManager에 Miss 기록 (새 로직)
+        if (ScoreManager.instance != null)
+        {
+            ScoreManager.instance.AddRhythmScore(JudgmentManager.Judgment.Miss);
+        }
+
+        // 3.  SkillManager에 게이지 페널티 적용 (새 로직)
+        if (SkillManager.instance != null)
+        {
+            SkillManager.instance.AddGaugeOnJudgment(JudgmentManager.Judgment.Miss);
+        }
     }
 
     private void ShowJudgmentFeedback(string judgment)

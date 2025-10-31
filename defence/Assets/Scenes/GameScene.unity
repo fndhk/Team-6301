@@ -2457,7 +2457,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c098824d6db3540b2507281d90b27f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 0}
+  scoreText: {fileID: 1410607067}
   perfectScore: 50
   greatScore: 20
   goodScore: 5
@@ -7891,6 +7891,8 @@ MonoBehaviour:
   - {fileID: 896046996}
   - {fileID: 1004691037}
   - {fileID: 1432995049}
+  coreFacility: {fileID: 806488515}
+  missDamage: 50
 --- !u!1 &1289862103
 GameObject:
   m_ObjectHideFlags: 0

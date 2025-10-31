@@ -79,10 +79,7 @@ public class GameManager : MonoBehaviour
         gameData.enhancementMaterials += reward;
         Debug.Log($"{reward}");
 
-        if (MaterialsUI.instance != null)
-        {
-            MaterialsUI.instance.OnMaterialsChanged();
-        }
+        
 
         if (gameData.stageHighScores.ContainsKey(currentStage.stageIndex))
         {
@@ -130,7 +127,7 @@ public class GameManager : MonoBehaviour
         SaveLoadManager.instance.SaveGame(GameSession.instance.currentSaveSlot);
 
         stageClearPanel.SetActive(true);
-        scoreText.text = "Score: " + finalScore;
+        scoreText.text = "Score: " + finalScore.ToString("N0");
         Time.timeScale = 0f;
 
     }
