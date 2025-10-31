@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: DamegeUp
   m_EditorClassIdentifier: 
   itemName: "\uB370\uBBF8\uC9C0\uC99D\uAC00"
-  icon: {fileID: -3689380762025599791, guid: 50b06ef892d8c2d428bcc7e3744143bb, type: 3}
+  icon: {fileID: -6684365553889529574, guid: 8e7cc43e57946dc4a9406c3b1da4e82d, type: 3}
   itemEffect: {fileID: 11400000, guid: 6d48ad31b61763a4b8422412726b26f8, type: 2}
   maxStackSize: 16

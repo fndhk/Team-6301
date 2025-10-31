@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Item_CoreHeal
   m_EditorClassIdentifier: 
   itemName: "\uD68C\uBCF5\uD15C"
-  icon: {fileID: -1467010021776339907, guid: a1e54445f1aed8f4eacaec0a312efbf3, type: 3}
+  icon: {fileID: -7596935390032525384, guid: 7c6c9f54e5d73bc49817a68a5b6f1c71, type: 3}
   itemEffect: {fileID: 11400000, guid: 211a262f3b5923240b22c184a1d66d13, type: 2}
   maxStackSize: 16
