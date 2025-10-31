@@ -43,6 +43,11 @@ public class AudioManager : MonoBehaviour
         allSources[2].clip = currentStage.pianoTrack;
         allSources[3].clip = currentStage.cymbalTrack;
 
+        foreach (var source in allSources)
+        {
+            source.loop = true;
+        }
+
         // 4. ���� ���� ���� �� �ʱ�ȭ
         drumSource = allSources[1];
         pianoSource = allSources[2];
@@ -235,5 +240,20 @@ public class AudioManager : MonoBehaviour
         }
         isMusicPaused = false;
         Debug.Log("AudioManager: 음악 재개");
+    }
+    // 파일 이름: AudioManager.cs (파일 맨 아래에 추가)
+
+    /// <summary>
+    /// 기본 음악 트랙(allSources[0])의 총 재생 시간을 초 단위로 반환합니다.
+    /// </summary>
+    public float GetMusicDuration()
+    {
+        if (allSources != null && allSources.Length > 0 && allSources[0].clip != null)
+        {
+            return allSources[0].clip.length;
+        }
+
+        // 음악이 없으면 0을 반환하여 루프가 작동하지 않도록 함
+        return 0f;
     }
 }
