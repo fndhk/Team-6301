@@ -130,10 +130,17 @@ public class BeatmapEditorManager : MonoBehaviour
 
     void ResizeNoteGridPanel(float totalBeats)
     {
-        float requiredWidth = Mathf.Max(totalBeats * pixelsPerBeat + 200f, 2000f);
+        // 1. 뷰포트의 넓이를 가져와서 패딩으로 사용합니다.
+        //    (히트존이 왼쪽에 있으므로, 뷰포트 전체 넓이만큼 여유를 주면
+        //     마지막 비트도 히트존에 정확히 위치시킬 수 있습니다.)
+        float padding = (viewport != null) ? viewport.rect.width : 1000f; // 1000f는 혹시 모를 기본값
+
+        // 2. 기존 'totalBeats * pixelsPerBeat + 200f' 에서 200f 대신 패딩 값을 더합니다.
+        float requiredWidth = Mathf.Max(totalBeats * pixelsPerBeat + padding, 2000f);
+
         noteGridPanel.sizeDelta = new Vector2(requiredWidth, noteGridPanel.sizeDelta.y);
 
-        Debug.Log($"NoteGridPanel 크기 조정: {requiredWidth}px (총 {totalBeats:F2} 비트)");
+        Debug.Log($"NoteGridPanel 크기 조정: {requiredWidth}px (총 {totalBeats:F2} 비트 + {padding}px 패딩)");
         ClearTimelineMarkers();
         CreateTimelineMarkers();
     }
