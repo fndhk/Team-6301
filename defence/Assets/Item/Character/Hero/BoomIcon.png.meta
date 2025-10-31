@@ -152,6 +152,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -410,7 +423,18 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BoomIcon_0: 5411182263024709495
+      BoomIcon_1: -1271308883220396674
+      BoomIcon_10: 6618242080975516748
+      BoomIcon_2: 5889616139322117577
+      BoomIcon_3: 1335927916406113109
+      BoomIcon_4: -3237866108441178002
+      BoomIcon_5: 3622431478289203397
+      BoomIcon_6: 8210593656911259660
+      BoomIcon_7: -1819715825796820800
+      BoomIcon_8: 7567755326775246916
+      BoomIcon_9: -3619282586414999556
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
