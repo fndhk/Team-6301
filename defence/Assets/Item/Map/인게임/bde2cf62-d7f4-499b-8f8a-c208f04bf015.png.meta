@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4f31c620ec84726448a03a61f89ccd84
+guid: 90b8861eab434804084dbcede7609006
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 200717927686787771
-    second: FurryIllu_0
+      213: 715912577733149020
+    second: bde2cf62-d7f4-499b-8f8a-c208f04bf015_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -139,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FurryIllu_0
+      name: bde2cf62-d7f4-499b-8f8a-c208f04bf015_0
       rect:
         serializedVersion: 2
-        x: 109
-        y: 1
-        width: 880
-        height: 1011
+        x: 0
+        y: 0
+        width: 1024
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: bb2d2db44e719c200800000000000000
-      internalID: 200717927686787771
+      spriteID: c51c40642be6fe900800000000000000
+      internalID: 715912577733149020
       vertices: []
       indices: 
       edges: []
@@ -173,8 +173,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      FurryIllu_0: 200717927686787771
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
