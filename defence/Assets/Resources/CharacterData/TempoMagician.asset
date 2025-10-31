@@ -16,8 +16,8 @@ MonoBehaviour:
   characterID: Char_magic
   characterName: "\uC194\uB9B0\uB290"
   characterDescription: "\uB9C8\uBC95\uC0AC"
-  characterIcon: {fileID: 8539215561246471712, guid: ec71cba6e873b0b449eeeb2934d6984e, type: 3}
-  characterIllustration: {fileID: 8539215561246471712, guid: ec71cba6e873b0b449eeeb2934d6984e, type: 3}
+  characterIcon: {fileID: 6206530094271831870, guid: 248af4f8c4bf9c242b10a13394f356c9, type: 3}
+  characterIllustration: {fileID: 6206530094271831870, guid: 248af4f8c4bf9c242b10a13394f356c9, type: 3}
   skillName: "\uD15C\uD3EC\uB9E4\uC9C1"
   skillDescription: "\uC801\uC740 \uAC10\uC18D \uD0C0\uC6CC\uB294 \uAC00\uC18D"
   skillCutsceneImage: {fileID: -8859438312553771732, guid: f6a2e38f9d1485445a94d5644cdddeb7, type: 3}
