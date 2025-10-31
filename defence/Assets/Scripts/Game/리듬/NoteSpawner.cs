@@ -132,10 +132,13 @@ public class NoteSpawner : MonoBehaviour
     void Update()
     {
         if (!isSpawningStarted) return;
-        if (noteIndex >= allNotesToSpawn.Count) return;
+
+        // 1. 현재 노래 재생 시간(초) 계산
         float songPosition = (Time.time - songStartTime) + syncOffset;
+        // 현재 비트 계산
         float currentBeat = songPosition / RhythmManager.instance.beatInterval;
 
+        // 2. 노트 생성 (기존 로직)
         while (noteIndex < allNotesToSpawn.Count && currentBeat >= allNotesToSpawn[noteIndex].beat - beatsToFall)
         {
             NoteInfo noteToSpawn = allNotesToSpawn[noteIndex];
@@ -145,6 +148,38 @@ public class NoteSpawner : MonoBehaviour
                 SpawnNote(noteToSpawn);
             }
             noteIndex++;
+        }
+
+        // 3. ---  음악 기준 루프 로직 ---
+        // AudioManager에서 실제 음악 파일의 길이를 초 단위로 가져옵니다.
+        float songDurationInSeconds = AudioManager.instance.GetMusicDuration();
+        if (songDurationInSeconds <= 0) return; // 음악 길이가 없으면 루프 방지
+
+        // 4. 현재 노래 재생 시간(songPosition)이 총 음악 길이(songDurationInSeconds)를 넘어섰는지 확인
+        if (songPosition > songDurationInSeconds)
+        {
+            // 5. 노트 인덱스를 0으로 리셋
+            noteIndex = 0;
+
+            // 6. (중요) songStartTime을 정확히 음악 길이(초)만큼 뒤로 민다.
+            songStartTime += songDurationInSeconds;
+
+            Debug.Log($"<color=cyan>음악 기준 루프! noteIndex 리셋. new songStartTime: {songStartTime}</color>");
+
+            // 7. 루프 직후의 첫 노트를 스폰하기 위해 현재 비트를 다시 계산하고 스폰 로직을 한 번 더 실행
+            songPosition = (Time.time - songStartTime) + syncOffset;
+            currentBeat = songPosition / RhythmManager.instance.beatInterval;
+
+            while (noteIndex < allNotesToSpawn.Count && currentBeat >= allNotesToSpawn[noteIndex].beat - beatsToFall)
+            {
+                NoteInfo noteToSpawn = allNotesToSpawn[noteIndex];
+                if (correspondingTowers[noteToSpawn.laneIndex] != null &&
+                    correspondingTowers[noteToSpawn.laneIndex].gameObject.activeSelf)
+                {
+                    SpawnNote(noteToSpawn);
+                }
+                noteIndex++;
+            }
         }
     }
     public void StartSpawning()
