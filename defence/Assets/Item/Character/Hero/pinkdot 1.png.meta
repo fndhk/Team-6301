@@ -548,7 +548,23 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pinkdot 1_0: 3968385771096509267
+      pinkdot 1_1: -7931559879715902030
+      pinkdot 1_10: 5757990900193983054
+      pinkdot 1_11: 2321767690651665845
+      pinkdot 1_12: 2470311626667073253
+      pinkdot 1_13: 7581097486530181118
+      pinkdot 1_14: -3112173678675853684
+      pinkdot 1_15: -8639823929651221110
+      pinkdot 1_2: 823052453256752046
+      pinkdot 1_3: -2539935245914570407
+      pinkdot 1_4: 3602655239138356720
+      pinkdot 1_5: -7074127738861183857
+      pinkdot 1_6: -992450182075353716
+      pinkdot 1_7: 5199269160142511447
+      pinkdot 1_8: -541276815019786467
+      pinkdot 1_9: 7681709999827238158
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

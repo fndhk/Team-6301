@@ -398,7 +398,17 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      "\uBE75_0": 306495087698207587
+      "\uBE75_1": -2978913094972915213
+      "\uBE75_2": 1015084420358887923
+      "\uBE75_3": -8167219821282231033
+      "\uBE75_4": 3110546080673674530
+      "\uBE75_5": 5946982037342894931
+      "\uBE75_6": -9089490913613522424
+      "\uBE75_7": 6287522714926372800
+      "\uBE75_8": 3230743010766323390
+      "\uBE75_9": -3876904381425961856
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

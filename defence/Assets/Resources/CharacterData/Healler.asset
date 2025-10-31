@@ -17,7 +17,7 @@ MonoBehaviour:
   characterName: "\uD30C\uB2C8"
   characterDescription: "\uC758\uC0AC\uB2E4"
   characterIcon: {fileID: 2731422969988794760, guid: ed2f347e6d349a34094611dfea1a95c6, type: 3}
-  characterIllustration: {fileID: -3086327900526819541, guid: f9f157200bb8ae64dba8d31d186ca3ae, type: 3}
+  characterIllustration: {fileID: -7128423068144711691, guid: 238916ae18f607949be3ffe2b32a8a76, type: 3}
   skillName: "\uD68C\uBCF5"
   skillDescription: "\uD68C\uBCF5\uD568. \uB118\uCE58\uBA74 \uADF8\uB9CC\uD07C \uCD94\uAC00
     \uCCB4\uB825"
