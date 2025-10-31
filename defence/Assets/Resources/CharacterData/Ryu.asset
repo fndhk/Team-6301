@@ -16,7 +16,7 @@ MonoBehaviour:
   characterID: Char_Ryu
   characterName: "\uC2DC\uB958"
   characterDescription: "\uBB34\uB3C4\uAC00"
-  characterIcon: {fileID: 7882649550181529229, guid: a7abeb77a008544498b934f8f707e131, type: 3}
+  characterIcon: {fileID: 3457267388789683228, guid: 2e5609838978ff44182cf3eed6a91e5b, type: 3}
   characterIllustration: {fileID: -3100223570178520826, guid: 96ee100dc1d2ad448b5d0ce4deca82aa, type: 3}
   skillName: "\uD30C\uB3D9\uAD8C"
   skillDescription: "\u2193\u2198\u2192 + \uD380\uCE58"

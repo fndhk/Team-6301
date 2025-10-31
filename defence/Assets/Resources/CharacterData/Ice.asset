@@ -16,7 +16,7 @@ MonoBehaviour:
   characterID: Char_Ice
   characterName: "\uBBF8\uC8FC"
   characterDescription: "\uCC28\uAC00\uC6B4 \uC18C\uB140"
-  characterIcon: {fileID: -3518269194388524973, guid: d93d7523ca205714cb4e8726ad017c4c, type: 3}
+  characterIcon: {fileID: 6162212308415976321, guid: 1f6b65bafbc17b04b8b53b170087a37c, type: 3}
   characterIllustration: {fileID: -3518269194388524973, guid: d93d7523ca205714cb4e8726ad017c4c, type: 3}
   skillName: "\uC544\uC774\uC2A4\uC5D0\uC774\uC9C0"
   skillDescription: "\uD788\uC57C~ \uB0B4\uAC00 9\uCD08\uB098 \uBA48\uCD9C \uC218

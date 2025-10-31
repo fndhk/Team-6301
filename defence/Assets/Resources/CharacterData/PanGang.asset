@@ -16,8 +16,8 @@ MonoBehaviour:
   characterID: Char_pan
   characterName: "\uB77C\uCD98\uC2DD"
   characterDescription: "\uAC74\uB2EC"
-  characterIcon: {fileID: 3873561656744460781, guid: 15c7e0e926f546c4f95c1a1911fea95a, type: 3}
-  characterIllustration: {fileID: 3873561656744460781, guid: 15c7e0e926f546c4f95c1a1911fea95a, type: 3}
+  characterIcon: {fileID: 875971941871523543, guid: b2ac3eea2382e894cb8a672984d63e88, type: 3}
+  characterIllustration: {fileID: 875971941871523543, guid: b2ac3eea2382e894cb8a672984d63e88, type: 3}
   skillName: "\uD310\uC815\uAC15\uD654"
   skillDescription: "\uD310\uC815\uC774 \uAC15\uD654\uB41C\uB2E4"
   skillCutsceneImage: {fileID: 3873561656744460781, guid: 15c7e0e926f546c4f95c1a1911fea95a, type: 3}

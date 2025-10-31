@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ac061172e92e64b4eac4e70203041397
+guid: b2ac3eea2382e894cb8a672984d63e88
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1956930893815171045
-    second: "ChatGPT Image 2025\uB144 10\uC6D4 18\uC77C \uC624\uD6C4 11_14_20_0"
+      213: 875971941871523543
+    second: PangangIcon_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -122,30 +122,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: iOS
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: "ChatGPT Image 2025\uB144 10\uC6D4 18\uC77C \uC624\uD6C4 11_14_20_0"
+      name: PangangIcon_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 185
         y: 0
-        width: 1024
-        height: 1024
+        width: 699
+        height: 1021
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b18b82868b597d4e0800000000000000
-      internalID: -1956930893815171045
+      spriteID: 7d6167c07d3182c00800000000000000
+      internalID: 875971941871523543
       vertices: []
       indices: 
       edges: []
@@ -173,8 +160,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      "ChatGPT Image 2025\uB144 10\uC6D4 18\uC77C \uC624\uD6C4 11_14_20_0": -1956930893815171045
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

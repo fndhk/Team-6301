@@ -16,8 +16,8 @@ MonoBehaviour:
   characterID: Char_Barr
   characterName: "\uBBF8\uC5F0 \uC21C\uACBD"
   characterDescription: "\uACBD\uCC30\uAD00"
-  characterIcon: {fileID: 2767534882005991233, guid: 5da893ee6ea30d64bbe48ba2505defbb, type: 3}
-  characterIllustration: {fileID: 2767534882005991233, guid: 5da893ee6ea30d64bbe48ba2505defbb, type: 3}
+  characterIcon: {fileID: -4059201602855565719, guid: 9320b3152d319e5438e95316eb01bba3, type: 3}
+  characterIllustration: {fileID: -4059201602855565719, guid: 9320b3152d319e5438e95316eb01bba3, type: 3}
   skillName: "\uBC14\uB9AC\uCF00\uC774\uB4DC \uC124\uCE58"
   skillDescription: "\uBC14\uB9AC\uCF00\uC774\uB4DC \uC124\uCE58"
   skillCutsceneImage: {fileID: 5994418939259527497, guid: 6325c8cc0bce6df438f641f27b88598e, type: 3}
