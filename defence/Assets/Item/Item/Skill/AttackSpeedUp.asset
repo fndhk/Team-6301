@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: AttackSpeedUp
   m_EditorClassIdentifier: 
   itemName: "\uACF5\uACA9\uC18D\uB3C4\uC99D\uAC00(2\uBC30)"
-  icon: {fileID: 6663351734690151557, guid: 138c6883e3cce9242a6f5dbc66661423, type: 3}
+  icon: {fileID: 62630905680768035, guid: 3b0decfcdaba2ab4493a3b705f3deb6c, type: 3}
   itemEffect: {fileID: 11400000, guid: 42015943b7271e147b216eb099195ef3, type: 2}
   maxStackSize: 16

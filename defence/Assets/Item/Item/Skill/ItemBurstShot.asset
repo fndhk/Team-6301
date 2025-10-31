@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ItemBurstShot
   m_EditorClassIdentifier: 
   itemName: "\uBE75\uC57C"
-  icon: {fileID: -3442273424303929756, guid: cb9577fa469488743a8b3ac62a184108, type: 3}
+  icon: {fileID: 3992417397076473807, guid: 340e8fb65a10cf149b50b1e27094441d, type: 3}
   itemEffect: {fileID: 11400000, guid: e1d74d5c13459c840b07ec90a47c977b, type: 2}
   maxStackSize: 16
