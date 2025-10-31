@@ -16,8 +16,8 @@ MonoBehaviour:
   characterID: Char_Boom
   characterName: "\uB3C4\uD76C"
   characterDescription: "\uCC29\uD55C\uC18C\uB140"
-  characterIcon: {fileID: 5411182263024709495, guid: 53d69e50685d83a419c2299ed7cc4123, type: 3}
-  characterIllustration: {fileID: -7838513400575997216, guid: 531c6c99ccc6e98449e9b3423d6d57a8, type: 3}
+  characterIcon: {fileID: 823052453256752046, guid: b157012bd980b0942a786574442413c8, type: 3}
+  characterIllustration: {fileID: 306495087698207587, guid: 9d37f5ad71275e944b2284146d745d50, type: 3}
   skillName: "\uB09C\uC0AC"
   skillDescription: "\uB09C\uC0AC\uB97C \uD55C\uB2E4"
   skillCutsceneImage: {fileID: 6385128387233655916, guid: 1f65cdafd19bfea44a3817d8fb9b1960, type: 3}
