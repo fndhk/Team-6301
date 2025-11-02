@@ -78,7 +78,7 @@ public class MainMenuUI : MonoBehaviour
     // 슬롯 버튼을 클릭했을 때 호출될 함수 (가장 큰 변화)
     public void OnClickLoadFromSlot(int slotIndex)
     {
-        // --- 현재 모드가 '불러오기'일 경우 ---
+        // --- '불러오기' 모드 (기존과 동일) ---
         if (currentMode == SlotPanelMode.Load)
         {
             if (SaveLoadManager.instance.LoadGame(slotIndex))
@@ -91,32 +91,22 @@ public class MainMenuUI : MonoBehaviour
                 Debug.LogError($"슬롯 {slotIndex}에서 게임을 불러오는데 실패했습니다!");
             }
         }
-        // --- 현재 모드가 '새 게임'일 경우 ---
+        // --- '새 게임' 모드 (수정된 부분) ---
         else if (currentMode == SlotPanelMode.NewGame)
         {
-            // TODO: 덮어쓰기 확인 로직 (선택사항)
-
             GameSession.instance.currentSaveSlot = slotIndex;
             SaveLoadManager.instance.gameData = new GameData(); // 새 게임 데이터 생성
 
-            // --- ( 수정 시작) ---
+            //  컷신이 있든 없든, 첫 컷신 정보를 GameSession에 임시 저장합니다.
             if (firstPlayCutscene != null)
             {
-                // GameSession에 첫 컷신 정보와 '새 게임' 상태를 임시 저장
                 GameSession.instance.cutsceneToPlay = firstPlayCutscene;
                 GameSession.instance.isNewGameCutscene = true;
-                GameSession.instance.selectedStage = null; // 스테이지 컷신이 아님을 명확히 함
+                GameSession.instance.selectedStage = null;
+            }
 
-                // 닉네임 설정 대신 CutScene 씬 로드
-                SceneManager.LoadScene("CutScene");
-            }
-            else
-            {
-                // 첫 컷신이 없으면 바로 닉네임 설정으로
-                Debug.LogWarning("첫 플레이 컷신이 설정되지 않았습니다. NicknameSetup으로 바로 이동합니다.");
-                SceneManager.LoadScene("NicknameSetup");
-            }
-            // --- ( 수정 끝) ---
+            //  컷신 씬 대신, 'NicknameSetup' 씬을 먼저 로드합니다.
+            SceneManager.LoadScene("NicknameSetup");
 
             loadGamePanel.SetActive(false);
         }

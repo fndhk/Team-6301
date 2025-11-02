@@ -24,18 +24,18 @@ public class CutsceneSceneManager : MonoBehaviour
     // CutscenePlayer가 컷신 종료 시 호출할 함수 (CutscenePlayer.cs 에서 호출)
     public void LoadNextScene()
     {
-        //  디버그 로그 추가: isNewGameCutscene 값 확인
+        // (디버그 로그는 그대로 두셔도 좋습니다)
         Debug.Log($"LoadNextScene 호출됨. isNewGameCutscene = {GameSession.instance.isNewGameCutscene}");
 
         if (GameSession.instance.isNewGameCutscene)
         {
-            //  디버그 로그 추가: 로드할 씬 이름 확인
-            Debug.Log("첫 플레이 컷신 종료. NicknameSetup 씬 로드 시도.");
-            UnityEngine.SceneManagement.SceneManager.LoadScene("NicknameSetup");
+            // 수정: 닉네임 입력을 이미 마쳤으므로 "StageSelect" 씬으로 이동합니다.
+            Debug.Log("첫 플레이 컷신 종료. StageSelect 씬 로드 시도.");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("StageSelect");
         }
         else
         {
-            //  디버그 로그 추가: 로드할 씬 이름 확인
+            // (스테이지 컷신일 경우는 기존과 동일)
             Debug.Log("스테이지 진입 컷신 종료. GameScene 씬 로드 시도.");
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameScene");
         }

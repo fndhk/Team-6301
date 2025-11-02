@@ -90,33 +90,52 @@ public class CutscenePlayer : MonoBehaviour
     {
         DialogueLine line = currentCutscene.dialogueLines[index];
 
-        // 1. 캐릭터 정보 표시
+        // 1. 캐릭터 정보 표시 (기존과 동일)
         if (line.character != null)
         {
-            // 캐릭터 에셋이 연결된 경우, 이름과 일러스트를 가져옵니다.
             characterIllustration.gameObject.SetActive(true);
             nameText.gameObject.SetActive(true);
-
             characterIllustration.sprite = line.character.characterIllustration;
             nameText.text = line.character.characterName;
         }
         else
         {
-            // 캐릭터 에셋이 없으면 (나레이션 등) 일러스트와 이름 UI를 숨깁니다.
             characterIllustration.gameObject.SetActive(false);
             nameText.gameObject.SetActive(false);
         }
 
-        // 2. 배경 이미지 표시
+        // 2. 배경 이미지 표시 (기존과 동일)
         if (line.background != null)
         {
-            // 이 레이어에 새 배경이 지정된 경우에만 배경을 교체합니다.
             backgroundImage.sprite = line.background;
         }
-        // (만약 첫 번째 배경이 null이면 기본 배경색이 보이게 됩니다)
 
-        // 3. 대사 텍스트 표시
-        dialogueText.text = line.dialogueText;
+        // 3. --- ( 수정된 부분: 대사 텍스트 닉네임 치환) ---
+        string rawText = line.dialogueText; // 원본 대사
+        string processedText = rawText;     // 최종 표시될 대사
+
+        // 대사에 [PLAYER_NAME]이라는 특수 문자열이 포함되어 있는지 확인
+        if (rawText.Contains("[PLAYER_NAME]"))
+        {
+            // SaveLoadManager에서 현재 저장된 닉네임을 가져옵니다.
+            string nickname = SaveLoadManager.instance.gameData.nickname;
+
+            // 닉네임이 비어있지 않다면
+            if (!string.IsNullOrEmpty(nickname))
+            {
+                // [PLAYER_NAME]을 실제 닉네임으로 교체합니다.
+                processedText = rawText.Replace("[PLAYER_NAME]", nickname);
+            }
+            else
+            {
+                // 닉네임이 비어있다면 "용사" 같은 기본 이름으로 교체 (선택사항)
+                processedText = rawText.Replace("[PLAYER_NAME]", "용사");
+            }
+        }
+
+        // 최종 처리된 대사를 UI에 표시합니다.
+        dialogueText.text = processedText;
+        // --- ( 수정 끝) ---
     }
 
     // 스킵 버튼 클릭 시 호출

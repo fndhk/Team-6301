@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 082ae89f2b07c6c4e8cf8ac7c1c31b54, type: 3}
+  m_Name: Me
+  m_EditorClassIdentifier: 
+  rarity: 2
+  characterID: Char_me
+  characterName: "\uB098"
+  characterDescription: "\uB098\uC5D0\uC6A9"
+  characterIcon: {fileID: 1137847416843468741, guid: 23664bcacf026d34ab535b8684fa1251, type: 3}
+  characterIllustration: {fileID: 1137847416843468741, guid: 23664bcacf026d34ab535b8684fa1251, type: 3}
+  skillName: "\uADF8\uB7F0\uAC70 \uC5C6\uB2E4"
+  skillDescription: "\uC2A4\uD0AC\uAC19\uC740\uAC74 \uC5C6\uC5B4\uC6A9"
+  skillCutsceneImage: {fileID: 1137847416843468741, guid: 23664bcacf026d34ab535b8684fa1251, type: 3}
+  characterSkill: {fileID: 0}
+  skillSound: {fileID: 0}
+  baseStats:
+    coreHealthBonus: 0
+    towerAttackDamageBonus: 0
+    towerAttackSpeedMultiplier: 1
+  levelGrowthStats: []

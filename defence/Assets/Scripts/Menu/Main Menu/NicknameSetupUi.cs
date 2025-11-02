@@ -30,21 +30,31 @@ public class NicknameSetupUI : MonoBehaviour
 
         SaveLoadManager.instance.gameData.nickname = nickname;
 
-        // ------ 신규 추가: 기본 캐릭터 설정 ------
+        // (기본 캐릭터 설정 로직은 그대로 유지)
         if (string.IsNullOrEmpty(SaveLoadManager.instance.gameData.currentSelectedCharacterID))
         {
             SaveLoadManager.instance.gameData.currentSelectedCharacterID = "Char_Boom";
-
-            // characterLevels에도 추가
             if (!SaveLoadManager.instance.gameData.characterLevels.ContainsKey("Char_Boom"))
             {
                 SaveLoadManager.instance.gameData.characterLevels.Add("Char_Boom", 1);
             }
-
             Debug.Log("NicknameSetupUI: 기본 캐릭터(Char_Boom)로 설정 완료");
         }
 
         SaveLoadManager.instance.SaveGame(GameSession.instance.currentSaveSlot);
-        SceneManager.LoadScene("StageSelect");
+
+        // --- ( 수정된 부분) ---
+        // 닉네임 저장 후, 재생할 컷신이 있는지(MainMenu에서 설정) 확인합니다.
+        if (GameSession.instance.isNewGameCutscene && GameSession.instance.cutsceneToPlay != null)
+        {
+            //  첫 컷신이 있다면 "CutScene" 씬을 로드합니다.
+            SceneManager.LoadScene("CutScene");
+        }
+        else
+        {
+            //  첫 컷신이 설정되어 있지 않다면, 바로 "StageSelect" 씬으로 갑니다.
+            SceneManager.LoadScene("StageSelect");
+        }
+        // --- ( 수정 끝) ---
     }
 }
