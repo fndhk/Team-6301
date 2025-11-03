@@ -1,0 +1,830 @@
+{
+    "bpm": 300.0,
+    "totalBeats": 176.0,
+    "notes": [
+        {
+            "beat": 8.0,
+            "laneIndex": 1
+        },
+        {
+            "beat": 9.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 10.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 11.5,
+            "laneIndex": 2
+        },
+        {
+            "beat": 12.0,
+            "laneIndex": 4
+        },
+        {
+            "beat": 12.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 13.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 14.25,
+            "laneIndex": 2
+        },
+        {
+            "beat": 14.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 15.75,
+            "laneIndex": 4
+        },
+        {
+            "beat": 17.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 18.5,
+            "laneIndex": 1
+        },
+        {
+            "beat": 19.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 20.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 21.0,
+            "laneIndex": 2
+        },
+        {
+            "beat": 21.75,
+            "laneIndex": 4
+        },
+        {
+            "beat": 22.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 23.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 24.0,
+            "laneIndex": 2
+        },
+        {
+            "beat": 24.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 25.25,
+            "laneIndex": 4
+        },
+        {
+            "beat": 26.25,
+            "laneIndex": 1
+        },
+        {
+            "beat": 26.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 27.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 28.25,
+            "laneIndex": 2
+        },
+        {
+            "beat": 29.0,
+            "laneIndex": 4
+        },
+        {
+            "beat": 29.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 30.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 31.75,
+            "laneIndex": 1
+        },
+        {
+            "beat": 33.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 34.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 35.25,
+            "laneIndex": 2
+        },
+        {
+            "beat": 35.75,
+            "laneIndex": 4
+        },
+        {
+            "beat": 37.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 37.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 38.75,
+            "laneIndex": 4
+        },
+        {
+            "beat": 39.75,
+            "laneIndex": 1
+        },
+        {
+            "beat": 40.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 41.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 41.75,
+            "laneIndex": 2
+        },
+        {
+            "beat": 42.25,
+            "laneIndex": 4
+        },
+        {
+            "beat": 43.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 43.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 44.75,
+            "laneIndex": 2
+        },
+        {
+            "beat": 46.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 47.0,
+            "laneIndex": 4
+        },
+        {
+            "beat": 47.75,
+            "laneIndex": 4
+        },
+        {
+            "beat": 48.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 49.25,
+            "laneIndex": 1
+        },
+        {
+            "beat": 50.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 50.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 52.0,
+            "laneIndex": 4
+        },
+        {
+            "beat": 53.25,
+            "laneIndex": 2
+        },
+        {
+            "beat": 54.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 54.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 55.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 55.75,
+            "laneIndex": 4
+        },
+        {
+            "beat": 56.25,
+            "laneIndex": 1
+        },
+        {
+            "beat": 57.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 57.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 58.5,
+            "laneIndex": 2
+        },
+        {
+            "beat": 59.0,
+            "laneIndex": 4
+        },
+        {
+            "beat": 59.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 61.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 62.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 63.75,
+            "laneIndex": 2
+        },
+        {
+            "beat": 64.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 65.5,
+            "laneIndex": 4
+        },
+        {
+            "beat": 66.5,
+            "laneIndex": 1
+        },
+        {
+            "beat": 67.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 68.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 68.75,
+            "laneIndex": 2
+        },
+        {
+            "beat": 69.5,
+            "laneIndex": 4
+        },
+        {
+            "beat": 70.5,
+            "laneIndex": 4
+        },
+        {
+            "beat": 71.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 72.75,
+            "laneIndex": 2
+        },
+        {
+            "beat": 73.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 74.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 74.75,
+            "laneIndex": 1
+        },
+        {
+            "beat": 75.25,
+            "laneIndex": 4
+        },
+        {
+            "beat": 76.0,
+            "laneIndex": 4
+        },
+        {
+            "beat": 76.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 77.5,
+            "laneIndex": 2
+        },
+        {
+            "beat": 78.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 79.75,
+            "laneIndex": 4
+        },
+        {
+            "beat": 80.25,
+            "laneIndex": 4
+        },
+        {
+            "beat": 81.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 82.0,
+            "laneIndex": 1
+        },
+        {
+            "beat": 82.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 83.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 84.5,
+            "laneIndex": 2
+        },
+        {
+            "beat": 84.75,
+            "laneIndex": 4
+        },
+        {
+            "beat": 85.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 87.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 88.25,
+            "laneIndex": 2
+        },
+        {
+            "beat": 89.25,
+            "laneIndex": 4
+        },
+        {
+            "beat": 89.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 90.75,
+            "laneIndex": 1
+        },
+        {
+            "beat": 91.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 92.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 92.5,
+            "laneIndex": 2
+        },
+        {
+            "beat": 93.25,
+            "laneIndex": 4
+        },
+        {
+            "beat": 94.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 95.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 96.5,
+            "laneIndex": 2
+        },
+        {
+            "beat": 97.5,
+            "laneIndex": 4
+        },
+        {
+            "beat": 98.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 98.75,
+            "laneIndex": 1
+        },
+        {
+            "beat": 99.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 99.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 100.0,
+            "laneIndex": 1
+        },
+        {
+            "beat": 100.75,
+            "laneIndex": 1
+        },
+        {
+            "beat": 101.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 102.5,
+            "laneIndex": 2
+        },
+        {
+            "beat": 103.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 103.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 103.75,
+            "laneIndex": 2
+        },
+        {
+            "beat": 105.0,
+            "laneIndex": 2
+        },
+        {
+            "beat": 105.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 106.25,
+            "laneIndex": 4
+        },
+        {
+            "beat": 106.5,
+            "laneIndex": 1
+        },
+        {
+            "beat": 107.5,
+            "laneIndex": 4
+        },
+        {
+            "beat": 108.25,
+            "laneIndex": 1
+        },
+        {
+            "beat": 109.0,
+            "laneIndex": 4
+        },
+        {
+            "beat": 110.5,
+            "laneIndex": 1
+        },
+        {
+            "beat": 110.5,
+            "laneIndex": 4
+        },
+        {
+            "beat": 111.25,
+            "laneIndex": 1
+        },
+        {
+            "beat": 111.25,
+            "laneIndex": 4
+        },
+        {
+            "beat": 112.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 112.75,
+            "laneIndex": 2
+        },
+        {
+            "beat": 113.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 114.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 115.0,
+            "laneIndex": 1
+        },
+        {
+            "beat": 116.0,
+            "laneIndex": 4
+        },
+        {
+            "beat": 116.75,
+            "laneIndex": 2
+        },
+        {
+            "beat": 117.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 118.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 119.0,
+            "laneIndex": 2
+        },
+        {
+            "beat": 120.0,
+            "laneIndex": 4
+        },
+        {
+            "beat": 120.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 121.25,
+            "laneIndex": 1
+        },
+        {
+            "beat": 122.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 123.75,
+            "laneIndex": 1
+        },
+        {
+            "beat": 123.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 125.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 125.25,
+            "laneIndex": 2
+        },
+        {
+            "beat": 126.0,
+            "laneIndex": 4
+        },
+        {
+            "beat": 126.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 127.5,
+            "laneIndex": 1
+        },
+        {
+            "beat": 129.0,
+            "laneIndex": 4
+        },
+        {
+            "beat": 129.0,
+            "laneIndex": 2
+        },
+        {
+            "beat": 130.0,
+            "laneIndex": 2
+        },
+        {
+            "beat": 130.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 131.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 131.75,
+            "laneIndex": 1
+        },
+        {
+            "beat": 133.0,
+            "laneIndex": 4
+        },
+        {
+            "beat": 134.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 134.75,
+            "laneIndex": 2
+        },
+        {
+            "beat": 136.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 136.25,
+            "laneIndex": 1
+        },
+        {
+            "beat": 137.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 137.75,
+            "laneIndex": 1
+        },
+        {
+            "beat": 138.25,
+            "laneIndex": 4
+        },
+        {
+            "beat": 139.0,
+            "laneIndex": 2
+        },
+        {
+            "beat": 139.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 140.25,
+            "laneIndex": 2
+        },
+        {
+            "beat": 140.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 141.25,
+            "laneIndex": 4
+        },
+        {
+            "beat": 142.0,
+            "laneIndex": 1
+        },
+        {
+            "beat": 142.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 145.0,
+            "laneIndex": 4
+        },
+        {
+            "beat": 146.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 147.75,
+            "laneIndex": 2
+        },
+        {
+            "beat": 148.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 149.5,
+            "laneIndex": 4
+        },
+        {
+            "beat": 150.25,
+            "laneIndex": 4
+        },
+        {
+            "beat": 151.25,
+            "laneIndex": 1
+        },
+        {
+            "beat": 151.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 152.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 153.25,
+            "laneIndex": 2
+        },
+        {
+            "beat": 153.75,
+            "laneIndex": 4
+        },
+        {
+            "beat": 154.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 155.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 155.75,
+            "laneIndex": 2
+        },
+        {
+            "beat": 156.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 157.25,
+            "laneIndex": 4
+        },
+        {
+            "beat": 158.25,
+            "laneIndex": 1
+        },
+        {
+            "beat": 160.0,
+            "laneIndex": 1
+        },
+        {
+            "beat": 160.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 161.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 162.5,
+            "laneIndex": 2
+        },
+        {
+            "beat": 163.0,
+            "laneIndex": 4
+        },
+        {
+            "beat": 164.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 165.0,
+            "laneIndex": 2
+        },
+        {
+            "beat": 165.75,
+            "laneIndex": 4
+        },
+        {
+            "beat": 166.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 167.25,
+            "laneIndex": 3
+        },
+        {
+            "beat": 168.0,
+            "laneIndex": 2
+        },
+        {
+            "beat": 168.75,
+            "laneIndex": 4
+        },
+        {
+            "beat": 169.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 170.0,
+            "laneIndex": 1
+        },
+        {
+            "beat": 171.5,
+            "laneIndex": 3
+        },
+        {
+            "beat": 172.0,
+            "laneIndex": 3
+        },
+        {
+            "beat": 173.75,
+            "laneIndex": 3
+        },
+        {
+            "beat": 175.25,
+            "laneIndex": 2
+        },
+        {
+            "beat": 176.0,
+            "laneIndex": 4
+        }
+    ]
+}

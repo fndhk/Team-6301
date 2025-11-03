@@ -45,7 +45,7 @@ public class AudioManager : MonoBehaviour
 
         foreach (var source in allSources)
         {
-            source.loop = true;
+            source.loop = false;
         }
 
         // 4. ���� ���� ���� �� �ʱ�ȭ

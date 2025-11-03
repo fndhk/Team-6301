@@ -101,7 +101,10 @@ public class CountdownUI : MonoBehaviour
             spawner.StartSpawning();
         }
 
-        // NoteSpawner에게 시작 신호
+        if (RhythmInputManager.instance != null)
+        {
+            RhythmInputManager.instance.StartInputProcessing();
+        }
 
     }
 

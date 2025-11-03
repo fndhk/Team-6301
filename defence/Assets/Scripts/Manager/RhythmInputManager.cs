@@ -1,4 +1,4 @@
-// 파일 이름: RhythmInputManager.cs (오류 수정 최종 버전)
+// 파일 이름: RhythmInputManager.cs (수정된 최종 버전)
 using UnityEngine;
 using TMPro;
 using System.Collections;
@@ -27,13 +27,20 @@ public class RhythmInputManager : MonoBehaviour
 
     [Header("페널티 설정")]
     [Tooltip("Miss 판정 시 코어 체력이 감소하는 양입니다.")]
-    public int missDamage = 5;
-    
+    public int missDamage = 50;
+
     // --- 판정 강화용 변수 ---
     private float currentPerfectWindow;
     private float currentGreatWindow;
     private float currentGoodWindow;
-    private Coroutine judgmentBuffCoroutine; // 버프 지속시간을 제어할 코루틴
+    private Coroutine judgmentBuffCoroutine;
+
+    // '헛스윙' 카운터를 위한 변수 추가
+    private int missPressCounter = 0;
+    private const int MISS_PRESS_LIMIT = 3; // 3번 헛스윙 시 HP 감소
+
+    private bool canStartInput = false; // 카운트다운이 끝나야 true가 됨
+
     void Awake()
     {
         if (instance == null) instance = this;
@@ -42,11 +49,7 @@ public class RhythmInputManager : MonoBehaviour
 
     void Start()
     {
-        if (judgmentText != null)
-        {
-            judgmentText.gameObject.SetActive(false);
-        }
-        
+        if (judgmentText != null) judgmentText.gameObject.SetActive(false);
         currentPerfectWindow = perfectWindow;
         currentGreatWindow = greatWindow;
         currentGoodWindow = goodWindow;
@@ -54,26 +57,34 @@ public class RhythmInputManager : MonoBehaviour
 
     void Update()
     {
+        // 카운트다운이 끝나지 않았다면(canStartInput이 false라면)
+        // Update 함수를 즉시 종료시켜 키 입력을 받지 않습니다.
+        if (!canStartInput)
+        {
+            return;
+        }
+
         for (int i = 0; i < inputKeys.Length; i++)
         {
             if (Input.GetKeyDown(inputKeys[i]))
             {
                 if (keyPressFeedbacks.Length > i) keyPressFeedbacks[i].SetActive(true);
-                CheckForNote(i); // 키보드 배열 순서(0,1,2,3)를 그대로 전달
+                CheckForNote(i);
             }
-
             if (Input.GetKeyUp(inputKeys[i]))
             {
                 if (keyPressFeedbacks.Length > i) keyPressFeedbacks[i].SetActive(false);
             }
         }
     }
+    public void StartInputProcessing()
+    {
+        canStartInput = true;
+        Debug.Log("RhythmInputManager: 입력 처리를 시작합니다.");
+    }
 
     private void CheckForNote(int laneIndex)
     {
-
-        Debug.Log($"<color=yellow>키 입력:</color> {laneIndex}번 키 눌림");
-
         Collider2D[] hitNotes = Physics2D.OverlapCircleAll(hitZone[laneIndex].position, currentGoodWindow);
         NoteObject closestNote = null;
         float minDistance = float.MaxValue;
@@ -81,11 +92,6 @@ public class RhythmInputManager : MonoBehaviour
         foreach (var noteCollider in hitNotes)
         {
             NoteObject note = noteCollider.GetComponent<NoteObject>();
-            if (note != null)
-            {
-                Debug.Log($"[판정 범위] 노트 발견! -> 노트 레인: {note.laneIndex} / 눌린 키: {laneIndex}");
-            }
-
             if (note != null && note.laneIndex == laneIndex)
             {
                 float distance = Mathf.Abs(note.transform.position.y - hitZone[laneIndex].position.y);
@@ -106,31 +112,20 @@ public class RhythmInputManager : MonoBehaviour
             else if (minDistance <= currentGreatWindow) { judgmentEnum = JudgmentManager.Judgment.Great; judgmentString = "Great"; }
             else if (minDistance <= currentGoodWindow) { judgmentEnum = JudgmentManager.Judgment.Good; judgmentString = "Good"; }
 
-
-            // ---  수정된 판정 로직 ---
             if (judgmentEnum == JudgmentManager.Judgment.Miss)
             {
-                // Case 1: 노트를 너무 일찍/늦게 쳐서 Miss
-                ShowMissFeedback(); // Miss에 대한 모든 페널티(체력, 점수, 게이지) 처리
+                // Case 1: 노트를 너무 일찍/늦게 쳐서 Miss (헛스윙으로 간주)
+                ShowMissFeedback();
             }
             else
             {
                 // Case 2: Good, Great, Perfect 성공
-                // 점수 기록
                 ScoreManager.instance.AddRhythmScore(judgmentEnum);
-                // 게이지 획득
                 SkillManager.instance.AddGaugeOnJudgment(judgmentEnum);
-
-                // 사운드 재생
                 if (judgmentEnum == JudgmentManager.Judgment.Perfect || judgmentEnum == JudgmentManager.Judgment.Great)
                 {
-                    if (AudioManager.instance != null)
-                    {
-                        AudioManager.instance.PlayInstrumentSound(closestNote.instrumentType);
-                    }
+                    if (AudioManager.instance != null) AudioManager.instance.PlayInstrumentSound(closestNote.instrumentType);
                 }
-
-                // 피드백 및 노트 제거
                 ShowJudgmentFeedback(judgmentString);
                 Destroy(closestNote.gameObject);
 
@@ -140,46 +135,62 @@ public class RhythmInputManager : MonoBehaviour
                     SaveLoadManager.instance.gameData.gachaTickets++;
                     Debug.Log("특수 노트 획득! 티켓 +1");
                 }
+
+                // ▼▼▼ 성공 시 '헛스윙' 카운터 초기화 ▼▼▼
+                missPressCounter = 0;
             }
         }
         else
         {
-            // Case 3: 허공에 키를 누름 (Miss)
-            ShowMissFeedback(); // Miss에 대한 모든 페널티(체력, 점수, 게이지) 처리
+            // Case 3: 허공에 키를 누름 (헛스윙)
+            ShowMissFeedback();
         }
     }
 
-    // ▼▼▼ 빠뜨렸던 함수들을 다시 추가합니다. ▼▼▼
-
+    // ▼▼▼ '헛스윙' 페널티 함수 (ShowMissFeedback 이름은 그대로 사용) ▼▼▼
+    // 이 함수는 이제 '헛스윙' (키 입력 실수) 시에만 호출됩니다.
     public void ShowMissFeedback()
     {
         ShowJudgmentFeedback("Miss");
+        ScoreManager.instance.AddRhythmScore(JudgmentManager.Judgment.Miss);
+        SkillManager.instance.AddGaugeOnJudgment(JudgmentManager.Judgment.Miss);
 
-        // 1. 코어 체력 5 감소 (기존 로직)
+        // '헛스윙' 카운터 증가
+        missPressCounter++;
+        Debug.Log($"헛스윙 카운트: {missPressCounter} / {MISS_PRESS_LIMIT}");
+
+        // 카운터가 3에 도달하면 HP 감소 및 카운터 초기화
+        if (missPressCounter >= MISS_PRESS_LIMIT)
+        {
+            if (coreFacility != null)
+            {
+                coreFacility.TakeDamage(missDamage, null);
+                Debug.LogWarning($"헛스윙 3회 누적! 코어 데미지 {missDamage}!");
+            }
+            missPressCounter = 0; // 카운터 초기화
+        }
+    }
+
+    // ▼▼▼ '놓친 노트' 페널티 함수 (새로 추가) ▼▼▼
+    // 이 함수는 NoteObject.cs가 노트를 놓쳤을 때만 호출됩니다.
+    public void ProcessPassedNotePenalty()
+    {
+        ShowJudgmentFeedback("Miss");
+        ScoreManager.instance.AddRhythmScore(JudgmentManager.Judgment.Miss);
+        SkillManager.instance.AddGaugeOnJudgment(JudgmentManager.Judgment.Miss);
+
+        // '놓친 노트'는 카운터와 상관없이 즉시 HP 감소
         if (coreFacility != null)
         {
             coreFacility.TakeDamage(missDamage, null);
-        }
-
-        // 2.  ScoreManager에 Miss 기록 (새 로직)
-        if (ScoreManager.instance != null)
-        {
-            ScoreManager.instance.AddRhythmScore(JudgmentManager.Judgment.Miss);
-        }
-
-        // 3.  SkillManager에 게이지 페널티 적용 (새 로직)
-        if (SkillManager.instance != null)
-        {
-            SkillManager.instance.AddGaugeOnJudgment(JudgmentManager.Judgment.Miss);
+            Debug.Log($"노트 놓침! 코어 데미지 {missDamage}!");
         }
     }
 
     private void ShowJudgmentFeedback(string judgment)
     {
         if (judgmentText == null) return;
-
         StopAllCoroutines();
-
         judgmentText.text = judgment;
         switch (judgment)
         {
@@ -188,7 +199,6 @@ public class RhythmInputManager : MonoBehaviour
             case "Good": judgmentText.color = new Color(0.3f, 0.7f, 1f); break;
             case "Miss": judgmentText.color = Color.red; break;
         }
-
         judgmentText.gameObject.SetActive(true);
         StartCoroutine(HideTextDelay(0.5f));
     }
@@ -201,32 +211,20 @@ public class RhythmInputManager : MonoBehaviour
 
     public void ApplyJudgmentBuff(float multiplier, float duration)
     {
-        // 이미 버프가 걸려있다면, 기존 버프를 중지하고 새로 시작
-        if (judgmentBuffCoroutine != null)
-        {
-            StopCoroutine(judgmentBuffCoroutine);
-        }
+        if (judgmentBuffCoroutine != null) StopCoroutine(judgmentBuffCoroutine);
         judgmentBuffCoroutine = StartCoroutine(JudgmentBuffCoroutine(multiplier, duration));
     }
 
     private IEnumerator JudgmentBuffCoroutine(float multiplier, float duration)
     {
-        Debug.Log($"<color=cyan>판정 강화 시작! (x{multiplier}, {duration}초)</color>");
-
-        // 버프 적용: 현재 판정 범위를 기본값 * 배율로 설정
         currentPerfectWindow = perfectWindow * multiplier;
         currentGreatWindow = greatWindow * multiplier;
         currentGoodWindow = goodWindow * multiplier;
-
-        // 지속시간만큼 대기
         yield return new WaitForSeconds(duration);
-
-        // 버프 종료: 모든 값을 다시 기본값으로 복구
-        Debug.Log("판정 강화 종료.");
         currentPerfectWindow = perfectWindow;
         currentGreatWindow = greatWindow;
         currentGoodWindow = goodWindow;
-
         judgmentBuffCoroutine = null;
     }
+
 }

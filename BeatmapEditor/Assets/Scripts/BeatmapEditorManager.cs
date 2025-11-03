@@ -118,10 +118,10 @@ public class BeatmapEditorManager : MonoBehaviour
             hitZoneBeatText.text = $"{hitZoneBeat:F2}";
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha1)) PlaceNoteAtCurrentBeat(1);
-        if (Input.GetKeyDown(KeyCode.Alpha2)) PlaceNoteAtCurrentBeat(2);
-        if (Input.GetKeyDown(KeyCode.Alpha3)) PlaceNoteAtCurrentBeat(3);
-        if (Input.GetKeyDown(KeyCode.Alpha4)) PlaceNoteAtCurrentBeat(4);
+        if (Input.GetKeyDown(KeyCode.A)) PlaceNoteAtCurrentBeat(1);
+        if (Input.GetKeyDown(KeyCode.S)) PlaceNoteAtCurrentBeat(2);
+        if (Input.GetKeyDown(KeyCode.Semicolon)) PlaceNoteAtCurrentBeat(3);
+        if (Input.GetKeyDown(KeyCode.Quote)) PlaceNoteAtCurrentBeat(4);
 
         if (Input.GetKeyDown(KeyCode.Space)) TogglePlayPause();
         if (Input.GetKeyDown(KeyCode.Backspace)) RemoveLastNote();
