@@ -33,12 +33,12 @@ public class NicknameSetupUI : MonoBehaviour
         // (기본 캐릭터 설정 로직은 그대로 유지)
         if (string.IsNullOrEmpty(SaveLoadManager.instance.gameData.currentSelectedCharacterID))
         {
-            SaveLoadManager.instance.gameData.currentSelectedCharacterID = "Char_Boom";
-            if (!SaveLoadManager.instance.gameData.characterLevels.ContainsKey("Char_Boom"))
+            SaveLoadManager.instance.gameData.currentSelectedCharacterID = "Char_Heal";
+            if (!SaveLoadManager.instance.gameData.characterLevels.ContainsKey("Char_Heal"))
             {
-                SaveLoadManager.instance.gameData.characterLevels.Add("Char_Boom", 1);
+                SaveLoadManager.instance.gameData.characterLevels.Add("Char_Heal", 1);
             }
-            Debug.Log("NicknameSetupUI: 기본 캐릭터(Char_Boom)로 설정 완료");
+            Debug.Log("NicknameSetupUI: 기본 캐릭터(Char_Heal)로 설정 완료");
         }
 
         SaveLoadManager.instance.SaveGame(GameSession.instance.currentSaveSlot);

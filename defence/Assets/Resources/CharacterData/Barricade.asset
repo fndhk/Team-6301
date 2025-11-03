@@ -15,11 +15,17 @@ MonoBehaviour:
   rarity: 1
   characterID: Char_Barr
   characterName: "\uBBF8\uC5F0 \uC21C\uACBD"
-  characterDescription: "\uACBD\uCC30\uAD00"
+  characterDescription: "\uBBFC\uC911\uC758 \uC9C0\uD321\uC774 \uBBF8\uC5F0 \uC21C\uACBD\uC740
+    \uCE58\uC548\uACFC \uC2DC\uBBFC\uC758 \uC548\uC804\uC744 \uCD5C\uC6B0\uC120\uC73C\uB85C
+    \uC0DD\uAC01\uD569\uB2C8\uB2E4. '\uADF8 \uC0AC\uAC74'\uC774 \uC77C\uC5B4\uB09C
+    \uB0A0\uC5D0\uB294 \uB2F9\uC9C1 \uBE44\uBC88\uC784\uC5D0\uB3C4 \uBC1C\uBC97\uACE0
+    \uB098\uC11C \uC2DC\uBBFC\uB4E4\uC744 \uAD6C\uD588\uB2E4\uACE0 \uD569\uB2C8\uB2E4."
   characterIcon: {fileID: 2406682181650129359, guid: d4bc1da8d39a1744d9f9fbc8b2138952, type: 3}
   characterIllustration: {fileID: 2406682181650129359, guid: d4bc1da8d39a1744d9f9fbc8b2138952, type: 3}
   skillName: "\uBC14\uB9AC\uCF00\uC774\uB4DC \uC124\uCE58"
-  skillDescription: "\uBC14\uB9AC\uCF00\uC774\uB4DC \uC124\uCE58"
+  skillDescription: "\uBC14\uB9AC\uCF00\uC774\uB4DC\uB97C \uC124\uCE58\uD569\uB2C8\uB2E4.
+    \uBC14\uB9AC\uCF00\uC774\uB4DC\uB294 \uC801\uC758 \uC9C4\uB85C\uB97C \uAC00\uB85C\uB9C9\uC73C\uBA70
+    \uC77C\uC815 \uB370\uBBF8\uC9C0\uB97C \uAC70\uB72C\uD558\uAC8C \uBC84\uD301\uB2C8\uB2E4."
   skillCutsceneImage: {fileID: 5994418939259527497, guid: 6325c8cc0bce6df438f641f27b88598e, type: 3}
   characterSkill: {fileID: 11400000, guid: 76969bd6649a3af47a7f2fc6bebaf702, type: 2}
   skillSound: {fileID: 8300000, guid: 51e5fa271e61ff54986868c612fb4a95, type: 3}

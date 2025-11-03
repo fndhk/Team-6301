@@ -23,23 +23,23 @@ public class QuickSlotManager : MonoBehaviour
     }
     void Update()
     {
-        // ¼ýÀÚ Å° 1¹øÀ» ´­·¶À» ¶§
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        // Z Å°¸¦ ´­·¶À» ¶§
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             UseSlot(0); // Ã¹ ¹øÂ° ½½·Ô (ÀÎµ¦½º 0) »ç¿ë
         }
-        // ¼ýÀÚ Å° 2¹øÀ» ´­·¶À» ¶§
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        // X Å°¸¦ ´­·¶À» ¶§
+        else if (Input.GetKeyDown(KeyCode.X))
         {
             UseSlot(1); // µÎ ¹øÂ° ½½·Ô (ÀÎµ¦½º 1) »ç¿ë
         }
-        // ¼ýÀÚ Å° 3¹øÀ» ´­·¶À» ¶§
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        // . (¸¶Ä§Ç¥) Å°¸¦ ´­·¶À» ¶§
+        else if (Input.GetKeyDown(KeyCode.Period))
         {
             UseSlot(2); // ¼¼ ¹øÂ° ½½·Ô (ÀÎµ¦½º 2) »ç¿ë
         }
-        // ¼ýÀÚ Å° 4¹øÀ» ´­·¶À» ¶§
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        // / (½½·¡½Ã) Å°¸¦ ´­·¶À» ¶§
+        else if (Input.GetKeyDown(KeyCode.Slash))
         {
             UseSlot(3); // ³× ¹øÂ° ½½·Ô (ÀÎµ¦½º 3) »ç¿ë
         }

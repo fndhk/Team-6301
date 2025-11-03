@@ -1,4 +1,4 @@
-// ���� �̸�: AudioManager.cs
+//       ̸ : AudioManager.cs
 using UnityEngine;
 using System.Collections;
 
@@ -13,6 +13,12 @@ public class AudioManager : MonoBehaviour
     private bool isMusicStarted = false;
     private bool isMusicPaused = false;
 
+    [Header("효과음(SFX) 소스")]
+    [Tooltip("판정 효과음, UI 클릭음 등을 재생할 전용 AudioSource")]
+    public AudioSource sfxSource;
+    [Tooltip("노트 판정 성공 시 재생할 효과음 클립")]
+    public AudioClip noteHitSound;
+
     void Awake()
     {
         if (instance == null) instance = this;
@@ -21,23 +27,23 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        // 1. ���� �������� ������ �����ɴϴ�.
+        // 1.                           ɴϴ .
         StageData currentStage = GameSession.instance.selectedStage;
         if (currentStage == null)
         {
-            Debug.LogError("AudioManager: ���� �������� ������ ã�� �� �����ϴ�!");
+            Debug.LogError("AudioManager:                      ã           ϴ !");
             return;
         }
 
-        // 2. �� ������Ʈ�� �پ��ִ� ��� AudioSource ������Ʈ�� �����ɴϴ�. (4������ ��)
+        // 2.          Ʈ    پ  ִ      AudioSource       Ʈ        ɴϴ . (4         )
         allSources = GetComponents<AudioSource>();
         if (allSources.Length < 4)
         {
-            Debug.LogError("AudioManager�� AudioSource ������Ʈ�� 4�� �ʿ��մϴ�!");
+            Debug.LogError("AudioManager   AudioSource       Ʈ   4    ʿ  մϴ !");
             return;
         }
 
-        // 3. StageData���� ����� Ŭ���� ������ �� AudioSource�� �Ҵ��մϴ�.
+        // 3. StageData           Ŭ               AudioSource    Ҵ  մϴ .
         allSources[0].clip = currentStage.baseMusic;
         allSources[1].clip = currentStage.drumTrack;
         allSources[2].clip = currentStage.pianoTrack;
@@ -48,7 +54,7 @@ public class AudioManager : MonoBehaviour
             source.loop = false;
         }
 
-        // 4. ���� ���� ���� �� �ʱ�ȭ
+        // 4.                    ʱ ȭ
         drumSource = allSources[1];
         pianoSource = allSources[2];
         cymbalSource = allSources[3];
@@ -58,10 +64,19 @@ public class AudioManager : MonoBehaviour
         cymbalSource.volume = 0f;
         allSources[0].volume = 1f;
 
-        // 5. ������ �ٷ� ������� �ʰ� ��� (CountdownUI�� StartMusic�� ȣ���� ������)
+        // 5.         ٷ           ʰ      (CountdownUI   StartMusic   ȣ           )
     }
 
-    // CountdownUI���� ī��Ʈ�ٿ��� ������ ȣ���� �Լ�
+    public void PlayNoteHitSound()
+    {
+        if (sfxSource != null && noteHitSound != null)
+        {
+            // PlayOneShot은 기존에 재생 중인 소리를 멈추지 않고 겹쳐서 재생합니다.
+            sfxSource.PlayOneShot(noteHitSound);
+        }
+    }
+
+    // CountdownUI     ī  Ʈ ٿ           ȣ      Լ 
     public void StartMusic()
     {
         if (isMusicStarted) return;
@@ -69,7 +84,7 @@ public class AudioManager : MonoBehaviour
         isMusicStarted = true;
 
         float musicStartTime = Time.time;
-    
+
         foreach (var source in allSources)
         {
             if (source.clip != null)
@@ -77,23 +92,23 @@ public class AudioManager : MonoBehaviour
                 source.Play();
             }
         }
-    
-    // ------ �ű� �߰�: NoteSpawner���� ��Ȯ�� ���� �ð� ���� ------
+
+        // ------  ű   ߰ : NoteSpawner       Ȯ         ð       ------
         if (NoteSpawner.instance != null)
         {
             NoteSpawner.instance.StartSpawningAtTime(musicStartTime);
         }
 
-        Debug.Log($"<color=green>[AudioManager] ���� ����: {musicStartTime:F4}��</color>");
+        Debug.Log($"<color=green>[AudioManager]          : {musicStartTime:F4}  </color>");
 
     }
 
-    // ------ �ű� �߰�: ���� ���� �Լ� ------
+    // ------  ű   ߰ :            Լ  ------
     public void StopMusic()
     {
-        if (!isMusicStarted) return; // ������ ���۵��� �ʾ����� ����
+        if (!isMusicStarted) return; //           ۵     ʾ          
 
-        // ��� ����� �ҽ� ����
+        //            ҽ      
         foreach (var source in allSources)
         {
             if (source != null && source.isPlaying)
@@ -103,10 +118,10 @@ public class AudioManager : MonoBehaviour
         }
 
         isMusicStarted = false;
-        Debug.Log("AudioManager: ���� ����!");
+        Debug.Log("AudioManager:          !");
     }
 
-    // ------ �ű� �߰�: ���� ���̵�ƿ� �Լ� (�ε巯�� ����) ------
+    // ------  ű   ߰ :         ̵ ƿ   Լ  ( ε巯       ) ------
     public void FadeOutMusic(float duration = 1f)
     {
         if (!isMusicStarted) return;
@@ -119,13 +134,13 @@ public class AudioManager : MonoBehaviour
         float startTime = Time.time;
         float[] startVolumes = new float[allSources.Length];
 
-        // ���� ���� ����
+        //               
         for (int i = 0; i < allSources.Length; i++)
         {
             startVolumes[i] = allSources[i].volume;
         }
 
-        // ���̵�ƿ�
+        //    ̵ ƿ 
         while (Time.time < startTime + duration)
         {
             float t = (Time.time - startTime) / duration;
@@ -141,19 +156,19 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
 
-        // ������ ����
+        //            
         StopMusic();
 
-        // ���� ���� (���� ����� ����)
+        //           (               )
         allSources[0].volume = 1f;
         drumSource.volume = 0f;
         pianoSource.volume = 0f;
         cymbalSource.volume = 0f;
 
-        Debug.Log("AudioManager: ���̵�ƿ� �Ϸ�!");
+        Debug.Log("AudioManager:    ̵ ƿ   Ϸ !");
     }
 
-    // ���� ���� ��, �ش� �Ǳ� �Ҹ��� ��� ����ִ� �Լ�
+    //             ,  ش   Ǳ   Ҹ            ִ   Լ 
     public void PlayInstrumentSound(InstrumentType type)
     {
         switch (type)
@@ -170,7 +185,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    // ������ ��� �÷ȴٰ� ������ �ڷ�ƾ
+    //             ÷ȴٰ          ڷ ƾ
     private IEnumerator FadeInAndOut(AudioSource source, float sustainTime, float fadeOutTime)
     {
         source.volume = 1f;
@@ -185,7 +200,7 @@ public class AudioManager : MonoBehaviour
         source.volume = 0f;
     }
 
-    // ���� ������ ���� ��� �ӵ�(��ġ)�� �����ϴ� �Լ�
+    //                       ӵ (  ġ)        ϴ   Լ 
     public void ChangePitch(float pitchMultiplier)
     {
         foreach (var source in allSources)
@@ -202,7 +217,7 @@ public class AudioManager : MonoBehaviour
                 source.Pause();
             }
         }
-        Debug.Log("AudioManager: ��� ���� �Ͻ�����!");
+        Debug.Log("AudioManager:           Ͻ     !");
     }
 
     public void UnpauseAllMusic()
@@ -214,7 +229,7 @@ public class AudioManager : MonoBehaviour
                 source.UnPause();
             }
         }
-        Debug.Log("AudioManager: ��� ���� �簳!");
+        Debug.Log("AudioManager:           簳!");
     }
 
     //esc 누를 때 노래 멈추기

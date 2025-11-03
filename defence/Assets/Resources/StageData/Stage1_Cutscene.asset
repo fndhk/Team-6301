@@ -13,12 +13,85 @@ MonoBehaviour:
   m_Name: Stage1_Cutscene
   m_EditorClassIdentifier: 
   dialogueLines:
-  - character: {fileID: 11400000, guid: 6c33ca06f65e6314e8b710f1852d9eb9, type: 2}
-    background: {fileID: 0}
-    dialogueText: "\uCEF7\uC2E0 1\uBC88\uC785\uB2C8\uB2E4"
   - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
-    background: {fileID: 0}
-    dialogueText: "\uCEF7\uC2E0 1\uBC88\uC758 \uB450\uBC88\uC9F8 \uD14D\uC2A4\uD2B8\uC785\uB2C8\uB2E4"
-  - character: {fileID: 11400000, guid: 8e926fee808351047be127f060efcb67, type: 2}
-    background: {fileID: 0}
-    dialogueText: "\uCEF7\uC2E0 1\uBC88\uC758 \uC138\uBC88\uC9F8 \uD14D\uC2A4\uD2B8\uC785\uB2C8\uB2E4"
+    background: {fileID: -8658168983583521667, guid: e2fd32ecf9451f34b926ce2c3882d818, type: 3}
+    dialogueText: "\uC5B4\uD734 \uACB0\uAD6D \uC804\uD22C\uD604\uC7A5\uC73C\uB85C
+      \uB098\uC640\uBC84\uB838\uB124\uC694"
+  - character: {fileID: 11400000, guid: 87422104c85d6564cbe9fbe93fa0f09d, type: 2}
+    background: {fileID: -8658168983583521667, guid: e2fd32ecf9451f34b926ce2c3882d818, type: 3}
+    dialogueText: "\uC774\uB7F0\uAC74!! \uADF8\uB0E5 \uAC10\uC73C\uB85C!! \uB9C8!!
+      \uB54C\uB9AC\uC7A1\uC544\uC090\uBA74 \uB418\uB294\uAE30\uB2E4!!!"
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: -8658168983583521667, guid: e2fd32ecf9451f34b926ce2c3882d818, type: 3}
+    dialogueText: "\uC81C\uAC00 \uCE5C\uC808\uD558\uAC8C \uC124\uBA85\uD574 \uB4DC\uB9B4\uAC8C\uC694..."
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: -739989443912307153, guid: c95421cfb50db2a40945cb38dc2fe15e, type: 3}
+    dialogueText: "\uC624\uB978\uCABD \uCC3D\uC774 \uB9AC\uB4EC \uD328\uB110\uC774\uC5D0\uC694.
+      \uC0DD\uC131\uB418\uB294 \uC8FC\uD669\uC0C9 \uB178\uD2B8\uAC00 \uB0A8\uC0C9
+      \uC120\uC5D0 \uAC78\uCE60 \uB54C \uD574\uB2F9 \uD0A4\uB97C \uB204\uB974\uBA74"
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: 8912895909108799383, guid: 95f7bd9a12351074387dedbdbbe8d5c1, type: 3}
+    dialogueText: "\uC9E0 \uC5B4\uB54C\uC694? \uC27D\uC8E0?"
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: 8912895909108799383, guid: 95f7bd9a12351074387dedbdbbe8d5c1, type: 3}
+    dialogueText: "\uB2E8 \uB178\uD2B8\uB97C \uB193\uCE58\uBA74 \uB370\uBBF8\uC9C0\uB97C
+      \uC785\uC73C\uB2C8\uAE4C \uC8FC\uC758\uD558\uC138\uC694!"
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: -7657251708337421511, guid: eb2d960d97c75e048b87e855861d086c, type: 3}
+    dialogueText: "\uD76C\uADC0\uD558\uAC8C \uC0DD\uC131\uB418\uB294 \uD30C\uB780
+      \uB178\uD2B8\uC5D0\uC694! Great \uC774\uC0C1\uC73C\uB85C \uD30C\uB780 \uB178\uD2B8\uB97C
+      \uCC98\uB9AC\uD558\uBA74 \uB2E8\uC6D0 \uBAA8\uC9D1 \uD2F0\uCF13\uC744 \uC5BB\uC744
+      \uC218 \uC788\uC5B4\uC694."
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: -2630635377343130374, guid: d584e0bf4deaa144ba7998529bded651, type: 3}
+    dialogueText: "\uC557 \uC801\uB4E4\uC774 \uB098\uD0C0\uB0AC\uC5B4\uC694!"
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: -5246095549798266379, guid: a0cfcd35a99183a459bb3dfdaad79e51, type: 3}
+    dialogueText: "\uAC71\uC815 \uB9C8\uC138\uC694 \uD53C\uC544\uB178 \uD0C0\uC6CC\uAC00
+      \uC801\uB4E4\uC744 \uC790\uB3D9\uC73C\uB85C \uC694\uACA9\uD55C\uB2F5\uB2C8\uB2E4."
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: -5246095549798266379, guid: a0cfcd35a99183a459bb3dfdaad79e51, type: 3}
+    dialogueText: "\uC591 \uC606\uC758 \uD0C0\uC6CC\uB294 \uC544\uC9C1 \uC74C\uC545
+      \uC218\uD638\uB2E8 \uC7AC\uC815 \uC0C1\uD669\uC0C1 \uAC00\uB3D9\uD558\uC9C0
+      \uBABB\uD558\uC9C0\uB9CC..."
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: -5246095549798266379, guid: a0cfcd35a99183a459bb3dfdaad79e51, type: 3}
+    dialogueText: "\uBD84\uBA85 \uBA38\uC9C0\uC54A\uC544 \uC0C1\uC810\uC5D0\uC11C
+      \uAC15\uD654\uD560 \uC218 \uC788\uC744\uAC70\uC5D0\uC694."
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: -4593584585485555171, guid: d1ef47de5e27cdf46a87bdd2229d717a, type: 3}
+    dialogueText: "\uB178\uD2B8\uB97C \uCE58\uB2E4\uBCF4\uBA74 \uC2A4\uD0AC \uAC8C\uC774\uC9C0\uAC00
+      \uC810\uC810 \uCC28\uC624\uB97C\uAC70\uC5D0\uC694."
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: -4321256684729065672, guid: a628d4d4e4e95cf4fbc6452244b60a3d, type: 3}
+    dialogueText: "\uAC8C\uC774\uC9C0\uAC00 \uB05D\uAE4C\uC9C0 \uCC28\uBA74 [\uC2A4\uD398\uC774\uC2A4\uBC14]\uB97C
+      \uB20C\uB7EC \uC2A4\uD0AC\uC744 \uC0AC\uC6A9\uD560 \uC218 \uC788\uC5B4\uC694.\n\uCC38\uACE0\uB85C
+      \uC81C \uC2A4\uD0AC\uC740 \uD68C\uBCF5\uC774\uB78D\uB2C8\uB2E4."
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: 3599680988517598315, guid: 393da336b31a06a4792dd1a669e218fc, type: 3}
+    dialogueText: "\uC801\uC774 \uC544\uC774\uD15C\uC744 \uB5A8\uC5B4\uD2B8\uB838\uC5B4\uC694!
+      \uC544\uC774\uD15C\uB4E4\uC740 \uAC01\uAC01 Z, X, ., / \uD0A4\uB85C \uC0AC\uC6A9\uD560
+      \uC218 \uC788\uC5B4\uC694. "
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: 3192317913754455671, guid: a587852f51cc54342b7478b6f3c19aa1, type: 3}
+    dialogueText: "\uD604\uC7AC \uC810\uC218\uB294 \uC5EC\uAE30\uC11C \uD655\uC778\uD560
+      \uC218 \uC788\uC5B4\uC694. \uACE0\uB4DD\uC810\uC744 \uB178\uB824\uBD05\uC2DC\uB2E4."
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: -6592336003507864518, guid: e76a1545832dc50418b5cb4d6482583a, type: 3}
+    dialogueText: "\uCE90\uB9AD\uD130 \uBCC0\uACBD\uC744 \uB20C\uB7EC \uC800 \uB9D0\uACE0\uB3C4
+      \uB2E4\uB978 \uC218\uD638\uB2E8\uACFC \uC804\uD22C\uC5D0 \uB098\uC124 \uC218
+      \uC788\uB2F5\uB2C8\uB2E4."
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: 7715439614176964277, guid: b2e1faea843d84740b28624b45bbfd97, type: 3}
+    dialogueText: "\uC804\uD22C\uAC00 \uB05D\uB098\uACE0 \uD68D\uB4DD\uD55C \uC7AC\uD654\uB85C
+      \uC0C1\uC810\uC5D0\uC11C \uAC15\uD654\uC640 \uC218\uD638\uB2E8 \uB2E8\uC6D0\uC744
+      \uBAA8\uC9D1 \uD560 \uC218 \uC788\uC5B4\uC694."
+  - character: {fileID: 11400000, guid: 87422104c85d6564cbe9fbe93fa0f09d, type: 2}
+    background: {fileID: 1762011465775418109, guid: 3b376d6cc06779f46a7b2218b7b4066a, type: 3}
+    dialogueText: "\uB0B4 \uB9DE\uC544 \uC8FD\uAC84\uB2E4! \uC124\uBA85\uC740 \uC5B8\uC81C
+      \uB05D\uB098\uB178!"
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: 1762011465775418109, guid: 3b376d6cc06779f46a7b2218b7b4066a, type: 3}
+    dialogueText: "\uC5BC\uB978 \uCD98\uC2DD\uC528\uB97C \uB3C4\uC640\uB4DC\uB824\uC57C
+      \uACA0\uB124\uC694! \uC790 \uC774\uC81C \uC2E4\uC804\uC774\uC5D0\uC694!  [PLAYER_NAME]\uB2E8\uC7A5\uB2D8,
+      \uAC74\uC2B9\uC744 \uBE55\uB2C8\uB2E4!"

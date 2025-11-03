@@ -15,11 +15,16 @@ MonoBehaviour:
   rarity: 0
   characterID: Char_Boom
   characterName: "\uB3C4\uD76C"
-  characterDescription: "\uCC29\uD55C\uC18C\uB140"
+  characterDescription: "\uB3C4\uD76C\uB294 \uD53C\uC544\uB178\uC758 \uC601\uC7AC\uB85C
+    \uCE6D\uC1A1\uBC1B\uC558\uC73C\uB098 '\uADF8 \uC0AC\uAC74' \uC774\uD6C4\uB85C\uB294
+    \uC5B4\uB9B0\uC2DC\uC808 \uC720\uC77C\uD55C \uCE5C\uAD6C\uC600\uB358 \uBA5C\uB85C\uB514\uC5B8\uC744
+    \uAC1C\uC870\uD574 \uC801\uB4E4\uC744 \uBB34\uC790\uBE44\uD558\uAC8C \uD729\uC4F0\uB294
+    \uC804\uC0AC\uB85C \uAC70\uB4ED\uB0AC\uC2B5\uB2C8\uB2E4."
   characterIcon: {fileID: 823052453256752046, guid: b157012bd980b0942a786574442413c8, type: 3}
   characterIllustration: {fileID: 306495087698207587, guid: 9d37f5ad71275e944b2284146d745d50, type: 3}
   skillName: "\uB09C\uC0AC"
-  skillDescription: "\uB09C\uC0AC\uB97C \uD55C\uB2E4"
+  skillDescription: "\uB09C\uC0AC\uD558\uB4EF \uC18D\uC8FC\uB97C \uD558\uBA70 \uC801\uB4E4\uC744
+    \uD729\uC501\uB2C8\uB2E4."
   skillCutsceneImage: {fileID: 6385128387233655916, guid: 1f65cdafd19bfea44a3817d8fb9b1960, type: 3}
   characterSkill: {fileID: 11400000, guid: a8716b4c4eb435b4091b9d4a30a6d803, type: 2}
   skillSound: {fileID: 8300000, guid: 66e3603f807edd741961c266b92fa397, type: 3}

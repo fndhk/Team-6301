@@ -15,7 +15,12 @@ MonoBehaviour:
   rarity: 2
   characterID: Char_Ryu
   characterName: "\uC2DC\uB958"
-  characterDescription: "\uBB34\uB3C4\uAC00"
+  characterDescription: "\uC5B4\uB514\uC120\uAC00 \uBCF8 \uB4EF\uD55C \uC678\uBAA8\uC758
+    \uC2DC\uB958\uB294 \uC624\uB85C\uC9C0 \uAC15\uD568\uC744 \uCD94\uAD6C\uD558\uB294
+    \uCD5C\uAC15\uC758 \uBB34\uB3C4\uAC00\uC785\uB2C8\uB2E4. \uB9E8\uC190 \uACA9\uD22C\uB85C\uB294
+    \uB530\uB77C\uAC08 \uC0AC\uB78C\uC774 \uC5C6\uB294 \uB4EF \uD569\uB2C8\uB2E4.
+    \uC7A5\uD48D\uC744 \uB0A0\uB9B4 \uC218 \uC788\uB2E4\uB294 \uC18C\uBB38\uB3C4
+    \uB3C4\uB294 \uB4EF \uD569\uB2C8\uB2E4."
   characterIcon: {fileID: 3457267388789683228, guid: 2e5609838978ff44182cf3eed6a91e5b, type: 3}
   characterIllustration: {fileID: -2344188164316653497, guid: e5fdba185b3281e4f992a42951a6e113, type: 3}
   skillName: "\uD30C\uB3D9\uAD8C"

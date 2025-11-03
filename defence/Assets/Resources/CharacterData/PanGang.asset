@@ -15,11 +15,15 @@ MonoBehaviour:
   rarity: 0
   characterID: Char_pan
   characterName: "\uB77C\uCD98\uC2DD"
-  characterDescription: "\uAC74\uB2EC"
+  characterDescription: "\uB77C\uCD98\uC2DD\uC528\uB294 \uBD80\uC0B0 \uAE08\uC815\uAD6C
+    \uD1B5 \uCD9C\uC2E0\uC785\uB2C8\uB2E4. \uADF8\uB140\uB97C \uB9CC\uB9CC\uD558\uAC8C
+    \uBCF8 \uC0AC\uB78C\uB4E4\uC740 \uD070 \uCF54 \uB2E4\uCE58\uACE4 \uD569\uB2C8\uB2E4.
+    \uBB3C\uB860 \uADF8\uB140\uC758 \uC0AC\uB78C\uC744 \uAC74\uB4E0 \uC0AC\uB78C\uB4E4\uB3C4\uC694."
   characterIcon: {fileID: 875971941871523543, guid: b2ac3eea2382e894cb8a672984d63e88, type: 3}
   characterIllustration: {fileID: 875971941871523543, guid: b2ac3eea2382e894cb8a672984d63e88, type: 3}
   skillName: "\uD310\uC815\uAC15\uD654"
-  skillDescription: "\uD310\uC815\uC774 \uAC15\uD654\uB41C\uB2E4"
+  skillDescription: "\uB9AC\uB4EC \uB178\uD2B8\uC5D0 \uB300\uD55C \uD310\uC815\uC774
+    \uC77C\uC815 \uC2DC\uAC04\uB3D9\uC548 \uAC15\uD654\uB429\uB2C8\uB2E4."
   skillCutsceneImage: {fileID: 875971941871523543, guid: b2ac3eea2382e894cb8a672984d63e88, type: 3}
   characterSkill: {fileID: 11400000, guid: d344f94266289164f8de39a25b7aa2e4, type: 2}
   skillSound: {fileID: 8300000, guid: 37dce180a07adad43b13ef5d063996d6, type: 3}

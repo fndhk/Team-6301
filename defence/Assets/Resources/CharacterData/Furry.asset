@@ -15,7 +15,11 @@ MonoBehaviour:
   rarity: 0
   characterID: Char_fur
   characterName: "\uB3C4\uB85C\uC2DC"
-  characterDescription: "\uBC29\uD328\uAC78"
+  characterDescription: "\uB3C4\uB85C\uC2DC\uB294 \uBBF8\uC9C0\uC758 \uC232\uC18D
+    \uBD80\uC871\uC758 \uC218\uD638\uC790\uC600\uC73C\uB098 '\uADF8 \uC0AC\uAC74'\uC774\uD6C4
+    \uB354 \uB9CE\uC740 \uC0AC\uB78C\uB4E4\uC744 \uAD6C\uD558\uAE30 \uC704\uD574
+    \uC232\uC744 \uB098\uC640 \uC2EC\uBC8C\uC988 \uBC29\uD328\uB85C \uBAA8\uB450\uB97C
+    \uC9C0\uD0A4\uB294 \uC6A9\uC0AC\uAC00 \uB418\uC5C8\uC2B5\uB2C8\uB2E4."
   characterIcon: {fileID: -2991420814392545272, guid: beeb860a137debf49b707c8a98d3cfa4, type: 3}
   characterIllustration: {fileID: 200717927686787771, guid: 4f31c620ec84726448a03a61f89ccd84, type: 3}
   skillName: "\uD138\uBC29\uD328"

@@ -201,7 +201,7 @@ public class GachaSceneUI : MonoBehaviour
         }
         else // 3레벨 이상
         {
-            return "티켓 환급";
+            return "소지금 +300";
         }
     }
 

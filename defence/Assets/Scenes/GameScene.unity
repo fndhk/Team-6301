@@ -1956,6 +1956,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b4d4940b0d0b1042aff2863dd754d20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxSource: {fileID: 300176481}
+  noteHitSound: {fileID: 8300000, guid: 3d7aa37412ecb8244b9263a868bd7422, type: 3}
 --- !u!4 &300176477
 Transform:
   m_ObjectHideFlags: 0
@@ -7857,7 +7859,7 @@ MonoBehaviour:
   - {fileID: 1432995049}
   - {fileID: 1432995049}
   laneInstruments: 00000000010000000200000002000000
-  specialNoteChance: 0.1
+  specialNoteChance: 0.01
   syncOffset: 1.7
   beatsToFall: 2
 --- !u!114 &1227775177

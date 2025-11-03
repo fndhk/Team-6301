@@ -90,6 +90,9 @@ public class GachaManager : MonoBehaviour
         return result;
     }
 
+    // 파일 이름: GachaManager.cs
+    // ProcessGacha 함수를 이 내용으로 교체하세요.
+
     public void ProcessGacha(CharacterData drawnCharacter)
     {
         string charID = drawnCharacter.characterID;
@@ -107,8 +110,11 @@ public class GachaManager : MonoBehaviour
         }
         else
         {
-            data.gachaTickets++;
-            Debug.Log($"Max 레벨 캐릭터! 티켓 환불 +1 ({drawnCharacter.characterName})");
+            // ▼▼▼▼▼▼▼▼▼▼ 이 부분을 수정했습니다 ▼▼▼▼▼▼▼▼▼▼
+            // data.gachaTickets++; // 기존 티켓 환불 코드
+            data.enhancementMaterials += 300; // 티켓 대신 소지금(강화 재료) 300 지급
+            Debug.Log($"Max 레벨 캐릭터! 소지금 환불 +300 ({drawnCharacter.characterName})");
+            // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
         }
     }
 }

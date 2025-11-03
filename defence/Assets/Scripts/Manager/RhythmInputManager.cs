@@ -122,9 +122,10 @@ public class RhythmInputManager : MonoBehaviour
                 // Case 2: Good, Great, Perfect ¼º°ø
                 ScoreManager.instance.AddRhythmScore(judgmentEnum);
                 SkillManager.instance.AddGaugeOnJudgment(judgmentEnum);
-                if (judgmentEnum == JudgmentManager.Judgment.Perfect || judgmentEnum == JudgmentManager.Judgment.Great)
+                if (AudioManager.instance != null)
                 {
-                    if (AudioManager.instance != null) AudioManager.instance.PlayInstrumentSound(closestNote.instrumentType);
+                    //if (AudioManager.instance != null) AudioManager.instance.PlayInstrumentSound(closestNote.instrumentType);
+                    AudioManager.instance.PlayNoteHitSound();
                 }
                 ShowJudgmentFeedback(judgmentString);
                 Destroy(closestNote.gameObject);

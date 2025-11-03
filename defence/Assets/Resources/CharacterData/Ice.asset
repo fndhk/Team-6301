@@ -15,12 +15,17 @@ MonoBehaviour:
   rarity: 2
   characterID: Char_Ice
   characterName: "\uBBF8\uC8FC"
-  characterDescription: "\uCC28\uAC00\uC6B4 \uC18C\uB140"
+  characterDescription: "\uB208\uB9CC \uB9C8\uC8FC\uCCD0\uB3C4 \uC5BC\uC5B4\uBD99\uC744\uAC83
+    \uAC19\uC740 \uBD84\uC704\uAE30\uC758 \uBBF8\uC8FC\uB294 \uC0AC\uC2E4 \uC54C\uACE0\uBCF4\uBA74
+    \uB530\uB73B\uD55C \uC131\uACA9\uC744 \uAC00\uC84C\uC2B5\uB2C8\uB2E4. \uADF8\uAC8C
+    \uADF8\uB140\uAC00 \uC74C\uC545\uC218\uD638\uB2E8\uC5D0 \uC874\uC7AC\uD558\uB294
+    \uC774\uC720\uC785\uB2C8\uB2E4. \uB2E8\uC9C0 \uB0AF\uC744 \uB9CE\uC774 \uAC00\uB9B4
+    \uBFD0\uC785\uB2C8\uB2E4."
   characterIcon: {fileID: 6162212308415976321, guid: 1f6b65bafbc17b04b8b53b170087a37c, type: 3}
   characterIllustration: {fileID: -8056901833771936570, guid: f0825a0b5cbb8f04eab0446ec255fa9e, type: 3}
   skillName: "\uC544\uC774\uC2A4\uC5D0\uC774\uC9C0"
-  skillDescription: "\uD788\uC57C~ \uB0B4\uAC00 9\uCD08\uB098 \uBA48\uCD9C \uC218
-    \uC788\uB2E4"
+  skillDescription: "\uBAA8\uB4E0 \uC801\uC744 \uC77C\uC815 \uC2DC\uAC04\uB3D9\uC548
+    \uBA48\uCDA5\uB2C8\uB2E4."
   skillCutsceneImage: {fileID: -2281172864177128579, guid: add84560c2cff9842ac730b54ed2f475, type: 3}
   characterSkill: {fileID: 11400000, guid: 5e699e9e2ab67454c8269aebbbc73e76, type: 2}
   skillSound: {fileID: 8300000, guid: 31a9d0560376c86439884a335bd6de9b, type: 3}
