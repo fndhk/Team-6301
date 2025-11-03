@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcbbc34f31c28dd4e8f71c32fcae112e, type: 3}
+  m_Name: Stage_5
+  m_EditorClassIdentifier: 
+  stageIndex: 5
+  stageName: 
+  baseMusic: {fileID: 8300000, guid: 002f238a2acc90b4abfddaf727b71e6a, type: 3}
+  drumTrack: {fileID: 0}
+  pianoTrack: {fileID: 0}
+  cymbalTrack: {fileID: 0}
+  bpm: 175
+  stageMusic: {fileID: 8300000, guid: 002f238a2acc90b4abfddaf727b71e6a, type: 3}
+  waves:
+  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+    count: 15
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+    count: 15
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 20
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 10
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 4327232847043190120, guid: 34c3207cecd183049b674da71fa1ccb7, type: 3}
+    count: 4
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+    count: 10
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 20
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+    count: 10
+    timeBetweenEnemies: 0
+  clearReward: 300
+  beatmap: {fileID: 11400000, guid: 3c00bb188ab340443a75d67ca6295594, type: 2}
+  stageBackground: {fileID: 0}
+  defenseBackground: {fileID: 0}
+  entryCutscene: {fileID: 0}
