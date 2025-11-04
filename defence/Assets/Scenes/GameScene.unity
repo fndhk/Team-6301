@@ -7860,7 +7860,7 @@ MonoBehaviour:
   - {fileID: 1432995049}
   laneInstruments: 00000000010000000200000002000000
   specialNoteChance: 0.01
-  syncOffset: 1.7
+  syncOffset: 1
   beatsToFall: 2
 --- !u!114 &1227775177
 MonoBehaviour:
