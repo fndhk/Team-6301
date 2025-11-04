@@ -3,7 +3,7 @@
 </p>
 
 <div align="center">
-  <h1>♬ 음 표 수 호 단</h1>
+  <h1>♬ 음 악 수 호 단</h1>
   <h5>2D Defence Game</h5>
 </div>
 
