@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stage_1
   m_EditorClassIdentifier: 
   stageIndex: 1
-  stageName: crossroads
+  stageName: land of beginning
   baseMusic: {fileID: 8300000, guid: 59690de400cec7d4d95eeb9d2b3ac0c6, type: 3}
   drumTrack: {fileID: 0}
   pianoTrack: {fileID: 0}

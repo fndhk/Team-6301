@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stage_4
   m_EditorClassIdentifier: 
   stageIndex: 4
-  stageName: Away
+  stageName: stormy night
   baseMusic: {fileID: 8300000, guid: 303f583c64ad58b49b3d31f178cd2ff3, type: 3}
   drumTrack: {fileID: 0}
   pianoTrack: {fileID: 0}
@@ -53,7 +53,7 @@ MonoBehaviour:
     timeBetweenEnemies: 0
   clearReward: 100
   beatmap: {fileID: 11400000, guid: 1312ea3de3e072640aa87cfc919c7e13, type: 2}
-  stageButtonBackground: {fileID: 0}
+  stageButtonBackground: {fileID: 4053847987706764248, guid: 776d40c1a3712f3499139dd75cbd0325, type: 3}
   stageBackground: {fileID: 4967243896795790778, guid: 3e2088ea70863f047837cf39ebc381d5, type: 3}
   defenseBackground: {fileID: 4053847987706764248, guid: 776d40c1a3712f3499139dd75cbd0325, type: 3}
   entryCutscene: {fileID: 0}

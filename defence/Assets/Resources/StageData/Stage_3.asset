@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stage_3
   m_EditorClassIdentifier: 
   stageIndex: 3
-  stageName: sadderday
+  stageName: Midnight Town
   baseMusic: {fileID: 8300000, guid: ed4c2d7e2debad64b96dda1ebd16a49e, type: 3}
   drumTrack: {fileID: 0}
   pianoTrack: {fileID: 0}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Stage_2
   m_EditorClassIdentifier: 
   stageIndex: 2
-  stageName: run
+  stageName: town at sunset
   baseMusic: {fileID: 8300000, guid: 9b30f8ce496f1184c9f5c9d08d727796, type: 3}
   drumTrack: {fileID: 0}
   pianoTrack: {fileID: 0}
