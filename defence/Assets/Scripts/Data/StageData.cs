@@ -29,7 +29,9 @@ public class StageData : ScriptableObject
 
     [Header("채보 정보")]
     public BeatmapData beatmap;
-
+    [Header("스테이지 버튼 UI")]
+    [Tooltip("스테이지 선택 창에 표시될 버튼의 배경 이미지입니다.")]
+    public Sprite stageButtonBackground;
     [Header("스테이지 배경")]
     [Tooltip("이 스테이지에서 사용할 배경 이미지입니다.")]
     public Sprite stageBackground;

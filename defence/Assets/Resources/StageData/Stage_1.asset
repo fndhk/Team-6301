@@ -35,6 +35,7 @@ MonoBehaviour:
     timeBetweenEnemies: 0
   clearReward: 100
   beatmap: {fileID: 11400000, guid: cc3489882d36f374ba4ffbc0a847fd31, type: 2}
+  stageButtonBackground: {fileID: -3624081843510575391, guid: 3c93e1ab1d20b764da002abc2cbf926c, type: 3}
   stageBackground: {fileID: 1762011465775418109, guid: 3b376d6cc06779f46a7b2218b7b4066a, type: 3}
   defenseBackground: {fileID: -5179756775005133047, guid: a07d571fc337e5b4597d83ef48012c21, type: 3}
   entryCutscene: {fileID: 11400000, guid: 58babf80de5d9f244be3744545d8df23, type: 2}

@@ -53,10 +53,27 @@ public class StageSelectManager : MonoBehaviour
             stageButtonRects.Add(buttonGO.GetComponent<RectTransform>());
 
             StageButtonUI buttonUI = buttonGO.GetComponent<StageButtonUI>();
-            buttonUI.stageNameText.text = stageDatas[i].stageName;
-            buttonUI.stageNoText.text = "Stage " + stageDatas[i].stageIndex;
+            StageData currentStageData = stageDatas[i]; // 현재 스테이지 데이터 가져오기
 
-            if (stageDatas[i].stageIndex > gameData.highestClearedStage + 1)
+            // 버튼 배경 이미지 설정 로직
+            if (buttonUI.buttonBackground != null) // 1. StageButtonUI에 Image 슬롯이 있는지 확인
+            {
+                if (currentStageData.stageButtonBackground != null) // 2. StageData에 이미지가 할당되어 있는지 확인
+                {
+                    // 3. 버튼의 배경 이미지를 StageData의 이미지로 교체
+                    buttonUI.buttonBackground.sprite = currentStageData.stageButtonBackground;
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"StageButtonUI 프리팹에 'buttonBackground' Image가 연결되지 않았습니다.");
+            }
+
+            // 텍스트 및 잠금 설정 로직
+            buttonUI.stageNameText.text = currentStageData.stageName;
+            buttonUI.stageNoText.text = "Stage " + currentStageData.stageIndex;
+
+            if (currentStageData.stageIndex > gameData.highestClearedStage + 1)
             {
                 buttonUI.lockedOverlay.SetActive(true);
                 buttonGO.GetComponent<Button>().interactable = false;
@@ -65,13 +82,13 @@ public class StageSelectManager : MonoBehaviour
             else
             {
                 buttonUI.lockedOverlay.SetActive(false);
-                int stageIndex = stageDatas[i].stageIndex;
+                int stageIndex = currentStageData.stageIndex;
                 int highScore = 0;
                 if (gameData.stageHighScores.ContainsKey(stageIndex))
                 {
                     highScore = gameData.stageHighScores[stageIndex];
                 }
-                buttonUI.highScoreText.text = "Best: " + highScore.ToString("N0");
+                buttonUI.highScoreText.text = "Best: " + highScore.ToString("N0"); // 쉼표 포맷
 
                 int index = i;
                 buttonGO.GetComponent<Button>().onClick.AddListener(() => OnClickStageSelect(index));
@@ -91,13 +108,13 @@ public class StageSelectManager : MonoBehaviour
         {
             UpdateCurrentCharacterUI();
 
-            // ▼▼▼ 게임 세션에 현재 선택된 캐릭터 정보도 업데이트 (SkillManager 오류 방지) ▼▼▼
+            // (캐릭터 정보 업데이트 로직)
             string currentCharID = SaveLoadManager.instance.gameData.currentSelectedCharacterID;
             if (!string.IsNullOrEmpty(currentCharID))
             {
                 GameSession.instance.selectedCharacter = GetCharacterByID(currentCharID);
             }
-            else // 혹시 모를 예외 처리 (기본 캐릭터 설정)
+            else
             {
                 CharacterData boomChar = GetCharacterByID("Char_Boom");
                 if (boomChar != null)
@@ -113,7 +130,6 @@ public class StageSelectManager : MonoBehaviour
         UpdateArrowButtons();
         Debug.Log($"---[Start 완료]--- buttonWidth: {buttonWidth}, buttonSpacing: {buttonSpacing}");
     }
-
     void Update()
     {
         float targetX = -currentStageIndex * (buttonWidth + buttonSpacing);
