@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageIndex: 3
   stageName: Midnight Town
-  baseMusic: {fileID: 8300000, guid: ed4c2d7e2debad64b96dda1ebd16a49e, type: 3}
+  baseMusic: {fileID: 8300000, guid: ce4b32d3a0ef59543846f0663b88fa8e, type: 3}
   drumTrack: {fileID: 0}
   pianoTrack: {fileID: 0}
   cymbalTrack: {fileID: 0}
   bpm: 120
-  stageMusic: {fileID: 8300000, guid: ed4c2d7e2debad64b96dda1ebd16a49e, type: 3}
+  stageMusic: {fileID: 8300000, guid: ce4b32d3a0ef59543846f0663b88fa8e, type: 3}
   waves:
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
     count: 3
@@ -37,7 +37,7 @@ MonoBehaviour:
     count: 3
     timeBetweenEnemies: 0
   clearReward: 100
-  beatmap: {fileID: 11400000, guid: 1312ea3de3e072640aa87cfc919c7e13, type: 2}
+  beatmap: {fileID: 11400000, guid: 17bb5cb4cf910584a8119783d10a51c3, type: 2}
   stageButtonBackground: {fileID: 1223295105029941997, guid: a79e4686bd3a5f048abd85bad9763df8, type: 3}
   stageBackground: {fileID: 8952561591435250005, guid: 34b7c6640c4b6fa44944362033a856ef, type: 3}
   defenseBackground: {fileID: 1223295105029941997, guid: 56ccad0faea844949a5d6dba1b93722d, type: 3}

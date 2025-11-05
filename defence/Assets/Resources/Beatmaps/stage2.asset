@@ -15,65 +15,253 @@ MonoBehaviour:
   notes:
   - beat: 5.75
     laneIndex: 1
-  - beat: 8
+  - beat: 7.75
     laneIndex: 2
   - beat: 9.75
     laneIndex: 3
-  - beat: 12
+  - beat: 11.75
     laneIndex: 4
-  - beat: 14
-    laneIndex: 4
-  - beat: 16
-    laneIndex: 3
+  - beat: 13.75
+    laneIndex: 1
+  - beat: 15.75
+    laneIndex: 2
   - beat: 17.75
-    laneIndex: 2
+    laneIndex: 3
   - beat: 19.75
-    laneIndex: 1
-  - beat: 21.75
+    laneIndex: 4
+  - beat: 22
     laneIndex: 2
-  - beat: 23.75
+  - beat: 24
     laneIndex: 3
   - beat: 25.75
     laneIndex: 1
-  - beat: 25.75
-    laneIndex: 4
   - beat: 27.75
-    laneIndex: 2
+    laneIndex: 4
   - beat: 29.75
     laneIndex: 3
   - beat: 31.75
-    laneIndex: 3
+    laneIndex: 4
+  - beat: 31.75
+    laneIndex: 1
   - beat: 33.75
     laneIndex: 2
   - beat: 35.75
     laneIndex: 1
-  - beat: 36.75
-    laneIndex: 1
-  - beat: 37.75
-    laneIndex: 2
-  - beat: 38.75
-    laneIndex: 3
-  - beat: 39.75
+  - beat: 35.75
     laneIndex: 4
+  - beat: 38
+    laneIndex: 3
+  - beat: 40
+    laneIndex: 2
   - beat: 41.75
     laneIndex: 4
+  - beat: 41.75
+    laneIndex: 1
   - beat: 43.75
     laneIndex: 2
   - beat: 43.75
     laneIndex: 3
   - beat: 45.75
-    laneIndex: 1
+    laneIndex: 4
   - beat: 47.75
     laneIndex: 1
-  - beat: 49.75
-    laneIndex: 4
+  - beat: 48.75
+    laneIndex: 1
   - beat: 50.75
+    laneIndex: 4
+  - beat: 52
     laneIndex: 3
   - beat: 53
     laneIndex: 1
   - beat: 55
     laneIndex: 2
-  - beat: 56.75
+  - beat: 55.75
+    laneIndex: 2
+  - beat: 57
+    laneIndex: 4
+  - beat: 59.75
+    laneIndex: 1
+  - beat: 59.75
+    laneIndex: 4
+  - beat: 60.75
+    laneIndex: 2
+  - beat: 60.75
     laneIndex: 3
-  totalBeats: 56.75
+  - beat: 63.75
+    laneIndex: 3
+  - beat: 64.75
+    laneIndex: 3
+  - beat: 66
+    laneIndex: 2
+  - beat: 67.75
+    laneIndex: 1
+  - beat: 67.75
+    laneIndex: 4
+  - beat: 69.75
+    laneIndex: 2
+  - beat: 71.75
+    laneIndex: 3
+  - beat: 73.75
+    laneIndex: 4
+  - beat: 75.75
+    laneIndex: 1
+  - beat: 77.75
+    laneIndex: 4
+  - beat: 79.75
+    laneIndex: 4
+  - beat: 80.75
+    laneIndex: 2
+  - beat: 81.75
+    laneIndex: 3
+  - beat: 82.75
+    laneIndex: 1
+  - beat: 83.75
+    laneIndex: 4
+  - beat: 85.75
+    laneIndex: 3
+  - beat: 87.75
+    laneIndex: 2
+  - beat: 89.75
+    laneIndex: 4
+  - beat: 90.75
+    laneIndex: 4
+  - beat: 91.75
+    laneIndex: 1
+  - beat: 92.75
+    laneIndex: 3
+  - beat: 94.75
+    laneIndex: 2
+  - beat: 96.75
+    laneIndex: 4
+  - beat: 96.75
+    laneIndex: 1
+  - beat: 98.75
+    laneIndex: 4
+  - beat: 99.75
+    laneIndex: 1
+  - beat: 100.75
+    laneIndex: 3
+  - beat: 103
+    laneIndex: 2
+  - beat: 104.75
+    laneIndex: 4
+  - beat: 106.75
+    laneIndex: 1
+  - beat: 108.75
+    laneIndex: 3
+  - beat: 110.75
+    laneIndex: 4
+  - beat: 112.75
+    laneIndex: 3
+  - beat: 114.75
+    laneIndex: 2
+  - beat: 115.75
+    laneIndex: 1
+  - beat: 117.75
+    laneIndex: 4
+  - beat: 119.75
+    laneIndex: 4
+  - beat: 121.75
+    laneIndex: 3
+  - beat: 123.75
+    laneIndex: 2
+  - beat: 125.75
+    laneIndex: 1
+  - beat: 127.75
+    laneIndex: 2
+  - beat: 129.75
+    laneIndex: 3
+  - beat: 131.75
+    laneIndex: 4
+  - beat: 133.75
+    laneIndex: 4
+  - beat: 135.75
+    laneIndex: 2
+  - beat: 137.75
+    laneIndex: 1
+  - beat: 139.75
+    laneIndex: 3
+  - beat: 141.75
+    laneIndex: 4
+  - beat: 143.75
+    laneIndex: 3
+  - beat: 145.75
+    laneIndex: 2
+  - beat: 147.75
+    laneIndex: 1
+  - beat: 148.75
+    laneIndex: 4
+  - beat: 150.75
+    laneIndex: 1
+  - beat: 150.75
+    laneIndex: 4
+  - beat: 152.75
+    laneIndex: 4
+  - beat: 152.75
+    laneIndex: 3
+  - beat: 154.75
+    laneIndex: 2
+  - beat: 154.75
+    laneIndex: 1
+  - beat: 156.75
+    laneIndex: 3
+  - beat: 158.75
+    laneIndex: 1
+  - beat: 158.75
+    laneIndex: 4
+  - beat: 160.75
+    laneIndex: 2
+  - beat: 162.75
+    laneIndex: 4
+  - beat: 162.75
+    laneIndex: 1
+  - beat: 165
+    laneIndex: 3
+  - beat: 166.75
+    laneIndex: 2
+  - beat: 168.75
+    laneIndex: 4
+  - beat: 170.75
+    laneIndex: 1
+  - beat: 172.75
+    laneIndex: 3
+  - beat: 174.75
+    laneIndex: 1
+  - beat: 174.75
+    laneIndex: 4
+  - beat: 176.75
+    laneIndex: 2
+  - beat: 178.75
+    laneIndex: 1
+  - beat: 178.75
+    laneIndex: 4
+  - beat: 181
+    laneIndex: 3
+  - beat: 183
+    laneIndex: 2
+  - beat: 184.75
+    laneIndex: 1
+  - beat: 184.75
+    laneIndex: 4
+  - beat: 187
+    laneIndex: 3
+  - beat: 188.75
+    laneIndex: 2
+  - beat: 191
+    laneIndex: 4
+  - beat: 192.75
+    laneIndex: 1
+  - beat: 195
+    laneIndex: 2
+  - beat: 196.75
+    laneIndex: 3
+  - beat: 198.75
+    laneIndex: 4
+  - beat: 200.75
+    laneIndex: 1
+  - beat: 203
+    laneIndex: 4
+  - beat: 204.75
+    laneIndex: 1
+  totalBeats: 204.75
   useNewBeatmapSystem: 1
