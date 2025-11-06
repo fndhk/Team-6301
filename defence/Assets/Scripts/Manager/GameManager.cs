@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public CoreFacility coreFacility;
 
-    [Header("Å¸¿ö ¼³Á¤")]
+    [Header("íƒ€ì›Œ ì„¤ì •")]
     public List<BaseTower> allTowersInOrder;
 
     private bool isPaused = false;
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
             {
                 if (allTowersInOrder[i] != null)
                 {
-                    // ÇØ±İµÈ Å¸¿ö´Â ·¹º§ 1(È°¼º), ¾Æ´Ï¸é ·¹º§ 0(ºñÈ°¼º)À¸·Î ¼³Á¤
+                    // í•´ê¸ˆëœ íƒ€ì›ŒëŠ” ë ˆë²¨ 1(í™œì„±), ì•„ë‹ˆë©´ ë ˆë²¨ 0(ë¹„í™œì„±)ìœ¼ë¡œ ì„¤ì •
                     allTowersInOrder[i].SetLevel(i < unlockedCount ? 1 : 0);
                 }
             }
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
         gameData.enhancementMaterials += reward;
         Debug.Log($"{reward}");
 
-        
+
 
         if (gameData.stageHighScores.ContainsKey(currentStage.stageIndex))
         {
@@ -102,27 +102,27 @@ public class GameManager : MonoBehaviour
         string stageID = clearedStage.stageIndex.ToString();
         GameData data = SaveLoadManager.instance.gameData;
 
-        // 1. ÇöÀç ½ºÅ×ÀÌÁöÀÇ ±âº» º¸»óÀ» °¡Á®¿É´Ï´Ù.
+        // 1. í˜„ì¬ ìŠ¤í…Œì´ì§€ì˜ ê¸°ë³¸ ë³´ìƒì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
         int baseReward = currentStage.clearReward;
 
-        // 2. ÀúÀåµÈ °­È­ ·¹º§À» °¡Á®¿É´Ï´Ù.
+        // 2. í”Œë ˆì´ì–´ ê°•í™” ë ˆë²¨ì„ ê°€ì ¸ì˜µë‹ˆë‹¤.
         int rewardLevel = gameData.clearRewardBonusLevel;
 
-        // 3. ÃÖÁ¾ º¸³Ê½º ¹èÀ²À» °è»êÇÕ´Ï´Ù (·¹º§´ç 0.2¹è = 20%).
-        float bonusMultiplier = 1f + (rewardLevel * 0.2f); // ±âº» 1¹è + º¸³Ê½º
+        // 3. ë³´ìƒ ë³´ë„ˆìŠ¤ ë°°ìœ¨ì„ ê³„ì‚°í•©ë‹ˆë‹¤ (ë ˆë²¨ë‹¹ 0.2ë°° = 20%).
+        float bonusMultiplier = 1f + (rewardLevel * 0.2f); // ê¸°ë³¸ 1ë°° + ë³´ë„ˆìŠ¤
 
-        // 4. ÃÖÁ¾ º¸»ó = ±âº» º¸»ó * ÃÖÁ¾ ¹èÀ² (Á¤¼ö·Î º¯È¯)
+        // 4. ìµœì¢… ë³´ìƒ = ê¸°ë³¸ ë³´ìƒ * ë³´ìƒ ë°°ìœ¨ (ì •ìˆ˜ë¡œ ë°˜ì˜¬ë¦¼)
         int finalReward = Mathf.RoundToInt(baseReward * bonusMultiplier);
 
-        // 5. ÇÃ·¹ÀÌ¾îÀÇ º¸À¯ Àç·á¿¡ ÃÖÁ¾ º¸»óÀ» ´õÇØÁİ´Ï´Ù.
+        // 5. í”Œë ˆì´ì–´ì˜ ê°•í™” ì¬ë£Œì— ìµœì¢… ë³´ìƒì„ ì¶”ê°€í•©ë‹ˆë‹¤.
         gameData.enhancementMaterials += finalReward;
-        Debug.Log($"½ºÅ×ÀÌÁö Å¬¸®¾î! ±âº» º¸»ó: {baseReward}, º¸³Ê½º: +{(bonusMultiplier - 1f) * 100:F0}%, ÃÖÁ¾ È¹µæ: {finalReward}°³!");
+        Debug.Log($"ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´! ê¸°ë³¸ ë³´ìƒ: {baseReward}, ë³´ë„ˆìŠ¤: +{(bonusMultiplier - 1f) * 100:F0}%, ìµœì¢… íšë“: {finalReward}ê°œ!");
 
         if (!data.firstClearRewards.Contains(stageID))
         {
             data.firstClearRewards.Add(stageID);
-            data.gachaTickets += 3; // Ã¹ Å¬¸®¾î ½Ã Æ¼ÄÏ 3°³ Áö±Ş
-            Debug.Log("Ã¹ Å¬¸®¾î º¸³Ê½º! Æ¼ÄÏ +3");
+            data.gachaTickets += 1; // ì²« í´ë¦¬ì–´ ì‹œ í‹°ì¼“ 1ê°œ ì§€ê¸‰
+            Debug.Log("ì²« í´ë¦¬ì–´ ë³´ë„ˆìŠ¤! í‹°ì¼“ +1");
         }
         SaveLoadManager.instance.SaveGame(GameSession.instance.currentSaveSlot);
 

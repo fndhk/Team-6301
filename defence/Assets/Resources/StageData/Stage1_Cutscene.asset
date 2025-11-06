@@ -70,8 +70,9 @@ MonoBehaviour:
   - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
     background: {fileID: 3599680988517598315, guid: 393da336b31a06a4792dd1a669e218fc, type: 3}
     dialogueText: "\uC801\uC774 \uC544\uC774\uD15C\uC744 \uB5A8\uC5B4\uD2B8\uB838\uC5B4\uC694!
-      \uC544\uC774\uD15C\uB4E4\uC740 \uAC01\uAC01 Z, X, ., / \uD0A4\uB85C \uC0AC\uC6A9\uD560
-      \uC218 \uC788\uC5B4\uC694. "
+      \uC544\uC774\uD15C\uB4E4\uC740 \uAC01\uAC01 Q, {, \uC67C\uCABD \uC26C\uD504\uD2B8,
+      \uC624\uB978\uCABD \uC26C\uD504\uD2B8 \uD0A4\uB85C \uC0AC\uC6A9\uD560 \uC218
+      \uC788\uC5B4\uC694. "
   - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
     background: {fileID: 3192317913754455671, guid: a587852f51cc54342b7478b6f3c19aa1, type: 3}
     dialogueText: "\uD604\uC7AC \uC810\uC218\uB294 \uC5EC\uAE30\uC11C \uD655\uC778\uD560

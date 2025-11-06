@@ -930,11 +930,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9115067792162319947, guid: dfc8b73bf04893d40a70158e9b9b9ba8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 451
+      value: 607
       objectReference: {fileID: 0}
     - target: {fileID: 9115067792162319947, guid: dfc8b73bf04893d40a70158e9b9b9ba8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -234
+      value: -213
       objectReference: {fileID: 0}
     - target: {fileID: 9115067792162319947, guid: dfc8b73bf04893d40a70158e9b9b9ba8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1296,7 +1296,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD3EC\uD0D1\uACFC\uCDA9\uC804"
+  m_text: "\uD3EC\uD0D1\uACFC\uCDA9\uC804\nRS"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 955f139538ddbd64d8bacc7f84a18d4d, type: 2}
   m_sharedMaterial: {fileID: -4977190240920951974, guid: 955f139538ddbd64d8bacc7f84a18d4d, type: 2}
@@ -2536,7 +2536,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD0C0\uC6CC \uACF5\uACA9\uB825 \uC99D\uAC00 "
+  m_text: "\uD0C0\uC6CC \uACF5\uACA9\uB825 \uC99D\uAC00 \nQ"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 955f139538ddbd64d8bacc7f84a18d4d, type: 2}
   m_sharedMaterial: {fileID: -4977190240920951974, guid: 955f139538ddbd64d8bacc7f84a18d4d, type: 2}
@@ -6915,7 +6915,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD790\uB9C1\uD329"
+  m_text: "\uD790\uB9C1\uD329\nLS"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 955f139538ddbd64d8bacc7f84a18d4d, type: 2}
   m_sharedMaterial: {fileID: -4977190240920951974, guid: 955f139538ddbd64d8bacc7f84a18d4d, type: 2}
@@ -10345,7 +10345,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD0C0\uC6CC \uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00"
+  m_text: "\uD0C0\uC6CC \uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00\n["
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 955f139538ddbd64d8bacc7f84a18d4d, type: 2}
   m_sharedMaterial: {fileID: -4977190240920951974, guid: 955f139538ddbd64d8bacc7f84a18d4d, type: 2}

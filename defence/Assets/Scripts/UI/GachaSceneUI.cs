@@ -1,12 +1,13 @@
-// ÆÄÀÏ ÀÌ¸§: GachaSceneUI.cs (ÀüÃ¼ ¼öÁ¤ ¹öÀü)
+//íŒŒì¼ ëª…: GachaSceneUI.cs (ì „ì²´ ë‚´ìš© ìˆ˜ì •)
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
-using System.Collections.Generic; // List »ç¿ëÀ» À§ÇØ Ãß°¡
-using System.Linq; // Mathf.Min »ç¿ëÀ» À§ÇØ Ãß°¡
+using System.Collections.Generic; // List ì‚¬ìš©ì„ ìœ„í•´ ì¶”ê°€
+using System.Linq; // Mathf.Min ì‚¬ìš©ì„ ìœ„í•´ ì¶”ê°€
+using System.Collections;
 
-// »Ì±â °á°ú¿Í »óÅÂ¸¦ ÇÔ²² ÀúÀåÇÏ±â À§ÇÑ ÀÛÀº ±¸Á¶Ã¼
+// ë½‘ê¸° ê²°ê³¼ì™€ ìƒíƒœë¥¼ í•¨ê»˜ ì €ì¥í•˜ê¸° ìœ„í•œ êµ¬ì¡° êµ¬ì¡°ì²´
 public struct GachaDrawResult
 {
     public CharacterData characterData;
@@ -21,47 +22,47 @@ public struct GachaDrawResult
 
 public class GachaSceneUI : MonoBehaviour
 {
-    [Header("UI ¿ä¼Ò - ´ÜÀÏ »Ì±â")]
+    [Header("UI ìš”ì†Œ - ë‹¨ë… ë½‘ê¸°")]
     public Button gachaButton;
     public TextMeshProUGUI ticketCountText;
     public Image resultCharacterImage;
     public TextMeshProUGUI resultNameText;
-    public TextMeshProUGUI resultStatusText; //  "½Å±Ô ´Ü¿ø" µî »óÅÂ Ç¥½Ã¿ë
+    public TextMeshProUGUI resultStatusText; //  "ì‹ ê·œ ë‹¨ì›" ë“± ìƒíƒœ í‘œì‹œìš©
     public GameObject resultPanel;
     public Button closeButton;
 
-    [Header("UI ¿ä¼Ò - ´ÜÃ¼ »Ì±â")]
-    public Button gachaAllButton; //  Æ¼ÄÏ ¸ğµÎ »ç¿ë ¹öÆ°
-    public GameObject multiResultPanel; //  ´ÜÃ¼ °á°ú ÆĞ³Î
-    public Button closeMultiResultButton; //  ´ÜÃ¼ °á°ú ÆĞ³Î ´İ±â ¹öÆ°
-    public List<GachaResultSlotUI> multiResultSlots; //  ´ÜÃ¼ °á°ú ½½·Ô UI ¸®½ºÆ®
+    [Header("UI ìš”ì†Œ - ë‹¨ì²´ ë½‘ê¸°")]
+    public Button gachaAllButton; //  í‹°ì¼“ ì „ë¶€ ë½‘ê¸° ë²„íŠ¼
+    public GameObject multiResultPanel; //  ë‹¨ì²´ ë½‘ê¸° íŒ¨ë„
+    public Button closeMultiResultButton; //  ë‹¨ì²´ ë½‘ê¸° íŒ¨ë„ ë‹«ê¸° ë²„íŠ¼
+    public List<GachaResultSlotUI> multiResultSlots; //  ë‹¨ì²´ ë½‘ê¸° ìŠ¬ë¡¯ UI ë¦¬ìŠ¤íŠ¸
 
-    [Header("±âÅ¸ UI")]
+    [Header("ê¸°íƒ€ UI")]
     public Button backButton;
 
-    private GachaDrawResult pendingSingleResult; //  ´ÜÀÏ »Ì±â °á°ú¸¦ ±¸Á¶Ã¼·Î ÀúÀå
+    private GachaDrawResult pendingSingleResult; //  ë‹¨ë… ë½‘ê¸° ê²°ê³¼ë¥¼ êµ¬ì¡°ì²´ë¡œ ì €ì¥
 
     void Start()
     {
-        // ... (±âÁ¸ Start ³»¿ëÀº ´ëºÎºĞ µ¿ÀÏ) ...
+        // ... (ê¸°ì¡´ Start ë©”ì„œë“œ ë‚˜ë¨¸ì§€ ë¶€ë¶„ ìƒëµ) ...
         if (SaveLoadManager.instance == null || GameSession.instance == null)
         {
-            Debug.LogError("GachaSceneUI: ÇÊ¼ö ¸Å´ÏÀú°¡ ¾ø½À´Ï´Ù! MainMenu¿¡¼­ ½ÃÀÛÇØÁÖ¼¼¿ä.");
+            Debug.LogError("GachaSceneUI: í•„ìˆ˜ ë§¤ë‹ˆì €ê°€ ì—†ìŠµë‹ˆë‹¤! MainMenuì—ì„œ ì‹œì‘í•´ì£¼ì„¸ìš”.");
             return;
         }
 
         UpdateTicketUI();
 
-        // ¹öÆ° ¸®½º³Ê ¿¬°á
+        // ë²„íŠ¼ ë¦¬ìŠ¤ë„ˆ ë“±ë¡
         gachaButton.onClick.AddListener(OnClickGachaSingle);
         closeButton.onClick.AddListener(OnClickCloseResult);
         backButton.onClick.AddListener(OnClickBackButton);
 
-        //  »õ·Î Ãß°¡µÈ ¹öÆ° ¸®½º³Ê ¿¬°á
+        //  ìƒˆë¡œ ì¶”ê°€ëœ ë²„íŠ¼ ë¦¬ìŠ¤ë„ˆ ë“±ë¡
         gachaAllButton.onClick.AddListener(OnClickGachaAll);
         closeMultiResultButton.onClick.AddListener(OnClickCloseMultiResult);
 
-        // ÆĞ³Î ÃÊ±â »óÅÂ ¼³Á¤
+        // íŒ¨ë„ ì´ˆê¸° ìƒíƒœ ì„¤ì •
         resultPanel.SetActive(false);
         multiResultPanel.SetActive(false);
     }
@@ -71,12 +72,12 @@ public class GachaSceneUI : MonoBehaviour
         int tickets = SaveLoadManager.instance.gameData.gachaTickets;
         ticketCountText.text = $"Tickets: {tickets}";
 
-        // Æ¼ÄÏ ¼ö¿¡ µû¶ó ¹öÆ° È°¼ºÈ­/ºñÈ°¼ºÈ­
+        // í‹°ì¼“ ê°œìˆ˜ ë”°ë¼ ë²„íŠ¼ í™œì„±í™”/ë¹„í™œì„±í™”
         gachaButton.interactable = tickets > 0;
         gachaAllButton.interactable = tickets > 0;
     }
 
-    // 1È¸ »Ì±â ¹öÆ° Å¬¸¯
+    // 1íšŒ ë½‘ê¸° ë²„íŠ¼ í´ë¦­
     void OnClickGachaSingle()
     {
         if (SaveLoadManager.instance.gameData.gachaTickets <= 0) return;
@@ -85,37 +86,37 @@ public class GachaSceneUI : MonoBehaviour
         CharacterData result = GachaManager.instance.DrawCharacter();
         if (result == null) return;
 
-        //  »Ì±â Àü¿¡ ÇöÀç »óÅÂ¸¦ È®ÀÎ
+        //  ë½‘ê¸° ì²˜ë¦¬ ì „ì— ìƒíƒœë¥¼ í™•ì¸
         string status = GetGachaStatus(result.characterID);
 
-        //  »Ì±â °á°ú Ã³¸® (·¹º§¾÷ µî)
+        //  ë½‘ê¸° ê²°ê³¼ ì²˜ë¦¬ (ë ˆë²¨ì—… ë“±)
         GachaManager.instance.ProcessGacha(result);
 
-        //  °á°ú¿Í »óÅÂ¸¦ ÇÔ²² ÀúÀå
+        //  ê²°ê³¼ì™€ ìƒíƒœë¥¼ í•¨ê»˜ ì €ì¥
         pendingSingleResult = new GachaDrawResult(result, status);
 
-        // µ¿¿µ»ó Àç»ı ÈÄ ShowResult È£Ãâ
+        // ë™ì˜ìƒ ì¬ìƒ í›„ ShowResult í˜¸ì¶œ
         GachaVideoPlayer.instance.PlayGachaVideo(result.rarity, ShowSingleResult);
 
         UpdateTicketUI();
         SaveLoadManager.instance.SaveGame(GameSession.instance.currentSaveSlot);
     }
 
-    //  ¸ğµÎ »Ì±â ¹öÆ° Å¬¸¯
+    //  ì „ë¶€ ë½‘ê¸° ë²„íŠ¼ í´ë¦­
     void OnClickGachaAll()
     {
         int tickets = SaveLoadManager.instance.gameData.gachaTickets;
         if (tickets <= 0) return;
 
-        // »ç¿ëÇÒ Æ¼ÄÏ ¼ö °áÁ¤ (ÃÖ´ë 10Àå)
+        // ë³´ìœ í•œ í‹°ì¼“ ìˆ˜ ë§Œí¼ (ìµœëŒ€ 10ê°œ)
         int drawCount = Mathf.Min(tickets, 10);
 
-        // Æ¼ÄÏ ¼Ò¸ğ
+        // í‹°ì¼“ ì†Œëª¨
         SaveLoadManager.instance.gameData.gachaTickets -= drawCount;
 
         List<GachaDrawResult> results = new List<GachaDrawResult>();
 
-        // Á¤ÇØÁø È½¼ö¸¸Å­ »Ì±â ¹İº¹
+        // ë½‘ê¸°ë¥¼ íšŸìˆ˜ë§Œí¼ ë½‘ê¸° ë°˜ë³µ
         for (int i = 0; i < drawCount; i++)
         {
             CharacterData drawnChar = GachaManager.instance.DrawCharacter();
@@ -126,24 +127,34 @@ public class GachaSceneUI : MonoBehaviour
             results.Add(new GachaDrawResult(drawnChar, status));
         }
 
-        // °á°ú Ç¥½Ã ÄÚ·çÆ¾ ½ÃÀÛ
-        StartCoroutine(ShowMultiResultCoroutine(results));
+        // ê°€ì¥ ë†’ì€ ë“±ê¸‰ ì°¾ê¸°
+        CharacterData.CharacterRarity highestRarity = CharacterData.CharacterRarity.R;
+        foreach (var result in results)
+        {
+            if (result.characterData.rarity > highestRarity)
+            {
+                highestRarity = result.characterData.rarity;
+            }
+        }
+
+        // ê°€ì¥ ë†’ì€ ë“±ê¸‰ì˜ ë™ì˜ìƒ ì¬ìƒ í›„ ê²°ê³¼ í‘œì‹œ
+        GachaVideoPlayer.instance.PlayGachaVideo(highestRarity, () => StartCoroutine(ShowMultiResultCoroutine(results)));
 
         UpdateTicketUI();
         SaveLoadManager.instance.SaveGame(GameSession.instance.currentSaveSlot);
     }
 
-    //  ´ÜÀÏ »Ì±â °á°ú Ç¥½Ã (Äİ¹é ÇÔ¼ö)
+    //  ë‹¨ë… ë½‘ê¸° ê²°ê³¼ í‘œì‹œ (ì½œë°± í•¨ìˆ˜)
     void ShowSingleResult()
     {
         resultPanel.SetActive(true);
-        //  ¾ÆÀÌÄÜ ´ë½Å ÀÏ·¯½ºÆ® Ç¥½Ã
+        //  ì €ì¥ëœ ê²°ê³¼ ì¼ëŸ¬ìŠ¤íŠ¸ í‘œì‹œ
         resultCharacterImage.sprite = pendingSingleResult.characterData.characterIllustration;
         resultNameText.text = $"{pendingSingleResult.characterData.characterName}\n({pendingSingleResult.characterData.rarity})";
-        //  »óÅÂ ÅØ½ºÆ® Ç¥½Ã
+        //  ìƒíƒœ í…ìŠ¤íŠ¸ í‘œì‹œ
         resultStatusText.text = pendingSingleResult.status;
 
-        // ·¹º§ Ç¥½Ã ·ÎÁ÷ (±âÁ¸°ú µ¿ÀÏ)
+        // ë ˆë²¨ í‘œì‹œ ì¶”ê°€ (ì˜µì…˜ì  ê¸°ëŠ¥)
         int currentLevel = SaveLoadManager.instance.gameData.characterLevels[pendingSingleResult.characterData.characterID];
         if (currentLevel > 0)
         {
@@ -151,61 +162,61 @@ public class GachaSceneUI : MonoBehaviour
         }
     }
 
-    //  ´ÜÃ¼ »Ì±â °á°ú Ç¥½Ã (ÄÚ·çÆ¾)
-    private IEnumerator<WaitForSeconds> ShowMultiResultCoroutine(List<GachaDrawResult> results)
+    //  ë‹¨ì²´ ë½‘ê¸° ê²°ê³¼ í‘œì‹œ (ì½”ë£¨í‹´)
+    private IEnumerator ShowMultiResultCoroutine(List<GachaDrawResult> results)
     {
         multiResultPanel.SetActive(true);
 
-        // ¸ğµç ½½·ÔÀ» ÀÏ´Ü ¼û±é´Ï´Ù.
+        // ëª¨ë“  ìŠ¬ë¡¯ì„ ìš°ì„  ìˆ¨ê¹ë‹ˆë‹¤.
         foreach (var slot in multiResultSlots)
         {
             slot.gameObject.SetActive(false);
         }
 
-        // »ÌÀº °³¼ö¸¸Å­ ½½·ÔÀ» È°¼ºÈ­ÇÏ°í '¼û±è' »óÅÂ·Î ¸¸µì´Ï´Ù.
+        // ê²°ê³¼ ê°œìˆ˜ë§Œí¼ ìŠ¬ë¡¯ì„ í™œì„±í™”í•˜ê³  'ìˆ¨ê¹€' ìƒíƒœë¡œ ì„¤ì •í•©ë‹ˆë‹¤.
         for (int i = 0; i < results.Count; i++)
         {
             if (i < multiResultSlots.Count)
             {
                 multiResultSlots[i].gameObject.SetActive(true);
-                multiResultSlots[i].Hide(); // ÀÌ¹ÌÁö¸¦ °Ë°Ô, ÅØ½ºÆ®´Â ºñ¿ò
+                multiResultSlots[i].Hide(); // ì´ë¯¸ì§€ë¥¼ ê°ì¶”ê³ , í…ìŠ¤íŠ¸ë¥¼ ìˆ¨ê¹€
             }
         }
 
-        // (¼±ÅÃ»çÇ×) ¿©±â¿¡ Ä«µå µÚÁı´Â ¾Ö´Ï¸ŞÀÌ¼Ç °°Àº ¿¬ÃâÀ» ³ÖÀ» ¼ö ÀÖ½À´Ï´Ù.
-        yield return new WaitForSeconds(0.5f); // Àá±ñ ´ë±â ÈÄ °á°ú °ø°³
+        // (ì—°ì¶œì˜µì…˜) ì—¬ê¸°ì— ì¹´ë“œ ë’¤ì§‘ê¸° ì• ë‹ˆë©”ì´ì…˜ ê°™ì€ ì—°ì¶œì„ ë„£ì„ ìˆ˜ ìˆìŠµë‹ˆë‹¤.
+        yield return new WaitForSeconds(0.5f); // ê²°ê³¼ í‘œì‹œ ì „ ëŒ€ê¸° ì‹œê°„
 
-        // °á°ú¸¦ ÇÏ³ª¾¿ °ø°³ÇÕ´Ï´Ù.
+        // ì¹´ë“œë¥¼ í•˜ë‚˜ì”© ê³µê°œí•©ë‹ˆë‹¤.
         for (int i = 0; i < results.Count; i++)
         {
             if (i < multiResultSlots.Count)
             {
                 multiResultSlots[i].ShowResult(results[i].characterData, results[i].status);
-                yield return new WaitForSeconds(0.3f); // ´ÙÀ½ Ä«µå¸¦ °ø°³ÇÏ±â±îÁöÀÇ ½Ã°£
+                yield return new WaitForSeconds(0.3f); // ë‹¤ìŒ ì¹´ë“œë¥¼ ê³µê°œí•˜ê¸°ì „ê¹Œì§€ ì‹œê°„
             }
         }
     }
 
-    //  Ä³¸¯ÅÍ ID¸¦ ±â¹İÀ¸·Î ÇöÀç »óÅÂ¸¦ ¹İÈ¯ÇÏ´Â ÇÔ¼ö
+    //  ìºë¦­í„° IDë¥¼ ê¸°ë°˜ìœ¼ë¡œ ë½‘ê¸° ìƒíƒœë¥¼ ë°˜í™˜í•˜ëŠ” í•¨ìˆ˜
     private string GetGachaStatus(string charID)
     {
         var levels = SaveLoadManager.instance.gameData.characterLevels;
 
         if (!levels.ContainsKey(charID))
         {
-            return "½Å±Ô ´Ü¿ø";
+            return "ì‹ ê·œ ë‹¨ì›";
         }
         else if (levels[charID] < 3)
         {
-            return "´Ü¿ø °­È­";
+            return "ë‹¨ì› ê°•í™”";
         }
-        else // 3·¹º§ ÀÌ»ó
+        else // 3ë ˆë²¨ ì´ìƒ
         {
-            return "¼ÒÁö±İ +300";
+            return "ì†Œì§€ê¸ˆ +300";
         }
     }
 
-    // --- UI ´İ±â ¹× µÚ·Î°¡±â ÇÔ¼öµé ---
+    // --- UI ë‹«ê¸° ë° ë’¤ë¡œê°€ê¸° í•¨ìˆ˜ë“¤ ---
     public void OnClickCloseResult()
     {
         resultPanel.SetActive(false);

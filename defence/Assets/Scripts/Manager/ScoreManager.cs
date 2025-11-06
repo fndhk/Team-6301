@@ -1,4 +1,4 @@
-// ÆÄÀÏ ÀÌ¸§: ScoreManager.cs (½Ç½Ã°£ ÃÖÁ¾ Á¡¼ö °è»ê ¹öÀü)
+// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½: ScoreManager.cs (ï¿½Ç½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 using UnityEngine;
 using TMPro;
 
@@ -10,16 +10,16 @@ public class ScoreManager : MonoBehaviour
     private long totalJudgmentPoints = 0;
     private int totalJudgmentCount = 0;
 
-    [Header("UI ¿¬°á")]
-    public TextMeshProUGUI scoreText; // "SCORE: " ÅØ½ºÆ®
+    [Header("UI ï¿½ï¿½ï¿½ï¿½")]
+    public TextMeshProUGUI scoreText; // "SCORE: " ï¿½Ø½ï¿½Æ®
 
-    [Header("¸®µë Á¡¼ö ¼³Á¤")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField] private int perfectScore = 50;
     [SerializeField] private int greatScore = 20;
     [SerializeField] private int goodScore = 5;
     [SerializeField] private int syncBonusScore = 500;
 
-    //  ½Ç½Ã°£ °è»êÀ» À§ÇØ CoreFacility ÂüÁ¶
+    //  ï¿½Ç½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ CoreFacility ï¿½ï¿½ï¿½ï¿½
     private CoreFacility coreFacility;
 
     void Awake()
@@ -32,34 +32,34 @@ public class ScoreManager : MonoBehaviour
     {
         ResetScore();
 
-        //  CoreFacility¸¦ Ã£¾Æ º¯¼ö¿¡ ÀúÀå
+        //  CoreFacilityï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         coreFacility = FindFirstObjectByType<CoreFacility>();
         if (coreFacility == null)
         {
-            Debug.LogError("ScoreManager: CoreFacility¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù!");
+            Debug.LogError("ScoreManager: CoreFacilityï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½!");
         }
     }
 
-    // ---  ½Ç½Ã°£ Á¡¼ö °è»ê (ÇÙ½É) ---
+    // ---  ï¿½Ç½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ (ï¿½Ù½ï¿½) ---
     void Update()
     {
         if (coreFacility == null) return;
 
-        // 1. Æò±Õ ¸®µë Á¡¼ö °è»ê
+        // 1. ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         double averageRhythmScore = 0.0;
         if (totalJudgmentCount > 0)
         {
             averageRhythmScore = (double)totalJudgmentPoints / totalJudgmentCount;
         }
 
-        // 2. ÇöÀç Ã¼·Â % °è»ê
+        // 2. ï¿½ï¿½ï¿½ï¿½ Ã¼ï¿½ï¿½ % ï¿½ï¿½ï¿½
         float healthPercentage = coreFacility.GetCurrentHealthPercentage();
 
-        // 3. ½Ç½Ã°£ ÃÖÁ¾ Á¡¼ö °è»ê
+        // 3. ï¿½Ç½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         double currentFinalScore = (double)totalKillScore * averageRhythmScore * (double)healthPercentage * 3.0;
 
-        // 4. UI ¾÷µ¥ÀÌÆ®
-        // (A)  "SCORE: " ÅØ½ºÆ®´Â ÀÌÁ¦ ¾÷µ¥ÀÌÆ®ÇÏÁö ¾Ê½À´Ï´Ù. (¾Æ·¡ 3ÁÙ »èÁ¦ ¶Ç´Â ÁÖ¼® Ã³¸®)
+        // 4. UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
+        // (A)  "SCORE: " ï¿½Ø½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½. (ï¿½Æ·ï¿½ 3ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½Ö¼ï¿½ Ã³ï¿½ï¿½)
         /*
         if (scoreText != null)
         {
@@ -67,19 +67,19 @@ public class ScoreManager : MonoBehaviour
         }
         */
 
-        // (B) ÀçÈ­ UI(MaterialsUI)´Â ½Ç½Ã°£ ÃÖÁ¾ Á¡¼ö¸¦ °è¼Ó Ç¥½Ã
+        // (B) ï¿½ï¿½È­ UI(MaterialsUI)ï¿½ï¿½ ï¿½Ç½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ç¥ï¿½ï¿½
         if (MaterialsUI.instance != null)
         {
             MaterialsUI.instance.OnScoreChanged((long)currentFinalScore);
         }
     }
 
-    // ---  Á¡¼ö Ãß°¡ ÇÔ¼öµéÀº ÀÌÁ¦ UI ¾÷µ¥ÀÌÆ®¸¦ È£ÃâÇÏÁö ¾ÊÀ½ ---
+    // ---  ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ---
 
     private void AddKillScoreToTotal(long amount)
     {
         totalKillScore += amount;
-        // Update()°¡ Ã³¸®ÇÏ¹Ç·Î UpdateScoreUI() È£Ãâ »èÁ¦
+        // Update()ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï¹Ç·ï¿½ UpdateScoreUI() È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     public void AddKillScore(int baseScore, float distance)
@@ -98,19 +98,19 @@ public class ScoreManager : MonoBehaviour
             case JudgmentManager.Judgment.Good: totalJudgmentPoints += 70; break;
             case JudgmentManager.Judgment.Miss: totalJudgmentPoints += 0; break;
         }
-        // Update()°¡ Ã³¸®ÇÏ¹Ç·Î UI ¾÷µ¥ÀÌÆ® È£Ãâ ÇÊ¿ä ¾øÀ½
+        // Update()ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï¹Ç·ï¿½ UI ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® È£ï¿½ï¿½ ï¿½Ê¿ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
     public void AddSyncBonusScore()
     {
         AddKillScoreToTotal(syncBonusScore);
-        // Update()°¡ Ã³¸®ÇÏ¹Ç·Î UpdateScoreUI() È£Ãâ »èÁ¦
+        // Update()ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï¹Ç·ï¿½ UpdateScoreUI() È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
-    //  ÃÖÁ¾ Á¡¼ö °è»ê (GameManager°¡ ¸¶Áö¸·¿¡ È£Ãâ)
+    //  ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ (GameManagerï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È£ï¿½ï¿½)
     public int GetFinalScore(float healthPercentage)
     {
-        // ÀÌ ·ÎÁ÷Àº Update()ÀÇ °è»ê°ú µ¿ÀÏ
+        // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Update()ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         double averageRhythmScore = 0.0;
         if (totalJudgmentCount > 0)
         {
@@ -126,8 +126,23 @@ public class ScoreManager : MonoBehaviour
         totalKillScore = 0;
         totalJudgmentPoints = 0;
         totalJudgmentCount = 0;
-        // Update()°¡ Ã³¸®ÇÏ¹Ç·Î UpdateScoreUI() È£Ãâ »èÁ¦
+        // Update()ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ï¹Ç·ï¿½ UpdateScoreUI() È£ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     }
 
-    //  UpdateScoreUI() ÇÔ¼ö´Â ÀÌÁ¦ Update() ÇÔ¼ö·Î ÅëÇÕµÇ¾úÀ¸¹Ç·Î »èÁ¦
+    /// <summary>
+    /// í˜„ì¬ ë¦¬ë“¬ ê²Œì„ ì •í™•ë„ë¥¼ 0~100 ì‚¬ì´ì˜ float ê°’ìœ¼ë¡œ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// íŒì •ì´ ì—†ìœ¼ë©´ 100ì„ ë°˜í™˜í•©ë‹ˆë‹¤.
+    /// </summary>
+    public float GetAverageRhythmAccuracy()
+    {
+        if (totalJudgmentCount <= 0)
+        {
+            return 100f; // íŒì •ì´ ì—†ìœ¼ë©´ 100% (ê²Œì„ ì‹œì‘ ì‹œ)
+        }
+
+        float averageScore = (float)totalJudgmentPoints / totalJudgmentCount;
+        return averageScore; // 0~100 ì‚¬ì´ì˜ ê°’
+    }
+
+    //  UpdateScoreUI() ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Update() ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ÕµÇ¾ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½
 }
