@@ -3,17 +3,17 @@ using System.Collections;
 
 public abstract class BaseTower : MonoBehaviour
 {
-    [Header("°øÅë ´É·ÂÄ¡")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½É·ï¿½Ä¡")]
     [SerializeField] protected float attackRange = 10f;
     [SerializeField] public int baseDamage = 25;
     [SerializeField] private float baseAttackCooldown = 1.5f;
     [HideInInspector] public float itemDamageMultiplier = 1f;
 
-    [Header("·¹º§")]
+    [Header("ï¿½ï¿½ï¿½ï¿½")]
     public int level = 1;
     private int tempLevelBuff = 0;
 
-    [Header("°øÅë ±¸¼º¿ä¼Ò")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     [SerializeField] protected string enemyTag = "Enemy";
     [SerializeField] protected GameObject projectilePrefab;
     [SerializeField] protected Transform firePoint;
@@ -21,7 +21,7 @@ public abstract class BaseTower : MonoBehaviour
     protected Transform target;
     private float nextAttackTime = 0f;
 
-    // ¡å¡å¡å ½ºÅ³·Î ÀÎÇÑ °ø¼Ó ¹öÇÁ º¯¼ö ¹× ÄÚ·çÆ¾ ÂüÁ¶ Ãß°¡ ¡å¡å¡å
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ú·ï¿½Æ¾ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½
     private float attackSpeedMultiplierFromSkill = 1f;
     private Coroutine attackSpeedBuffCoroutine;
 
@@ -60,14 +60,25 @@ public abstract class BaseTower : MonoBehaviour
 
             float permanentAtkSpeedBonus = SaveLoadManager.instance.gameData.permanentAtkSpeedBonus;
 
-            // ¡å¡å¡å ÃÖÁ¾ °ø°İ ¼Óµµ °è»ê½Ä¿¡ ½ºÅ³ ¹öÇÁ(attackSpeedMultiplierFromSkill) Ãß°¡ ¡å¡å¡å
-            float totalSpeedMultiplier = totalStats.towerAttackSpeedMultiplier * (1 + permanentAtkSpeedBonus) * attackSpeedMultiplierFromSkill;
+            // ë¦¬ë“¬ ê²Œì„ ì •í™•ë„ ê°€ì ¸ì˜¤ê¸° (0~100)
+            float rhythmAccuracy = 100f; // ê¸°ë³¸ê°’
+            if (ScoreManager.instance != null)
+            {
+                rhythmAccuracy = ScoreManager.instance.GetAverageRhythmAccuracy();
+            }
+            // ì •í™•ë„ë¥¼ 30%~100% ë²”ìœ„ë¡œ ì œí•œ (ë„ˆë¬´ ë‚®ì•„ì§€ë©´ íƒ€ì›Œê°€ ì•„ì˜ˆ ì‘ë™ ì•ˆ í•¨ ë°©ì§€)
+            float accuracyMultiplier = Mathf.Clamp(rhythmAccuracy / 100f, 0.3f, 1.0f);
+
+            // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½Ä¿ï¿½ ï¿½ï¿½Å³ ï¿½ï¿½ï¿½ï¿½(attackSpeedMultiplierFromSkill) ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½
+            // ì •í™•ë„ê°€ ê³µê²©ì†ë„ì—ë„ ì˜í–¥
+            float totalSpeedMultiplier = totalStats.towerAttackSpeedMultiplier * (1 + permanentAtkSpeedBonus) * attackSpeedMultiplierFromSkill * accuracyMultiplier;
             float finalAttackCooldown = baseAttackCooldown / totalSpeedMultiplier;
 
             nextAttackTime = Time.time + finalAttackCooldown;
 
             int permanentAtkBonus = SaveLoadManager.instance.gameData.permanentAtkBonus;
-            int finalDamage = Mathf.RoundToInt((baseDamage + totalStats.towerAttackDamageBonus + permanentAtkBonus) * itemDamageMultiplier);
+            // ì •í™•ë„ê°€ ê³µê²©ë ¥ì—ë„ ì˜í–¥
+            int finalDamage = Mathf.RoundToInt((baseDamage + totalStats.towerAttackDamageBonus + permanentAtkBonus) * itemDamageMultiplier * accuracyMultiplier);
             float levelMultiplier = 1f + (currentTotalLevel - 1) * 0.2f;
             int damageWithLevel = Mathf.RoundToInt(finalDamage * levelMultiplier);
 
@@ -106,7 +117,7 @@ public abstract class BaseTower : MonoBehaviour
         itemDamageMultiplier = multiplier;
     }
 
-    // ¡å¡å¡å ½Å±Ô: °ø°İ¼Óµµ Áõ°¡ ¹öÇÁ Àû¿ë ÇÔ¼ö ¡å¡å¡å
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½Å±ï¿½: ï¿½ï¿½ï¿½İ¼Óµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô¼ï¿½ ï¿½ï¿½ï¿½ï¿½
     public void ApplyAttackSpeedBuff(float multiplier, float duration)
     {
         if (attackSpeedBuffCoroutine != null)
@@ -120,7 +131,7 @@ public abstract class BaseTower : MonoBehaviour
     {
         attackSpeedMultiplierFromSkill = multiplier;
         yield return new WaitForSeconds(duration);
-        attackSpeedMultiplierFromSkill = 1f; // Áö¼Ó½Ã°£ÀÌ ³¡³ª¸é ¿ø·¡ ¹èÀ²·Î º¹±¸
+        attackSpeedMultiplierFromSkill = 1f; // ï¿½ï¿½ï¿½Ó½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         attackSpeedBuffCoroutine = null;
     }
 

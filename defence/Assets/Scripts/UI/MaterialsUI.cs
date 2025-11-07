@@ -1,4 +1,4 @@
-// ÆÄÀÏ ÀÌ¸§: MaterialsUI.cs (½Ç½Ã°£ Á¡¼ö Ç¥½Ã¿ëÀ¸·Î ¼öÁ¤)
+// ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½: MaterialsUI.cs (ï¿½Ç½Ã°ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 using UnityEngine;
 using TMPro;
 using System.Collections;
@@ -7,61 +7,99 @@ public class MaterialsUI : MonoBehaviour
 {
     public static MaterialsUI instance;
 
-    [Header("UI ¿¬°á")]
-    [Tooltip("Á¡¼ö ¼ıÀÚ¸¦ Ç¥½ÃÇÒ ÅØ½ºÆ®")]
-    public TextMeshProUGUI materialsText; //  º¯¼ö¸í À¯Áö
+    [Header("UI ï¿½ï¿½ï¿½ï¿½")]
+    [Tooltip("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ú¸ï¿½ Ç¥ï¿½ï¿½ï¿½ï¿½ ï¿½Ø½ï¿½Æ®")]
+    public TextMeshProUGUI materialsText; //  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    [Tooltip("ì •í™•ë„ë¥¼ í‘œì‹œí•  í…ìŠ¤íŠ¸ (ë¹„ì›Œë‘ë©´ ì •í™•ë„ í‘œì‹œ ì•ˆ í•¨)")]
+    public TextMeshProUGUI accuracyText; // ì •í™•ë„ í‘œì‹œ
 
-    [Header("¾Ö´Ï¸ŞÀÌ¼Ç ¼³Á¤")]
+    [Header("ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½")]
     public bool useScaleAnimation = true;
     public bool useColorAnimation = true;
     public Color increaseColor = Color.yellow;
+    public Color decreaseColor = Color.red; // ì •í™•ë„ê°€ ë–¨ì–´ì§ˆ ë•Œ ìƒ‰ìƒ
 
-    //  º¯¼ö¸í À¯Áö (ÀÌÁ¦ "ÇöÀç Ç¥½ÃµÈ Á¡¼ö"¸¦ ÀÇ¹Ì)
+    //  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ "ï¿½ï¿½ï¿½ï¿½ Ç¥ï¿½Ãµï¿½ ï¿½ï¿½ï¿½ï¿½"ï¿½ï¿½ ï¿½Ç¹ï¿½)
     private int currentDisplayedMaterials = 0;
+    private float currentDisplayedAccuracy = 100f; // í˜„ì¬ í‘œì‹œ ì¤‘ì¸ ì •í™•ë„
     private Color originalColor;
+    private Color accuracyOriginalColor; // ì •í™•ë„ í…ìŠ¤íŠ¸ ì›ë³¸ ìƒ‰ìƒ
     private Vector3 originalScale;
+    private Vector3 accuracyOriginalScale; // ì •í™•ë„ í…ìŠ¤íŠ¸ ì›ë³¸ ìŠ¤ì¼€ì¼
 
     void Awake()
     {
-        if (instance == null) instance = this;
-        else Destroy(gameObject);
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            // ì¤‘ë³µëœ MaterialsUI ìŠ¤í¬ë¦½íŠ¸ë§Œ ì œê±° (GameObjectëŠ” ìœ ì§€)
+            Destroy(this);
+        }
     }
 
     void Start()
     {
+        // ì´ ì¸ìŠ¤í„´ìŠ¤ê°€ í™œì„± ì¸ìŠ¤í„´ìŠ¤ê°€ ì•„ë‹ˆë©´ ì´ˆê¸°í™” ê±´ë„ˆë›°ê¸°
+        if (instance != this) return;
+
         if (materialsText != null)
         {
             originalColor = materialsText.color;
             originalScale = materialsText.transform.localScale;
         }
-        UpdateText(); // ½ÃÀÛ ½Ã 0À¸·Î ÃÊ±âÈ­
+        if (accuracyText != null)
+        {
+            accuracyOriginalColor = accuracyText.color;
+            accuracyOriginalScale = accuracyText.transform.localScale;
+        }
+        UpdateText(); // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ 0ï¿½ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
+        UpdateAccuracyText(); // ì •í™•ë„ 100%ë¡œ ì´ˆê¸°í™”
     }
 
-    // ---  ScoreManager°¡ È£ÃâÇÒ »õ ÇÔ¼ö ---
+    void Update()
+    {
+        // ì´ ì¸ìŠ¤í„´ìŠ¤ê°€ í™œì„± ì¸ìŠ¤í„´ìŠ¤ê°€ ì•„ë‹ˆë©´ ì—…ë°ì´íŠ¸ ê±´ë„ˆë›°ê¸°
+        if (instance != this) return;
+
+        // ScoreManagerì—ì„œ ì‹¤ì‹œê°„ ì •í™•ë„ ê°€ì ¸ì™€ì„œ í‘œì‹œ
+        if (ScoreManager.instance != null && accuracyText != null)
+        {
+            float newAccuracy = ScoreManager.instance.GetAverageRhythmAccuracy();
+            if (Mathf.Abs(newAccuracy - currentDisplayedAccuracy) > 0.1f) // 0.1% ì´ìƒ ì°¨ì´ë‚˜ë©´ ì—…ë°ì´íŠ¸
+            {
+                OnAccuracyChanged(newAccuracy);
+            }
+        }
+    }
+
+    // ---  ScoreManagerï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ô¼ï¿½ ---
     public void OnScoreChanged(long newScoreLong)
     {
         int actualScore = (int)newScoreLong;
 
-        // Á¡¼ö°¡ Áõ°¡ÇßÀ» ¶§¸¸ ¾Ö´Ï¸ŞÀÌ¼Ç Àç»ı
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½
         if (actualScore > currentDisplayedMaterials)
         {
             StartCoroutine(AnimateIncrease(actualScore));
         }
-        // Á¡¼ö°¡ °¨¼ÒÇß°Å³ª (Ã¼·Â °¨¼Ò µî) °°À» ¶§´Â ¾Ö´Ï¸ŞÀÌ¼Ç ¾øÀÌ Áï½Ã ¹İ¿µ
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ß°Å³ï¿½ (Ã¼ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½) ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½İ¿ï¿½
         else if (actualScore < currentDisplayedMaterials)
         {
             currentDisplayedMaterials = actualScore;
             UpdateText();
         }
-        // (Á¡¼ö°¡ °°À¸¸é ¾Æ¹«°Íµµ ¾È ÇÔ)
+        // (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ¹ï¿½ï¿½Íµï¿½ ï¿½ï¿½ ï¿½ï¿½)
     }
 
-    // ------ Á¡¼ö Áõ°¡ ¾Ö´Ï¸ŞÀÌ¼Ç ------
-    //  (ÀÌÇÏ ¸ğµç ¾Ö´Ï¸ŞÀÌ¼Ç ÄÚµå´Â ¿øº»°ú µ¿ÀÏÇÏ°Ô À¯Áö)
+    // ------ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ------
+    //  (ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½Úµï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½)
     private IEnumerator AnimateIncrease(int targetAmount)
     {
         int startAmount = currentDisplayedMaterials;
-        float duration = 0.2f; // Ä«¿îÆ®¾÷ ¼Óµµ¸¦ 0.2ÃÊ·Î °íÁ¤ (´õ ºÎµå·¯¿ò)
+        float duration = 0.2f; // Ä«ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½Óµï¿½ï¿½ï¿½ 0.2ï¿½Ê·ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ ï¿½Îµå·¯ï¿½ï¿½)
         float elapsed = 0f;
 
         if (useScaleAnimation)
@@ -93,9 +131,11 @@ public class MaterialsUI : MonoBehaviour
         }
     }
 
-    // ------ ½ºÄÉÀÏ ¾Ö´Ï¸ŞÀÌ¼Ç ÄÚ·çÆ¾ ------
+    // ------ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½Ú·ï¿½Æ¾ ------
     private IEnumerator ScaleAnimation(float targetScale, float duration)
     {
+        if (materialsText == null) yield break; // null ì²´í¬
+
         Vector3 startScale = materialsText.transform.localScale;
         Vector3 endScale = originalScale * targetScale;
         float elapsed = 0f;
@@ -103,43 +143,158 @@ public class MaterialsUI : MonoBehaviour
         {
             elapsed += Time.unscaledDeltaTime;
             float t = elapsed / duration;
-            materialsText.transform.localScale = Vector3.Lerp(startScale, endScale, t);
+            if (materialsText != null) // ë£¨í”„ ì¤‘ null ì²´í¬
+            {
+                materialsText.transform.localScale = Vector3.Lerp(startScale, endScale, t);
+            }
             yield return null;
         }
-        materialsText.transform.localScale = endScale;
+        if (materialsText != null) materialsText.transform.localScale = endScale;
         yield return new WaitForSecondsRealtime(0.1f);
         elapsed = 0f;
         while (elapsed < duration)
         {
             elapsed += Time.unscaledDeltaTime;
             float t = elapsed / duration;
-            materialsText.transform.localScale = Vector3.Lerp(endScale, originalScale, t);
+            if (materialsText != null) // ë£¨í”„ ì¤‘ null ì²´í¬
+            {
+                materialsText.transform.localScale = Vector3.Lerp(endScale, originalScale, t);
+            }
             yield return null;
         }
-        materialsText.transform.localScale = originalScale;
+        if (materialsText != null) materialsText.transform.localScale = originalScale;
     }
 
-    // ------ »ö»ó ¾Ö´Ï¸ŞÀÌ¼Ç ÄÚ·çÆ¾ ------
+    // ------ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½Ú·ï¿½Æ¾ ------
     private IEnumerator ColorAnimation(Color targetColor, float duration)
     {
+        if (materialsText == null) yield break; // null ì²´í¬
+
         Color startColor = materialsText.color;
         float elapsed = 0f;
         while (elapsed < duration)
         {
             elapsed += Time.unscaledDeltaTime;
             float t = elapsed / duration;
-            materialsText.color = Color.Lerp(startColor, targetColor, t);
+            if (materialsText != null) // ë£¨í”„ ì¤‘ null ì²´í¬
+            {
+                materialsText.color = Color.Lerp(startColor, targetColor, t);
+            }
             yield return null;
         }
-        materialsText.color = targetColor;
+        if (materialsText != null) materialsText.color = targetColor;
     }
 
-    // ------ ÅØ½ºÆ® ¾÷µ¥ÀÌÆ® (Ãµ´ÜÀ§ ÄŞ¸¶) ------
+    // ------ ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® (Ãµï¿½ï¿½ï¿½ï¿½ ï¿½Ş¸ï¿½) ------
     private void UpdateText()
     {
         if (materialsText != null)
         {
             materialsText.text = currentDisplayedMaterials.ToString("N0");
+        }
+    }
+
+    // ------ ì •í™•ë„ ë³€ê²½ ì²˜ë¦¬ ------
+    public void OnAccuracyChanged(float newAccuracy)
+    {
+        if (accuracyText == null) return;
+
+        float oldAccuracy = currentDisplayedAccuracy;
+
+        // ì •í™•ë„ê°€ ì¦ê°€í–ˆëŠ”ì§€ ê°ì†Œí–ˆëŠ”ì§€ í™•ì¸
+        bool isIncrease = newAccuracy > oldAccuracy;
+
+        // ì• ë‹ˆë©”ì´ì…˜ ì‹œì‘
+        StartCoroutine(AnimateAccuracyChange(newAccuracy, isIncrease));
+    }
+
+    // ------ ì •í™•ë„ ì• ë‹ˆë©”ì´ì…˜ ------
+    private IEnumerator AnimateAccuracyChange(float targetAccuracy, bool isIncrease)
+    {
+        float startAccuracy = currentDisplayedAccuracy;
+        float duration = 0.2f;
+        float elapsed = 0f;
+
+        if (useScaleAnimation)
+        {
+            StartCoroutine(AccuracyScaleAnimation(1.2f, 0.2f));
+        }
+        if (useColorAnimation)
+        {
+            accuracyText.color = isIncrease ? increaseColor : decreaseColor;
+        }
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = elapsed / duration;
+            currentDisplayedAccuracy = Mathf.Lerp(startAccuracy, targetAccuracy, t);
+            UpdateAccuracyText();
+            yield return null;
+        }
+
+        currentDisplayedAccuracy = targetAccuracy;
+        UpdateAccuracyText();
+
+        yield return new WaitForSecondsRealtime(0.1f);
+
+        if (useColorAnimation)
+        {
+            StartCoroutine(AccuracyColorAnimation(accuracyOriginalColor, 0.3f));
+        }
+    }
+
+    // ------ ì •í™•ë„ ìŠ¤ì¼€ì¼ ì• ë‹ˆë©”ì´ì…˜ ------
+    private IEnumerator AccuracyScaleAnimation(float targetScale, float duration)
+    {
+        if (accuracyText == null) yield break;
+
+        Vector3 startScale = accuracyText.transform.localScale;
+        Vector3 endScale = accuracyOriginalScale * targetScale;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = elapsed / duration;
+            accuracyText.transform.localScale = Vector3.Lerp(startScale, endScale, t);
+            yield return null;
+        }
+        accuracyText.transform.localScale = endScale;
+        yield return new WaitForSecondsRealtime(0.1f);
+        elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = elapsed / duration;
+            accuracyText.transform.localScale = Vector3.Lerp(endScale, accuracyOriginalScale, t);
+            yield return null;
+        }
+        accuracyText.transform.localScale = accuracyOriginalScale;
+    }
+
+    // ------ ì •í™•ë„ ìƒ‰ìƒ ì• ë‹ˆë©”ì´ì…˜ ------
+    private IEnumerator AccuracyColorAnimation(Color targetColor, float duration)
+    {
+        if (accuracyText == null) yield break;
+
+        Color startColor = accuracyText.color;
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float t = elapsed / duration;
+            accuracyText.color = Color.Lerp(startColor, targetColor, t);
+            yield return null;
+        }
+        accuracyText.color = targetColor;
+    }
+
+    // ------ ì •í™•ë„ í…ìŠ¤íŠ¸ ì—…ë°ì´íŠ¸ ------
+    private void UpdateAccuracyText()
+    {
+        if (accuracyText != null)
+        {
+            accuracyText.text = currentDisplayedAccuracy.ToString("F1") + "%"; // ì†Œìˆ˜ì  1ìë¦¬ + %
         }
     }
 }
