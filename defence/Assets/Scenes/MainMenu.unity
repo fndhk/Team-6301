@@ -5966,7 +5966,7 @@ Transform:
   m_GameObject: {fileID: 1273375043}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -960, y: -540, z: 0}
+  m_LocalPosition: {x: -960.03, y: -540, z: 0}
   m_LocalScale: {x: 1.8, y: 1.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7888,12 +7888,12 @@ GameObject:
   - component: {fileID: 1644642606}
   - component: {fileID: 1644642605}
   m_Layer: 5
-  m_Name: Dropdown
+  m_Name: "\uD574\uC0C1\uB3C4"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1644642604
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9921,7 +9921,7 @@ GameObject:
   - component: {fileID: 2068331105}
   - component: {fileID: 2068331104}
   m_Layer: 5
-  m_Name: Dropdown
+  m_Name: "\uD504\uB808\uC784"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
