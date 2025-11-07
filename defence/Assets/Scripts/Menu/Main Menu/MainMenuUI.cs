@@ -7,6 +7,7 @@ public class MainMenuUI : MonoBehaviour
     [Header("UI Panels")]
     public GameObject loadGamePanel;
     public GameObject confirmDeletePanel;
+    public GameObject OptionPanel;
 
     [Header("Slot UI Elements")]
     public TextMeshProUGUI[] slotInfoTexts;
@@ -132,6 +133,11 @@ public class MainMenuUI : MonoBehaviour
     {
         this.slotIndexToDelete = -1;
         confirmDeletePanel.SetActive(false);
+    }
+
+    public void OnClickOption()
+    {
+        OptionPanel.SetActive(true);
     }
 
     // "게임 종료" 버튼을 누르면 호출될 함수

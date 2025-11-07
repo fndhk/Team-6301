@@ -46,12 +46,20 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
-    {
-        if (isPaused)
-            ResumeGame();
-        else
-            PauseGame();
-    }
+        {
+            if (settingsPanel != null && settingsPanel.activeSelf)
+            {
+                settingsPanel.SetActive(false);
+                return; // 이번 ESC 입력 처리는 여기서 끝냅니다.
+            }
+
+            if (isPaused)
+                ResumeGame();
+            else
+                PauseGame();
+        }
+
+        
     }
 
     public void StageClear()
