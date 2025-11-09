@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageIndex: 2
   stageName: town at sunset
-  baseMusic: {fileID: 8300000, guid: 9b30f8ce496f1184c9f5c9d08d727796, type: 3}
+  baseMusic: {fileID: 8300000, guid: aab0f29fad2df9d4c8dac4dd648a980d, type: 3}
   drumTrack: {fileID: 0}
   pianoTrack: {fileID: 0}
   cymbalTrack: {fileID: 0}
   bpm: 120
-  stageMusic: {fileID: 8300000, guid: 9b30f8ce496f1184c9f5c9d08d727796, type: 3}
+  stageMusic: {fileID: 8300000, guid: aab0f29fad2df9d4c8dac4dd648a980d, type: 3}
   waves:
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
     count: 3
@@ -127,7 +127,7 @@ MonoBehaviour:
     count: 15
     timeBetweenEnemies: 0
   clearReward: 100
-  beatmap: {fileID: 11400000, guid: ee91d3591d402ad4eb9f7d3fb782da8c, type: 2}
+  beatmap: {fileID: 11400000, guid: 56c1c2bdfd964b14cb6e1b1711a804a2, type: 2}
   stageButtonBackground: {fileID: 7431872573762262270, guid: 0c1a9599962165444aec952a4cc4736e, type: 3}
   stageBackground: {fileID: -5468984790243393892, guid: a6048b2a99a753d46b9c9721eeea691e, type: 3}
   defenseBackground: {fileID: 7431872573762262270, guid: 4f69d30ae0d38d34a86fd8b954fd4737, type: 3}

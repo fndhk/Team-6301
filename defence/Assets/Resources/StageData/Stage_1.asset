@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageIndex: 1
   stageName: land of beginning
-  baseMusic: {fileID: 8300000, guid: 59690de400cec7d4d95eeb9d2b3ac0c6, type: 3}
+  baseMusic: {fileID: 8300000, guid: 9b30f8ce496f1184c9f5c9d08d727796, type: 3}
   drumTrack: {fileID: 0}
   pianoTrack: {fileID: 0}
   cymbalTrack: {fileID: 0}
   bpm: 120
-  stageMusic: {fileID: 8300000, guid: 53413ea8e16ce9344a48b5015d62d2e7, type: 3}
+  stageMusic: {fileID: 8300000, guid: 9b30f8ce496f1184c9f5c9d08d727796, type: 3}
   waves:
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
     count: 1
@@ -34,7 +34,7 @@ MonoBehaviour:
     count: 4
     timeBetweenEnemies: 0
   clearReward: 100
-  beatmap: {fileID: 11400000, guid: cc3489882d36f374ba4ffbc0a847fd31, type: 2}
+  beatmap: {fileID: 11400000, guid: ee91d3591d402ad4eb9f7d3fb782da8c, type: 2}
   stageButtonBackground: {fileID: -5179756775005133047, guid: ade7f9b0d4b91644a8ad2b5dfb437144, type: 3}
   stageBackground: {fileID: 1762011465775418109, guid: 3b376d6cc06779f46a7b2218b7b4066a, type: 3}
   defenseBackground: {fileID: -5179756775005133047, guid: a07d571fc337e5b4597d83ef48012c21, type: 3}

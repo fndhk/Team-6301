@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageIndex: 4
   stageName: stormy night
-  baseMusic: {fileID: 8300000, guid: 303f583c64ad58b49b3d31f178cd2ff3, type: 3}
+  baseMusic: {fileID: 8300000, guid: d3a8720d13dbc014f9c0fa5cb033d3bd, type: 3}
   drumTrack: {fileID: 0}
   pianoTrack: {fileID: 0}
   cymbalTrack: {fileID: 0}
   bpm: 120
-  stageMusic: {fileID: 8300000, guid: 303f583c64ad58b49b3d31f178cd2ff3, type: 3}
+  stageMusic: {fileID: 8300000, guid: d3a8720d13dbc014f9c0fa5cb033d3bd, type: 3}
   waves:
   - enemyPrefab: {fileID: 4327232847043190120, guid: 34c3207cecd183049b674da71fa1ccb7, type: 3}
     count: 2
@@ -52,7 +52,7 @@ MonoBehaviour:
     count: 2
     timeBetweenEnemies: 0
   clearReward: 100
-  beatmap: {fileID: 11400000, guid: 1312ea3de3e072640aa87cfc919c7e13, type: 2}
+  beatmap: {fileID: 11400000, guid: 78e2329a2dc65c64881f0686bce19a37, type: 2}
   stageButtonBackground: {fileID: 4053847987706764248, guid: 776d40c1a3712f3499139dd75cbd0325, type: 3}
   stageBackground: {fileID: 4967243896795790778, guid: 3e2088ea70863f047837cf39ebc381d5, type: 3}
   defenseBackground: {fileID: 4053847987706764248, guid: 776d40c1a3712f3499139dd75cbd0325, type: 3}
