@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="image/Main.jpg" width="300" height=""/>
+  <img src="image/Icon.png" width="300" height=""/>
 </p>
 
 <div align="center">
-  <h1>♬ 음 표 수 호 단</h1>
+  <h1>♬ 음 악 수 호 단</h1>
   <h5>2D Defence Game</h5>
 </div>
 
@@ -19,7 +19,7 @@
 |:-----------:|:-----------:|
 | **Engine** | ``Unity`` |
 | **PL** | `C++`, `C#` |
-| **DB** | `MySql` |
+| **AI** | `SUNO AI`, `VEO`, `GEMINI` |
 
 # 👨🏼‍🤝‍👨🏼 팀원
 
