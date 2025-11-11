@@ -2259,7 +2259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 1376862696}
-  bpm: 120
+  bpm: 160
   timelinePanel: {fileID: 618077811}
   noteGridPanel: {fileID: 1171510571}
   playPauseButton: {fileID: 953681436}
@@ -3038,8 +3038,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 717993b2efb822f4bb974e9b1e0a3e0d, type: 3}
-  m_Resource: {fileID: 8300000, guid: 717993b2efb822f4bb974e9b1e0a3e0d, type: 3}
+  m_audioClip: {fileID: 8300000, guid: db4f3b0fc36df0f4daa0ee9e184a8563, type: 3}
+  m_Resource: {fileID: 8300000, guid: db4f3b0fc36df0f4daa0ee9e184a8563, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
