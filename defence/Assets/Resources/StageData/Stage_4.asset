@@ -51,7 +51,7 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 4327232847043190120, guid: 34c3207cecd183049b674da71fa1ccb7, type: 3}
     count: 2
     timeBetweenEnemies: 0
-  clearReward: 100
+  clearReward: 300
   beatmap: {fileID: 11400000, guid: 78e2329a2dc65c64881f0686bce19a37, type: 2}
   stageButtonBackground: {fileID: 4053847987706764248, guid: 776d40c1a3712f3499139dd75cbd0325, type: 3}
   stageBackground: {fileID: 4967243896795790778, guid: 3e2088ea70863f047837cf39ebc381d5, type: 3}

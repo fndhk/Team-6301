@@ -36,7 +36,70 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
     count: 3
     timeBetweenEnemies: 0
-  clearReward: 100
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 2
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 3
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 3
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 1
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 3
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 6
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 3
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 3
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 3
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 3
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 3
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 3
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 3
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 5
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 3
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 4
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 3
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 1
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 2
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 0
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: 1fb538fad47cc5a43867a88ef5518e6a, type: 3}
+    count: 3
+    timeBetweenEnemies: 0
+  clearReward: 300
   beatmap: {fileID: 11400000, guid: 85a10f5ad76a932478482ce4771f5fb0, type: 2}
   stageButtonBackground: {fileID: 1223295105029941997, guid: a79e4686bd3a5f048abd85bad9763df8, type: 3}
   stageBackground: {fileID: 8952561591435250005, guid: 34b7c6640c4b6fa44944362033a856ef, type: 3}
