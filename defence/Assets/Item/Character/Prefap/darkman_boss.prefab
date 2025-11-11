@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2242839253737979924}
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 5
   m_Sprite: {fileID: -3689380762025599791, guid: 50b06ef892d8c2d428bcc7e3744143bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -178,11 +178,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreValue: 5000
-  speed: 0.1
-  maxHealth: 10000
+  speed: 0.5
+  maxHealth: 5000
   stopYPosition: -8
   attackDamage: 300
-  attackRate: 0.5
+  attackRate: 5
   itemDropPrefab: {fileID: 8142636595811851953, guid: 8c7dd9cff4b78e745913b303382a0f75, type: 3}
   itemDropEffectPrefab: {fileID: 3731824565046660661, guid: fea909f25f4feb9449eaa0d678e2e810, type: 3}
   lootTable:

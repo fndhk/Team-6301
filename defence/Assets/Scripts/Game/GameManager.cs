@@ -41,6 +41,38 @@ public class GameManager : MonoBehaviour
         {
             ScoreManager.instance.ResetScore();
         }
+
+        if (SaveLoadManager.instance != null && SaveLoadManager.instance.gameData != null)
+        {
+            // 1. 저장된 데이터에서 해금된 타워 개수를 불러옵니다. (예: 상점에서 구매했다면 '2')
+            int unlockedCount = SaveLoadManager.instance.gameData.unlockedTowerCount;
+
+            Debug.Log($"[GameManager] 불러온 해금된 타워 수: {unlockedCount}");
+
+            // 2. Inspector에 연결된 모든 타워를 순회합니다.
+            for (int i = 0; i < allTowersInOrder.Count; i++)
+            {
+                if (allTowersInOrder[i] != null)
+                {
+                    // 3. 타워의 순번(i)이 해금된 개수(unlockedCount)보다 작은지 확인합니다.
+                    // 예: i=0 (타워1) -> 0 < 2 (True) -> 레벨 1로 활성화
+                    // 예: i=1 (타워2) -> 1 < 2 (True) -> 레벨 1로 활성화
+                    // 예: i=2 (타워3) -> 2 < 2 (False) -> 레벨 0으로 비활성화
+                    if (i < unlockedCount)
+                    {
+                        allTowersInOrder[i].SetLevel(1); // 1레벨(활성화)로 설정
+                    }
+                    else
+                    {
+                        allTowersInOrder[i].SetLevel(0); // 0레벨(비활성화)로 설정
+                    }
+                }
+            }
+        }
+        else
+        {
+            Debug.LogError("[GameManager] SaveLoadManager 또는 GameData를 찾을 수 없어 타워 레벨을 설정할 수 없습니다!");
+        }
     }
 
         void Update()

@@ -28,7 +28,17 @@ public class NicknameSetupUI : MonoBehaviour
             return;
         }
 
+        // 1. 닉네임을 GameData에 저장합니다.
         SaveLoadManager.instance.gameData.nickname = nickname;
+
+        // --- ★★★ 닉네임 치트 코드 추가 ★★★ ---
+        // 2. 닉네임이 "darkman"인지 확인합니다.
+        if (nickname == "darkman")
+        {
+            // 3. 맞다면, 현재 GameData의 재화(기본값 500)를 10000으로 덮어씁니다.
+            SaveLoadManager.instance.gameData.enhancementMaterials = 10000;
+            Debug.Log("<color=cyan>이스터 에그: 'darkman' 님에게 10,000 재화를 지급합니다!</color>");
+        }
 
         // (기본 캐릭터 설정 로직은 그대로 유지)
         if (string.IsNullOrEmpty(SaveLoadManager.instance.gameData.currentSelectedCharacterID))
