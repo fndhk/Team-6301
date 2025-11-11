@@ -169,7 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreValue: 100
   speed: 1.5
-  maxHealth: 2000
+  maxHealth: 500
   stopYPosition: -8
   attackDamage: 30
   attackRate: 1
