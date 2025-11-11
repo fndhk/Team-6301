@@ -36,10 +36,10 @@ public class GameData
     // 생성자: 새 게임 데이터를 만들 때 변수들을 초기화합니다.
     public GameData()
     {
-        currentSelectedCharacterID = "Char_Heal"; // 기본 캐릭터
+        currentSelectedCharacterID = "Char_Boom"; // 기본 캐릭터
         gachaTickets = 0;
         characterLevels = new SerializableDictionary<string, int>();
-        characterLevels.Add("Char_Heal", 1); // 기본 캐릭터는 1레벨로 시작
+        characterLevels.Add("Char_Boom", 1); // 기본 캐릭터는 1레벨로 시작
         firstClearRewards = new List<string>();
         watchedCutsceneStageIndices = new List<int>();
 

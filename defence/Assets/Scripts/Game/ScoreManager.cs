@@ -56,7 +56,7 @@ public class ScoreManager : MonoBehaviour
         float healthPercentage = coreFacility.GetCurrentHealthPercentage();
 
         // 3. �ǽð� ���� ���� ���
-        double currentFinalScore = (double)totalKillScore * averageRhythmScore * (double)healthPercentage * 3.0;
+        double currentFinalScore = (double)totalKillScore * averageRhythmScore * (double)healthPercentage * 0.3;
 
         // 4. UI ������Ʈ
         // (A)  "SCORE: " �ؽ�Ʈ�� ���� ������Ʈ���� �ʽ��ϴ�. (�Ʒ� 3�� ���� �Ǵ� �ּ� ó��)
@@ -117,7 +117,7 @@ public class ScoreManager : MonoBehaviour
             averageRhythmScore = (double)totalJudgmentPoints / totalJudgmentCount;
         }
 
-        double finalScore = (double)totalKillScore * averageRhythmScore * (double)healthPercentage * 3.0;
+        double finalScore = (double)totalKillScore * averageRhythmScore * (double)healthPercentage * 0.3;
         return Mathf.RoundToInt((float)finalScore);
     }
 
