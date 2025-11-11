@@ -18,6 +18,13 @@ public class SaveLoadManager : MonoBehaviour
             instance = this;
             // 씬이 바뀌어도 파괴되지 않도록 설정
             DontDestroyOnLoad(gameObject);
+
+            // PlayerPrefs에서 저장된 마스터 볼륨을 불러옵니다.
+            float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1.0f);
+
+            // 게임 전체의 오디오 리스너 볼륨에 즉시 적용합니다.
+            AudioListener.volume = savedVolume;
+            Debug.Log($"[SaveLoadManager] 저장된 마스터 볼륨({savedVolume * 100}%)을 불러와 적용했습니다.");
         }
         else
         {
