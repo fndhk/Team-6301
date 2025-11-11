@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32fc9b7ec86bfc243a381ba2379883a1, type: 3}
+  m_Name: Stage2_Cutscene
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - character: {fileID: 11400000, guid: 87422104c85d6564cbe9fbe93fa0f09d, type: 2}
+    background: {fileID: -5468984790243393892, guid: a6048b2a99a753d46b9c9721eeea691e, type: 3}
+    dialogueText: "\uD734 \uC8FD\uB2E4\uC0B4\uC558\uB124"
+  - character: {fileID: 11400000, guid: 6c33ca06f65e6314e8b710f1852d9eb9, type: 2}
+    background: {fileID: -5468984790243393892, guid: a6048b2a99a753d46b9c9721eeea691e, type: 3}
+    dialogueText: "\uC74C\uC545 \uC218\uD638\uB2E8\uC758 \uD30C\uAD34\uC804\uCC28
+      \uB3C4\uD76C! \uC9C0\uC6D0 \uC694\uCCAD \uBC1B\uACE0 \uC654\uC2B5\uB2C8\uB2E4!
+      \uBE75\uC57C\uBE75\uC57C~"
+  - character: {fileID: 11400000, guid: 87422104c85d6564cbe9fbe93fa0f09d, type: 2}
+    background: {fileID: -5468984790243393892, guid: a6048b2a99a753d46b9c9721eeea691e, type: 3}
+    dialogueText: "\uBB50\uACE0? \uBB50\uD558\uB2E4 \uC774\uC81C \uC624\uB294\uB370?"
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: -5468984790243393892, guid: a6048b2a99a753d46b9c9721eeea691e, type: 3}
+    dialogueText: "\uC11C\uBD80\uC804\uC120 \uC0C1\uD669\uC740 \uC880 \uC5B4\uB5A4\uAC00\uC694
+      \uB3C4\uD76C\uC591?"
+  - character: {fileID: 11400000, guid: 6c33ca06f65e6314e8b710f1852d9eb9, type: 2}
+    background: {fileID: -5468984790243393892, guid: a6048b2a99a753d46b9c9721eeea691e, type: 3}
+    dialogueText: "\uC88B\uB2E4\uACE0 \uD558\uBA74 \uAC70\uC9D3\uB9D0\uC774\uACA0\uC8E0...
+      \uADF8\uB807\uC9C0\uB9CC \uB0A8\uBD80\uC804\uC120\uC774 \uC2EC\uC0C1\uCE58
+      \uC54A\uB2E4\uACE0 \uB4E4\uC5C8\uC5B4\uC694...! \uBAA8\uB450 \uC77C\uBC1C \uC7A5\uC804!!!!"
+  - character: {fileID: 11400000, guid: 87422104c85d6564cbe9fbe93fa0f09d, type: 2}
+    background: {fileID: -5468984790243393892, guid: a6048b2a99a753d46b9c9721eeea691e, type: 3}
+    dialogueText: "\uC77C\uBC1C\uC7A5\uC804\uAC19\uC740 \uC18C\uB9AC\uD558\uACE0
+      \uC790\uBE60\uC84C\uB2E4. \uC5EC\uAE34 \uB0B4\uC640 [PLAYER_NAME]\uAC00 \uBC29\uAE08
+      \uC815\uB9AC\uD588..."
+  - character: {fileID: 11400000, guid: 05f0be9774868ee44a832352c824b16a, type: 2}
+    background: {fileID: -5468984790243393892, guid: a6048b2a99a753d46b9c9721eeea691e, type: 3}
+    dialogueText: "\uB2E4\uB4E4 \uC900\uBE44\uD558\uC138\uC694... \uB188\uB4E4\uC774
+      \uBAB0\uB824\uC635\uB2C8\uB2E4."
+  - character: {fileID: 11400000, guid: 87422104c85d6564cbe9fbe93fa0f09d, type: 2}
+    background: {fileID: -5468984790243393892, guid: a6048b2a99a753d46b9c9721eeea691e, type: 3}
+    dialogueText: "\uB2C8\uB294 \uB610 \uC5B4\uB370\uC11C \uD280\uC5B4\uB098\uC654\uB178!"
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: -5468984790243393892, guid: a6048b2a99a753d46b9c9721eeea691e, type: 3}
+    dialogueText: "\uC557 \uC815\uB9D0\uC774\uC5D0\uC694! \uB140\uC11D\uB4E4\uC774
+      \uBAB0\uB824\uC624\uACE0 \uC788\uC5B4\uC694. \uC774\uBC88\uC5D0\uB294 \uC27D\uC9C0
+      \uC54A\uC744 \uAC83 \uAC19\uB124\uC694. \uB2E4\uB4E4 \uC900\uBE44\uD558\uC2DC\uC8E0!"
+  - character: {fileID: 11400000, guid: d601875291931094fafc6f7a4afe46e6, type: 2}
+    background: {fileID: -5468984790243393892, guid: a6048b2a99a753d46b9c9721eeea691e, type: 3}
+    dialogueText: "\uB9C8\uC74C \uB2E8\uB2E8\uD788 \uBA39\uACE0 \uCD9C\uBC1C\uD558\uC790."
