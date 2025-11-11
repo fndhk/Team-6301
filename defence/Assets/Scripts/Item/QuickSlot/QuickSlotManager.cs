@@ -29,7 +29,7 @@ public class QuickSlotManager : MonoBehaviour
             UseSlot(0); // 첫 번째 슬롯 (인덱스 0) 사용
         }
         // X 키를 눌렀을 때
-        else if (Input.GetKeyDown(KeyCode.W))
+        else if (Input.GetKeyDown(KeyCode.LeftBracket))
         {
             UseSlot(1); // 두 번째 슬롯 (인덱스 1) 사용
         }
