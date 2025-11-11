@@ -23,7 +23,7 @@
 
 # 👨🏼‍🤝‍👨🏼 팀원
 
-| <img width=150 src="image/Kwa.jpg" /> | <img width=150 src="image/K.jpg" /> | <img width=150 src="image/E.jpg" /> | <img width=150 src="image/T.jpg" /> |
+| <img width=150 src="image/Kwa.jpg" /> | <img width=150 src="image/usin.png" /> | <img width=150 src="image/E.jpg" /> | <img width=150 src="image/T.jpg" /> |
 |:--------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|
 | <strong>곽영민</strong><br>[팀장] | <strong>김유신</strong><br>[팀원] | <strong>이재원</strong><br>[팀원] | <strong>임태형</strong><br>[팀원] |
 
