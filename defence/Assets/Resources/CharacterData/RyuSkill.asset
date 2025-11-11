@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7baab39b80c42454ca72611c034ba2b2, type: 3}
   m_Name: RyuSkill
   m_EditorClassIdentifier: 
+  isAutomatic: 0
   positioningPanelPrefab: {fileID: 7510823992548209353, guid: f38c349aa12304345a275ec2f3e82bcd, type: 3}
   pillarPrefab: {fileID: 1537319718123585163, guid: f2b46370373d1904f94eaac3202f23f2, type: 3}
-  characterImagePrefab: {fileID: 6317058765928140771, guid: ce78dbc1d42926f48a8a81a2e2038716, type: 3}
+  characterImagePrefab: {fileID: 0}
   durationByLevel:
   - 3
   - 4
@@ -22,12 +23,12 @@ MonoBehaviour:
   damagePerSecondByLevel: 500000006e00000096000000
   skillPositions:
   - activationKey: 113
-    positionObject: {fileID: 667747313432988614, guid: 6e1b1c241ce54f042ae7d21cba1c9878, type: 3}
+    positionObject: {fileID: 667747313432988614, guid: 3d81b83cc63915641a972b5d5215853f, type: 3}
   - activationKey: 119
-    positionObject: {fileID: 2124839656650723974, guid: dedd835e6f49ee849b9361d60a0d7e14, type: 3}
+    positionObject: {fileID: 2124839656650723974, guid: ca4d31ec619bb4145be2c2e70371b2ba, type: 3}
   - activationKey: 101
-    positionObject: {fileID: 6967350455429633260, guid: 3bc9a38bef0088441a35a83cbfb06418, type: 3}
+    positionObject: {fileID: 6967350455429633260, guid: 48255b477b7df5d4b842f5ce792af36c, type: 3}
   - activationKey: 114
-    positionObject: {fileID: 7184377098446118604, guid: ec978fe7a704ff947aaeccfd04aeb79f, type: 3}
+    positionObject: {fileID: 7184377098446118604, guid: d1309058e292c3c409b0c5dbf0d4ec3d, type: 3}
   - activationKey: 116
-    positionObject: {fileID: 4060181215938852396, guid: 7a448a4ecc47a1245a063f687f5733b8, type: 3}
+    positionObject: {fileID: 4060181215938852396, guid: e949a4e151bcf75469efd844a65eae2e, type: 3}

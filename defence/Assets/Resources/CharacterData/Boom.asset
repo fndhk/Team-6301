@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082ae89f2b07c6c4e8cf8ac7c1c31b54, type: 3}
   m_Name: Boom
   m_EditorClassIdentifier: 
-  rarity: 0
+  rarity: 2
   characterID: Char_Boom
   characterName: "\uB3C4\uD76C"
   characterDescription: "\uB3C4\uD76C\uB294 \uD53C\uC544\uB178\uC758 \uC601\uC7AC\uB85C

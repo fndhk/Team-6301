@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 // ▼▼▼ 메뉴 이름과 파일 이름을 RyuSkill로 변경 ▼▼▼
 [CreateAssetMenu(fileName = "RyuSkill", menuName = "TowerDefense/Skills/Ryu Skill")]
-// ▼▼▼ 클래스 이름을 RyuSkill로 변경 ▼▼▼
+
 public class RyuSkill : ItemEffect
 {
     [Header("스킬 시전 UI")]
@@ -50,7 +50,6 @@ public class RyuSkill : ItemEffect
         GameObject pillarGO = Instantiate(pillarPrefab, targetPositionObject.transform.position, Quaternion.identity);
         pillarGO.GetComponent<RyuPillar>().Initialize(dps, duration);
 
-        // ▼▼▼ 이 부분을 수정합니다 ▼▼▼
         if (characterImagePrefab != null)
         {
             // Quaternion.identity 대신 Quaternion.Euler(0, 0, 90)으로 변경하여 Z축으로 90도 회전
@@ -58,7 +57,6 @@ public class RyuSkill : ItemEffect
             GameObject charImage = Instantiate(characterImagePrefab, targetPositionObject.transform.position, characterRotation);
             Destroy(charImage, duration + 0.1f);
         }
-        // ▲▲▲ 여기까지 수정 ▲▲▲
 
         Debug.Log($"<color=blue>RYU 스킬 발동!</color> Lv.{levelIndex + 1} (지속:{duration}s, DPS:{dps})");
     }

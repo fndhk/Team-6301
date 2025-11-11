@@ -128,7 +128,7 @@ public class GameManager : MonoBehaviour
         if (!data.firstClearRewards.Contains(stageID))
         {
             data.firstClearRewards.Add(stageID);
-            data.gachaTickets += 100; // 첫 클리어 시 티켓 1개 지급
+            data.gachaTickets += 1; // 첫 클리어 시 티켓 1개 지급
             Debug.Log("첫 클리어 보너스! 티켓 +1");
         }
         SaveLoadManager.instance.SaveGame(GameSession.instance.currentSaveSlot);
