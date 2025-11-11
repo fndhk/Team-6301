@@ -24,7 +24,7 @@
   
   | 상태 | 내용 |
   |:---:|:---:|
-  | 🔗 **LINK** | **[클릭하여 발표 자료 (PPT/PDF) 보기]()** |
+  | 🔗 **LINK** | **[클릭하여 발표 자료 (PDF) 보기](https://github.com/fndhk/Team-6301/blob/main/ppt/6301%EB%B0%9C%ED%91%9C%EC%9E%90%EB%A3%8C.pdf)** |
 </div>
 
 # 💡 게임 설명
