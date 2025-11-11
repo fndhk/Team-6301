@@ -10,55 +10,52 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bcbbc34f31c28dd4e8f71c32fcae112e, type: 3}
-  m_Name: Stage_1
+  m_Name: Stage_~~~
   m_EditorClassIdentifier: 
-  stageIndex: 1
-  stageName: land of beginning
-  baseMusic: {fileID: 8300000, guid: 9b30f8ce496f1184c9f5c9d08d727796, type: 3}
+  stageIndex: 6
+  stageName: The Hell
+  baseMusic: {fileID: 8300000, guid: dc6cb82228039ae4cae41d7bed284c0a, type: 3}
   drumTrack: {fileID: 0}
   pianoTrack: {fileID: 0}
   cymbalTrack: {fileID: 0}
-  bpm: 120
-  stageMusic: {fileID: 8300000, guid: 9b30f8ce496f1184c9f5c9d08d727796, type: 3}
+  bpm: 160
+  stageMusic: {fileID: 8300000, guid: dc6cb82228039ae4cae41d7bed284c0a, type: 3}
   waves:
-  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+  - enemyPrefab: {fileID: 2707553314774988086, guid: fdaa3d27706f1ab419b3992712583bbc, type: 3}
     count: 1
     timeBetweenEnemies: 0
-  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 2
-    timeBetweenEnemies: 0
-  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 3
-    timeBetweenEnemies: 0
-  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 4
-    timeBetweenEnemies: 0
-  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 2
-    timeBetweenEnemies: 0
-  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 1
-    timeBetweenEnemies: 0
-  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+  - enemyPrefab: {fileID: 2707553314774988086, guid: fdaa3d27706f1ab419b3992712583bbc, type: 3}
     count: 0
     timeBetweenEnemies: 0
-  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 3
-    timeBetweenEnemies: 0
-  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 1
-    timeBetweenEnemies: 0
-  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 2
-    timeBetweenEnemies: 0
-  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 4
-    timeBetweenEnemies: 0
-  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+  - enemyPrefab: {fileID: 2707553314774988086, guid: fdaa3d27706f1ab419b3992712583bbc, type: 3}
     count: 0
     timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: fdaa3d27706f1ab419b3992712583bbc, type: 3}
+    count: 0
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: fdaa3d27706f1ab419b3992712583bbc, type: 3}
+    count: 0
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: fdaa3d27706f1ab419b3992712583bbc, type: 3}
+    count: 1
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+    count: 1
+    timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
     count: 2
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+    count: 1
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+    count: 2
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 4327232847043190120, guid: 34c3207cecd183049b674da71fa1ccb7, type: 3}
+    count: 2
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+    count: 1
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
     count: 1
@@ -69,9 +66,27 @@ MonoBehaviour:
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
     count: 3
     timeBetweenEnemies: 0
-  clearReward: 300
-  beatmap: {fileID: 11400000, guid: ee91d3591d402ad4eb9f7d3fb782da8c, type: 2}
-  stageButtonBackground: {fileID: -5179756775005133047, guid: ade7f9b0d4b91644a8ad2b5dfb437144, type: 3}
-  stageBackground: {fileID: 1762011465775418109, guid: 3b376d6cc06779f46a7b2218b7b4066a, type: 3}
-  defenseBackground: {fileID: -5179756775005133047, guid: a07d571fc337e5b4597d83ef48012c21, type: 3}
-  entryCutscene: {fileID: 11400000, guid: 58babf80de5d9f244be3744545d8df23, type: 2}
+  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+    count: 5
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 4327232847043190120, guid: 34c3207cecd183049b674da71fa1ccb7, type: 3}
+    count: 3
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+    count: 5
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+    count: 5
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
+    count: 5
+    timeBetweenEnemies: 0
+  - enemyPrefab: {fileID: 2707553314774988086, guid: fdaa3d27706f1ab419b3992712583bbc, type: 3}
+    count: 1
+    timeBetweenEnemies: 0
+  clearReward: 15000
+  beatmap: {fileID: 0}
+  stageButtonBackground: {fileID: 874033100594665980, guid: f653dd20415257648b0bc65188796037, type: 3}
+  stageBackground: {fileID: 874033100594665980, guid: f653dd20415257648b0bc65188796037, type: 3}
+  defenseBackground: {fileID: 0}
+  entryCutscene: {fileID: 0}
