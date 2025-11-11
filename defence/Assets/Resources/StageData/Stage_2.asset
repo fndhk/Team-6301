@@ -25,73 +25,73 @@ MonoBehaviour:
     count: 3
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 3
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 2
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 1
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 1
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 2
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 3
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 1
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 2
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 2
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 3
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 1
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 1
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 0
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 3
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 0
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 1
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 3
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 0
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 5
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 3
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 3
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 1
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
-    count: 7
+    count: 0
     timeBetweenEnemies: 0
   - enemyPrefab: {fileID: 4509470266650008527, guid: 1d3480e85f952204399e314db43814ca, type: 3}
     count: 7
