@@ -104,4 +104,4 @@ MonoBehaviour:
   stageButtonBackground: {fileID: 1223295105029941997, guid: a79e4686bd3a5f048abd85bad9763df8, type: 3}
   stageBackground: {fileID: 8952561591435250005, guid: 34b7c6640c4b6fa44944362033a856ef, type: 3}
   defenseBackground: {fileID: 1223295105029941997, guid: 56ccad0faea844949a5d6dba1b93722d, type: 3}
-  entryCutscene: {fileID: 0}
+  entryCutscene: {fileID: 11400000, guid: e826024eba5c1ff4498a72c8b2997929, type: 2}

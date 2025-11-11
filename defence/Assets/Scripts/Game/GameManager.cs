@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [Header("UI Panels")]
     public GameObject menuPanel;
     public GameObject gameOverPanel;
-
+    public static GameManager instance;
     [Header("Stage Clear UI")]
     public GameObject stageClearPanel;
     public TextMeshProUGUI scoreText;
@@ -23,34 +23,33 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
+        // ---  싱글톤 인스턴스 설정 (가장 중요!) ---
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            // 이미 인스턴스가 있다면 이 오브젝트는 파괴
+            Destroy(gameObject);
+            return; // Awake의 나머지 코드를 실행하지 않음
+        }
+        // ---  (여기까지 추가) ---
+
         Enemy.liveEnemyCount = 0;
         if (ScoreManager.instance != null)
         {
             ScoreManager.instance.ResetScore();
         }
-
-        if (SaveLoadManager.instance != null && SaveLoadManager.instance.gameData != null)
-        {
-            int unlockedCount = SaveLoadManager.instance.gameData.unlockedTowerCount;
-            for (int i = 0; i < allTowersInOrder.Count; i++)
-            {
-                if (allTowersInOrder[i] != null)
-                {
-                    // 해금된 타워는 레벨 1(활성), 아니면 레벨 0(비활성)으로 설정
-                    allTowersInOrder[i].SetLevel(i < unlockedCount ? 1 : 0);
-                }
-            }
-        }
     }
 
-    void Update()
+        void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (settingsPanel != null && settingsPanel.activeSelf)
+            if (CountdownUI.instance != null && CountdownUI.instance.isCountingDown)
             {
-                settingsPanel.SetActive(false);
-                return; // 이번 ESC 입력 처리는 여기서 끝냅니다.
+                return; // 카운트다운 중에는 아무것도 하지 않음
             }
 
             if (isPaused)
@@ -59,7 +58,7 @@ public class GameManager : MonoBehaviour
                 PauseGame();
         }
 
-        
+
     }
 
     public void StageClear()
@@ -197,7 +196,7 @@ public class GameManager : MonoBehaviour
 
     private void PauseGame()
     {
-        isPaused = true;
+        SetPaused(true);
         menuPanel.SetActive(true);
         Time.timeScale = 0f;
 
@@ -209,15 +208,35 @@ public class GameManager : MonoBehaviour
 
     public void ResumeGame()
     {
-        isPaused = false;
+        // 1. ESC 패널(menuPanel)을 닫습니다.
         menuPanel.SetActive(false);
-        Time.timeScale = 1f;
 
-        if (AudioManager.instance != null)
+        // 5. CountdownUI에게 "재개 카운트다운"을 시작하라고 알립니다.
+        if (CountdownUI.instance != null)
         {
-           AudioManager.instance.ResumeMusic();
+            // ---  (핵심 수정)  ---
+            // 코루틴을 부르기 전에, 비활성화되어 있을 수 있는
+            // CountdownUI 오브젝트를 먼저 활성화(SetActive(true))시킵니다.
+            CountdownUI.instance.gameObject.SetActive(true);
+
+            // 이제 활성화되었으니 코루틴을 시작합니다.
+            CountdownUI.instance.StartResumeCountdown();
+        }
+        else
+        {
+            // 6. (안전장치)
+            Debug.LogError("CountdownUI 인스턴스를 찾을 수 없어 즉시 재개합니다.");
+            SetPaused(false);
+            Time.timeScale = 1f;
+            if (AudioManager.instance != null)
+            {
+                AudioManager.instance.ResumeMusic();
+            }
         }
     }
+
+
+    
 
     public void QuitGame()
     {
@@ -246,5 +265,14 @@ public class GameManager : MonoBehaviour
     public void OnClickPause_Settings()
     {
         if (settingsPanel != null) settingsPanel.SetActive(true);
+    }
+    /// <summary>
+    /// 게임의 일시정지 상태를 설정합니다. (CountdownUI에서 이 함수를 호출)
+    /// </summary>
+    /// <param name="state">true = 일시정지, false = 재개</param>
+    public void SetPaused(bool state)
+    {
+        isPaused = state;
+        Debug.Log($"<color=magenta>GameManager: isPaused 상태가 {state}로 변경됨</color>");
     }
 }
