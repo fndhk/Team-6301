@@ -75,8 +75,8 @@ MonoBehaviour:
       \uC788\uC5B4\uC694. "
   - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
     background: {fileID: 3192317913754455671, guid: a587852f51cc54342b7478b6f3c19aa1, type: 3}
-    dialogueText: "\uD604\uC7AC \uC810\uC218\uB294 \uC5EC\uAE30\uC11C \uD655\uC778\uD560
-      \uC218 \uC788\uC5B4\uC694. \uACE0\uB4DD\uC810\uC744 \uB178\uB824\uBD05\uC2DC\uB2E4."
+    dialogueText: "\uB9AC\uB4EC \uC815\uD655\uB3C4\uC640 \uD604\uC7AC \uC810\uC218\uB294
+      \uAC01\uAC01 \uC5EC\uAE30\uC5D0! \uACE0\uB4DD\uC810\uC744 \uB178\uB824\uBD05\uC2DC\uB2E4!"
   - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
     background: {fileID: -6592336003507864518, guid: e76a1545832dc50418b5cb4d6482583a, type: 3}
     dialogueText: "\uCE90\uB9AD\uD130 \uBCC0\uACBD\uC744 \uB20C\uB7EC \uC800 \uB9D0\uACE0\uB3C4
@@ -91,6 +91,11 @@ MonoBehaviour:
     background: {fileID: 1762011465775418109, guid: 3b376d6cc06779f46a7b2218b7b4066a, type: 3}
     dialogueText: "\uB0B4 \uB9DE\uC544 \uC8FD\uAC84\uB2E4! \uC124\uBA85\uC740 \uC5B8\uC81C
       \uB05D\uB098\uB178!"
+  - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
+    background: {fileID: 1762011465775418109, guid: 3b376d6cc06779f46a7b2218b7b4066a, type: 3}
+    dialogueText: "\uC5BC\uB978 \uCD98\uC2DD\uC528\uB97C \uB3C4\uC640\uB4DC\uB824\uC57C
+      \uACA0\uB124\uC694! \uC790 \uC774\uC81C \uC2E4\uC804\uC774\uC5D0\uC694!  [PLAYER_NAME]\uB2E8\uC7A5\uB2D8,
+      \uAC74\uC2B9\uC744 \uBE55\uB2C8\uB2E4!"
   - character: {fileID: 11400000, guid: a1bcd6f7bc7b50b45a2cf16b016c4715, type: 2}
     background: {fileID: 1762011465775418109, guid: 3b376d6cc06779f46a7b2218b7b4066a, type: 3}
     dialogueText: "\uC5BC\uB978 \uCD98\uC2DD\uC528\uB97C \uB3C4\uC640\uB4DC\uB824\uC57C
