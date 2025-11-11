@@ -21,7 +21,19 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null) instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            // PlayerPrefs에서 저장된 마스터 볼륨을 불러옵니다.
+            // "MasterVolume"은 SoundSettings.cs에서 저장한 이름과 같아야 합니다.
+            float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1.0f);
+
+            // 게임 전체의 오디오 리스너 볼륨에 즉시 적용합니다.
+            AudioListener.volume = savedVolume;
+            Debug.Log($"[AudioManager] 저장된 볼륨({savedVolume * 100}%)을 불러와 적용했습니다.");
+        }
         else Destroy(gameObject);
     }
 

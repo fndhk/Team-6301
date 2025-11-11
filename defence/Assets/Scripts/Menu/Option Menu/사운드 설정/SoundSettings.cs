@@ -10,18 +10,14 @@ public class SoundSettings : MonoBehaviour
 
     void Start()
     {
-        // 1. 게임 시작 시 저장된 볼륨 불러오기 (없으면 기본값 1.0)
-        // PlayerPrefs는 간단한 설정값을 저장하기에 좋습니다.
-        float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1.0f);
+        // 1. AudioManager가 이미 설정한 현재 볼륨 값을 가져옵니다.
+        float currentVolume = AudioListener.volume;
 
-        // 2. 오디오 리스너 볼륨 설정
-        AudioListener.volume = savedVolume;
+        // 2. 슬라이더 UI만 현재 볼륨에 맞춥니다.
+        masterVolumeSlider.value = currentVolume;
+        UpdateVolumeText(currentVolume);
 
-        // 3. 슬라이더 UI 초기화
-        masterVolumeSlider.value = savedVolume;
-        UpdateVolumeText(savedVolume);
-
-        // 4. 슬라이더 값 변경 이벤트 연결
+        // 3. 슬라이더 값 변경 이벤트 연결
         masterVolumeSlider.onValueChanged.AddListener(OnMasterVolumeChanged);
     }
 
